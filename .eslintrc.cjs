@@ -17,4 +17,29 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:import/typescript',
+      ],
+      plugins: ['@typescript-eslint'],
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+      },
+    },
+  ],
+  
+  // fix error for jsx 
+  // https://stackoverflow.com/questions/66085518/react-jsx-runtime-missing-when-using-eslint
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+
 }

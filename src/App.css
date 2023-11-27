@@ -2,4 +2,6 @@ body{
     background-color: #077da7;
 
 }
-
+.body-dashboard{
+    background: linear-gradient(0deg, #010608 10%, #077da7 30%)
+}
