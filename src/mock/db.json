@@ -17,6 +17,24 @@
       "alamat": "Hegarmanah",
       "kecamatan": "Jatinangor",
       "kota": "Sumedang"
+    },
+    {
+      "id": "4d3a41c6-ad58-4c1c-b478-2b7ef9f55715",
+      "bayi": {
+        "namaBayi": "dsa",
+        "jenisKelamin": "Laki-Laki",
+        "beratBayi": 0,
+        "tinggiBayi": 0,
+        "tanggalLahir": "11/28/2023"
+      },
+      "namaIbu": "asd",
+      "pekerjaanIbu": "asd",
+      "NIK": "ad",
+      "namaAyah": "asd",
+      "pekerjaanAyah": "ada",
+      "alamat": "asd",
+      "kecamatan": "ADS",
+      "kota": "ADS"
     }
   ],
   "users": [
