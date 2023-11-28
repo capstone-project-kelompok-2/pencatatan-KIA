@@ -1,36 +1,34 @@
 {
-	"users": [
-		{   
-            "id": 1,
-			"username": "users",
-			"password": "password123",
-            "hari" : "Senin",
-            "tanggal" : "11-11-20203",
-            "waktu" : "10:00",
-            "jeniskelamin" : "Laki-laki",
-            "kelahiran" : "1",
-            "beratLahir" : "2",
-            "panjangBadan" : "3",
-            "tempatLahir" : "Jakarta",
-            "alamat" : "Jalan Jakarta",
-            "namaBayi" : "Bayi 1",
-            "namaIbu" : "Ibu 1",
-            "pekerjaanIbu" : "Pekerjaan Ibu 1",
-            "NIKIbu" : "123456789",
-            "namaAyah" : "Ayah 1",
-            "pekerjaanAyah" : "Pekerjaan Ayah 1",
-            "NIKAyah" : "1234567892",
-            "alamatOrangTua" : "Jalan Jakarta",
-            "kecamatan" : "Kecamatan 1",
-            "kabupaten" : "Kabupaten 1"
-		}
-	],
-	"kader": [
-		{
-            "id": 1,
-			"username": "kader1",
-			"password": "12345"
-		}
-	],
-	"rumah-sakit": [{ "nama": "Mitra Keluarga" }]
+  "guest": [
+    {
+      "id": "uid1",
+      "bayi": {
+        "namaBayi": "gojo satoru",
+        "jenisKelamin": "Laki-Laki",
+        "beratBayi": "500",
+        "tinggiBayi": "20",
+        "tanggalLahir": "11/28/2023"
+      },
+      "namaIbu": "Salma Benazir Achmad",
+      "pekerjaanIbu": "Make-Up Artist",
+      "NIK": "0001",
+      "namaAyah": "Krisna Lavendra Irawan",
+      "pekerjaanAyah": "Meratakan Dunia",
+      "alamat": "Hegarmanah",
+      "kecamatan": "Jatinangor",
+      "kota": "Sumedang"
+    }
+  ],
+  "users": [
+    {
+      "kodeId": 1,
+      "username": "kader1",
+      "password": "12345"
+    }
+  ],
+  "rumah-sakit": [
+    {
+      "nama": "Mitra Keluarga"
+    }
+  ]
 }
