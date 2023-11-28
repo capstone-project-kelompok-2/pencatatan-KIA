@@ -1,10 +1,11 @@
 import DatePicker from 'react-datepicker'
-import {uid} from 'react-uid'
+import { v4 as uuidv4 } from 'uuid'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useForm } from "react-hook-form"
 import { useState } from "react"
+import { useNavigate } from 'react-router-dom'
 import InputText from "../atom/InputText"
 import ErrorFieldText from "../atom/errorFieldText"
 import Select from "../atom/select"
@@ -13,12 +14,13 @@ import Label from "../atom/label"
 import TableData from "../atom/table/tableData"
 import 'react-datepicker/dist/react-datepicker.css'
 const Create = () => {
+    const navigate = useNavigate()
     const MySwal = withReactContent(Swal)
     const {  register, handleSubmit, formState: { errors } } = useForm()
     const onSubmit = data => {
         const dataBayi = {
             // create id with react-uid
-            id : uid(data),
+            id : uuidv4(),
             bayi : {
                 namaBayi : data.namaBayi,
                 jenisKelamin : data.jenisKelamin,
@@ -57,7 +59,9 @@ const Create = () => {
                         title: "Your work has been saved",
                         showConfirmButton: false,
                         timer: 1500
-                      });
+                      }).then(() => {
+                        navigate('/')
+                      })
                     console.log(response)
                 })
                 .catch((error) => {

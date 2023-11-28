@@ -1,8 +1,37 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import Swal from 'sweetalert2'
 const Dashboard = () => {
-
+    const navigate = useNavigate();
     const [guests, setGuests] = useState([]);
+
+    const handleDelete = (id) => {
+        // console.log(id); 
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:3000/guest/${id}`)
+                .then((res) => {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                      }).then(() => {
+                        window.location.reload();
+                      })
+                        
+                })
+            }
+          });
+    }
 
     useEffect(() => {
       // Menggunakan async/await untuk membuat kode lebih bersih
@@ -27,7 +56,7 @@ const Dashboard = () => {
                 </div>
                 <div className="navbar__menu flex justify-end">
                     <div className="flex justify-center items-center mt-3 mx-3">
-                        <button type="button" className="text-gray-900 font-semibold bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><i className="fa-solid fa-user-plus mr-3"></i> New Data</button>
+                        <button onClick={ () => navigate('/create')} type="button" className="text-gray-900 font-semibold bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><i className="fa-solid fa-user-plus mr-3"></i> New Data</button>
                     </div>
                     {/* search button */}
                     <div className="search-bar">
@@ -48,7 +77,7 @@ const Dashboard = () => {
 
             <div className="row h-auto ">
             {guests.map((guest) => (
-            <div className=" z-0 h-auto  flex flex-col gap-5 justify-center items-center  overflow-visible py-5">      
+            <div key={guest.id} className=" z-0 h-auto  flex flex-col gap-5 justify-center items-center  overflow-visible py-5">      
                 <div className='row-data grid grid-cols-2 card justify-start p-10 gap-10 items-center w-[90%] backdrop-blur-sm bg-white/30 h-40 rounded-2xl'>
                     <div className='flex gap-10'>
                         <img src="./src/assets/img/pngwing1.png" alt="" className='w-[15%]'/>
@@ -60,7 +89,7 @@ const Dashboard = () => {
                     </div>
                     <div className='flex justify-end items-center gap-5'>
                         <button className='bg-sky-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-blue-800'><i className="fa-regular fa-eye mr-2"></i>View</button>
-                        <button className='bg-red-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-red-800'><i className="fa-solid fa-trash mr-2"></i> Delete</button>
+                        <button onClick={() => handleDelete(guest.id)} className='bg-red-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-red-800'><i className="fa-solid fa-trash mr-2"></i> Delete</button>
                     </div>
 
                 </div>
