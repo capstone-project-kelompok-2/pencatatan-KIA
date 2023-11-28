@@ -1,17 +1,24 @@
+import DatePicker from 'react-datepicker'
+import {uid} from 'react-uid'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import { useForm } from "react-hook-form"
 import { useState } from "react"
-import DatePicker from 'react-datepicker'
-import 'react-datepicker/dist/react-datepicker.css'
 import InputText from "../atom/InputText"
 import ErrorFieldText from "../atom/errorFieldText"
 import Select from "../atom/select"
 import InputNumber from "../atom/inputNumber"
 import Label from "../atom/label"
 import TableData from "../atom/table/tableData"
+import 'react-datepicker/dist/react-datepicker.css'
 const Create = () => {
+    const MySwal = withReactContent(Swal)
     const {  register, handleSubmit, formState: { errors } } = useForm()
     const onSubmit = data => {
         const dataBayi = {
+            // create id with react-uid
+            id : uid(data),
             bayi : {
                 namaBayi : data.namaBayi,
                 jenisKelamin : data.jenisKelamin,
@@ -27,10 +34,39 @@ const Create = () => {
             alamat : data.alamat,
             kecamatan : data.kecamatan,
             kota : data.kota
-
-            
         }
-        console.log(dataBayi)
+        // create modal window and confirm with sweetalert2
+
+        MySwal.fire({
+            title : 'Apakah data yang anda masukan sudah benar?',
+            html : showDataModal(dataBayi),
+            icon : 'question',
+            confirmButtonText : 'Ya',
+            showCancelButton : true,
+            cancelButtonText : 'Tidak',
+            cancelButtonColor : 'red',
+            confirmButtonColor : 'green'
+
+        }).then((result) => {
+            if(result.isConfirmed){
+                axios.post('http://localhost:3000/guest', dataBayi)
+                .then((response) => {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+            }
+        })
+        // console.log(dataBayi)
+        
     }
 
     const [beratBayi, setBeratBayi] = useState(0)
@@ -100,7 +136,7 @@ const Create = () => {
                                     <TableData children={<Label forHtml="beratBayi" name="Berat Bayi" />} className=" w-[20%] flex justify-start items-center pt-2" />
                                     <TableData children=":" className="flex justify-center items-center" />
                                     <TableData children={<InputNumber value={beratBayi} handle={handleBeratBayi} />} />
-                                    <TableData children="gram" />
+                                    <TableData children="kg" />
                                 </tr>
                                 <tr className="w-full flex items-center gap-5">
                                     <TableData children={<Label forHtml="tinggiBayi" name="Tinggi Bayi" />} className=" w-[20%] flex justify-start items-center pt-2" />
@@ -162,6 +198,26 @@ const Create = () => {
             <button type="submit" className=" bg-emerald-400 text-white font-bold p-3 rounded-xl shadow-lg hover:bg-green-700 active:border-2 active:border-sky-400"><i className="fa-regular fa-square-plus ml-1 mr-2 fa-lg"></i>Create Data</button>
         </form>
     </div>
+    )
+}
+
+const showDataModal = (data) => {
+    return(
+        <div className="flex justify-center items-center flex-col p-5 border-2 border-black rounded-lg font-semibold">
+            <span>Nama Bayi : {data.bayi.namaBayi}</span>
+            <span>Tanggal Lahir : {data.bayi.tanggalLahir}</span>
+            <span>Jenis Kelamin : {data.bayi.jenisKelamin}</span>
+            <span>Berat Bayi : {data.bayi.beratBayi} kg</span>
+            <span>Tinggi Bayi : {data.bayi.tinggiBayi} cm</span>
+            <span>Nama Ibu : {data.namaIbu}</span>
+            <span>Pekerjaan Ibu : {data.pekerjaanIbu}</span>
+            <span>NIK : {data.NIK}</span>
+            <span>Nama Ayah : {data.namaAyah}</span>
+            <span>Pekerjaan Ayah : {data.pekerjaanAyah}</span>  
+            <span>Alamat : {data.alamat}</span>
+            <span>Kecamatan : {data.kecamatan}</span>
+            <span>Kota : {data.kota}</span>
+        </div>
     )
 }
 

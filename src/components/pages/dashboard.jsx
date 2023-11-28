@@ -1,5 +1,22 @@
-
+import { useEffect, useState } from "react"
+import axios from "axios"
 const Dashboard = () => {
+
+    const [guests, setGuests] = useState([]);
+
+    useEffect(() => {
+      // Menggunakan async/await untuk membuat kode lebih bersih
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('http://localhost:3000/guest');
+          setGuests(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+  
+      fetchData();
+    }, []);
 
     return(
         <div className='body h-screen bg-gradient-to-b from-green-300 from-10% to-cyan-700 to-90% shadow-lg'>
@@ -28,91 +45,17 @@ const Dashboard = () => {
 
                 </div>
             </div>
+
             <div className="row h-auto ">
-            <div className=" z-0 h-auto  flex flex-col gap-5 justify-center items-center  overflow-visible py-5">
-                
+            {guests.map((guest) => (
+            <div className=" z-0 h-auto  flex flex-col gap-5 justify-center items-center  overflow-visible py-5">      
                 <div className='row-data grid grid-cols-2 card justify-start p-10 gap-10 items-center w-[90%] backdrop-blur-sm bg-white/30 h-40 rounded-2xl'>
                     <div className='flex gap-10'>
                         <img src="./src/assets/img/pngwing1.png" alt="" className='w-[15%]'/>
                         <div className='flex flex-col justify-center '>
-                            <p className='font-semibold'>Nama Ibu : </p>
-                            <p className='font-semibold'>Nama Anak : </p>
-                            <p className='font-semibold'>Tanggal Kelahiran : </p>
-                        </div>
-                    </div>
-                    <div className='flex justify-end items-center gap-5'>
-                        <button className='bg-sky-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-blue-800'><i className="fa-regular fa-eye mr-2"></i>View</button>
-                        <button className='bg-red-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-red-800'><i className="fa-solid fa-trash mr-2"></i> Delete</button>
-                    </div>
-
-                </div>
-                <div className='row-data grid grid-cols-2 card justify-start p-10 gap-10 items-center w-[90%] backdrop-blur-sm bg-white/30 h-40 rounded-2xl'>
-                    <div className='flex gap-10'>
-                        <img src="./src/assets/img/pngwing1.png" alt="" className='w-[15%]'/>
-                        <div className='flex flex-col justify-center '>
-                            <p className='font-semibold'>Nama Ibu : </p>
-                            <p className='font-semibold'>Nama Anak : </p>
-                            <p className='font-semibold'>Tanggal Kelahiran : </p>
-                        </div>
-                    </div>
-                    <div className='flex justify-end items-center gap-5'>
-                        <button className='bg-sky-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-blue-800'><i className="fa-regular fa-eye mr-2"></i>View</button>
-                        <button className='bg-red-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-red-800'><i className="fa-solid fa-trash mr-2"></i> Delete</button>
-                    </div>
-
-                </div>
-                <div className='row-data grid grid-cols-2 card justify-start p-10 gap-10 items-center w-[90%] backdrop-blur-sm bg-white/30 h-40 rounded-2xl'>
-                    <div className='flex gap-10'>
-                        <img src="./src/assets/img/pngwing1.png" alt="" className='w-[15%]'/>
-                        <div className='flex flex-col justify-center '>
-                            <p className='font-semibold'>Nama Ibu : </p>
-                            <p className='font-semibold'>Nama Anak : </p>
-                            <p className='font-semibold'>Tanggal Kelahiran : </p>
-                        </div>
-                    </div>
-                    <div className='flex justify-end items-center gap-5'>
-                        <button className='bg-sky-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-blue-800'><i className="fa-regular fa-eye mr-2"></i>View</button>
-                        <button className='bg-red-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-red-800'><i className="fa-solid fa-trash mr-2"></i> Delete</button>
-                    </div>
-
-                </div>
-                <div className='row-data grid grid-cols-2 card justify-start p-10 gap-10 items-center w-[90%] backdrop-blur-sm bg-white/30 h-40 rounded-2xl'>
-                    <div className='flex gap-10'>
-                        <img src="./src/assets/img/pngwing1.png" alt="" className='w-[15%]'/>
-                        <div className='flex flex-col justify-center '>
-                            <p className='font-semibold'>Nama Ibu : </p>
-                            <p className='font-semibold'>Nama Anak : </p>
-                            <p className='font-semibold'>Tanggal Kelahiran : </p>
-                        </div>
-                    </div>
-                    <div className='flex justify-end items-center gap-5'>
-                        <button className='bg-sky-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-blue-800'><i className="fa-regular fa-eye mr-2"></i>View</button>
-                        <button className='bg-red-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-red-800'><i className="fa-solid fa-trash mr-2"></i> Delete</button>
-                    </div>
-
-                </div>
-                <div className='row-data grid grid-cols-2 card justify-start p-10 gap-10 items-center w-[90%] backdrop-blur-sm bg-white/30 h-40 rounded-2xl'>
-                    <div className='flex gap-10'>
-                        <img src="./src/assets/img/pngwing1.png" alt="" className='w-[15%]'/>
-                        <div className='flex flex-col justify-center '>
-                            <p className='font-semibold'>Nama Ibu : </p>
-                            <p className='font-semibold'>Nama Anak : </p>
-                            <p className='font-semibold'>Tanggal Kelahiran : </p>
-                        </div>
-                    </div>
-                    <div className='flex justify-end items-center gap-5'>
-                        <button className='bg-sky-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-blue-800'><i className="fa-regular fa-eye mr-2"></i>View</button>
-                        <button className='bg-red-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-red-800'><i className="fa-solid fa-trash mr-2"></i> Delete</button>
-                    </div>
-
-                </div>
-                <div className='row-data grid grid-cols-2 card justify-start p-10 gap-10 items-center w-[90%] backdrop-blur-sm bg-white/30 h-40 rounded-2xl'>
-                    <div className='flex gap-10'>
-                        <img src="./src/assets/img/pngwing1.png" alt="" className='w-[15%]'/>
-                        <div className='flex flex-col justify-center '>
-                            <p className='font-semibold'>Nama Ibu : </p>
-                            <p className='font-semibold'>Nama Anak : </p>
-                            <p className='font-semibold'>Tanggal Kelahiran : </p>
+                            <p className='font-semibold'>Nama Ibu : {guest.namaIbu} </p>
+                            <p className='font-semibold'>Nama Anak : {guest.bayi.namaBayi} </p>
+                            <p className='font-semibold'>Tanggal Kelahiran : {guest.bayi.tanggalLahir} </p>
                         </div>
                     </div>
                     <div className='flex justify-end items-center gap-5'>
@@ -123,9 +66,10 @@ const Dashboard = () => {
                 </div>
 
 
-                </div>
 
-            </div>
+                </div>
+            ))}
+            </div> 
         </div>
 
         
