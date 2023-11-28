@@ -1,7 +1,8 @@
-// import Navbar from "../molecules/navbar"
+
 const Dashboard = () => {
+
     return(
-        <div className='h-screen bg-gradient-to-b from-green-300 from-10% to-cyan-700 to-90% shadow-lg'>
+        <div className='body h-screen bg-gradient-to-b from-green-300 from-10% to-cyan-700 to-90% shadow-lg'>
             <div className="navbar grid grid-cols-2 bg-bg-navbar px-10 shadow-lg shadow-green-900 z-50">
                 <div className="navbar__logo  flex justify-start items-center gap-5">
                     <img src="./src/assets/img/logo_00000.png" alt="logo" className="w-[70px]" />
