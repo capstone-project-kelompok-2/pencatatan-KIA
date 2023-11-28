@@ -26,11 +26,15 @@ const Dashboard = () => {
                         icon: "success"
                       }).then(() => {
                         window.location.reload();
-                      })
-                        
+                      })    
                 })
             }
           });
+    }
+
+    const handleDetail = (id) => {
+        // console.log(id);
+        navigate(`/detail/${id}`)
     }
 
     useEffect(() => {
@@ -88,7 +92,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className='flex justify-end items-center gap-5'>
-                        <button className='bg-sky-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-blue-800'><i className="fa-regular fa-eye mr-2"></i>View</button>
+                        <button onClick={ () => handleDetail(guest.id) } className='bg-sky-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-blue-800'><i className="fa-regular fa-eye mr-2"></i>View</button>
                         <button onClick={() => handleDelete(guest.id)} className='bg-red-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-red-800'><i className="fa-solid fa-trash mr-2"></i> Delete</button>
                     </div>
 

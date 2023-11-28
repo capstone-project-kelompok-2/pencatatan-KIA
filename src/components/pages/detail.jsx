@@ -1,5 +1,26 @@
 // import Navbar from "../molecules/navbar"
+import { useEffect, useState } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import axios from "axios"
 const Detail = () => {
+    const navigate = useNavigate()
+    const { id } = useParams()
+    // console.log(id);
+
+    const [guestId, setGuestId] = useState([])
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/guest/${id}`)
+                setGuestId(response.data)
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchData()
+    }, [])
+
     return(
         <div className='body h-screen bg-gradient-to-b from-green-300 from-10% to-cyan-700 to-90% shadow-lg flex justify-center items-center'>
             <div className=" flex flex-col gap-5 justify-center items-center backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl">
@@ -11,19 +32,25 @@ const Detail = () => {
                                 <label htmlFor="namaIbu" className="block mr-3 mb-2 text-sm font-medium text-gray-900">Nama Ibu</label>
                             </div>
                             <div>
-                                <div className="w-[272px] h-[30px] mix-blend-soft-light bg-white/90 px-4 py-2 rounded-[25px] shadow-md" />
+                                <div className="w-[272px] h-[30px] mix-blend-soft-light bg-white/90 px-4 py-2 rounded-[25px] shadow-md flex justify-center items-center font-semibold">
+                                    {guestId.namaIbu}
+                                </div>
                             </div>
                             <div className="w-[20%] flex justify-center items-center pt-2">
                                 <label htmlFor="namaIbu" className="block mr-3 mb-2 text-sm font-medium text-gray-900">Nama Anak</label>
                             </div>
                             <div>
-                                <div className="w-[272px] h-[30px] mix-blend-soft-light bg-white/90 px-4 py-2 rounded-[25px] shadow-md" />
+                                <div className="w-[272px] h-[30px] mix-blend-soft-light bg-white/90 px-4 py-2 rounded-[25px] shadow-md flex justify-center items-center font-semibold" >
+                                {guestId.bayi ? guestId.bayi.namaBayi : 'Nama Bayi tidak tersedia'}
+                                </div>
                             </div>
                             <div className="w-[20%] flex justify-center items-center pt-2">
                                 <label htmlFor="namaIbu" className="block mr-3 mb-2 text-sm font-medium text-gray-900">Tanggal Kelahiran</label>
                             </div>
                             <div>
-                                <div className="w-[272px] h-[30px] mix-blend-soft-light bg-white/90 px-4 py-2 rounded-[25px] shadow-md" />
+                                <div className="w-[272px] h-[30px] mix-blend-soft-light bg-white/90 px-4 py-2 rounded-[25px] shadow-md flex justify-center items-center font-semibold">
+                                {guestId.bayi ? guestId.bayi.tanggalLahir : 'Tanggal lahir tidak tersedia'}     
+                                </div>
                             </div>
                         </div>
                         </div>
