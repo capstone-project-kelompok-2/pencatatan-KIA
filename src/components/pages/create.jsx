@@ -19,15 +19,24 @@ const Create = () => {
     const {  register, handleSubmit, formState: { errors } } = useForm()
     const onSubmit = data => {
         const dataBayi = {
-            // create id with react-uid
             id : uuidv4(),
             bayi : {
+                tanggalLahir : startDate.toLocaleDateString(),
                 namaBayi : data.namaBayi,
                 jenisKelamin : data.jenisKelamin,
                 beratBayi : beratBayi,
                 tinggiBayi : tinggiBayi,
-                tanggalLahir : startDate.toLocaleDateString()
             },
+            TKA : [
+                {
+                    tanggal : startDate.toLocaleDateString(), 
+                    umur : 0,       
+                    beratBadan : beratBayi,
+                    tinggiBadan : tinggiBayi,
+                    KBM : 0,
+                    statusKenaikan : "Belum Ada"
+                }
+            ],
             namaIbu : data.namaIbu,
             pekerjaanIbu : data.pekerjaanIbu,
             NIK : data.NIK,
