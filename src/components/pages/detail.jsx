@@ -27,7 +27,7 @@ const Detail = () => {
     const handleCheckboxChange = (type) => {
         setStatusKenaikan((prev) => (prev === type ? '' : type));
       };
-    const {  register, control,trigger, setValue, getValues, handleSubmit, formState: { errors } } = useForm()
+    const {  register, control, trigger, setValue, getValues, handleSubmit, formState: { errors } } = useForm()
     const onSubmit = data => {
         delete data.N;
         delete data.T;
@@ -37,7 +37,7 @@ const Detail = () => {
         // const formattedDate = new Date(getValues('tanggal')).toLocaleDateString();
         const dataTKA    = {
             id : uuidv4(),
-            userId : id,
+            namaIbu : parentBio.namaIbu,
             tanggal: formattedDate,
             ...data,
             statusKenaikan: statusKenaikan,        
@@ -47,16 +47,15 @@ const Detail = () => {
         .then(res => {
             console.log(res);
             console.log(res.data);
-            setGuestId(prevGuestId => [...prevGuestId, dataTKA]);
         })
         .catch(err => {
             console.log(err);
         })
         setVisible(false)
         show();
-        // setTimeout(() => {
-        //     window.location.reload();
-        // }, 1000);
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
     }
 
     // console.log(id);
@@ -66,16 +65,27 @@ const Detail = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/TKA?userId=${id}`);
                 const responseParent = await axios.get(`http://localhost:3000/guest/${id}`);
-                setGuestId(response.data);
                 setParentBio(responseParent.data);
+                // const response = await axios.get(`http://localhost:3000/TKA?userId=${id}`);
+                // setGuestId(response.data);
             } catch (error) {
                 console.error(error);
             }
         };
         fetchData();
     }, [id]);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/TKA?namaIbu=${parentBio.namaIbu}`);
+                setGuestId(response.data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchData();
+    },[parentBio.namaIbu]);
     // console.log([guestId]);
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -121,27 +131,20 @@ const Detail = () => {
         );
     };
 
+
     const handleDelete = async (rowData) => {
+        console.log(rowData.id);
+    
         try {
-            console.log("Deleting item with ID:", rowData.id);
+            // Delete the specific data
+            await axios.delete(`http://localhost:3000/TKA/${rowData.id}?userId=${rowData.userId}`);
     
-            // Send a DELETE request to your API
-            const response = await axios.delete(`http://localhost:3000/TKA/${rowData.id}`);
+            console.log("Data berhasil dihapus.");
     
-            // Log the server response
-            console.log("Server response:", response.data);
-    
-            // Update the state after successful deletion
-            setGuestId(prevGuestId => {
-                const newState = prevGuestId.filter(item => item.id !== rowData.id);
-                console.log("Updated state:", newState);
-                return newState;
-            });
-    
-            // Log a message indicating a successful deletion
-            console.log("Item deleted successfully!");
+            window.location.reload();
+
         } catch (error) {
-            console.error("Error deleting item:", error);
+            console.error("Error menghapus data:", error);
         }
     };
 
