@@ -4,7 +4,9 @@ import Login from "./components/pages/login";
 import Dashboard from "./components/pages/dashboard";
 import Create from "./components/pages/create";
 import Detail from "./components/pages/detail";
+import PrimeReact from "./components/pages/primeReact";
 import './App.css'
+import 'primeicons/primeicons.css';
 
 function App() {
   return(
@@ -16,6 +18,7 @@ function App() {
           <Route path="/" element={<Dashboard/>} />
           <Route path="/create" element={<Create/>} />
           <Route path="/detail/:id" element={<Detail/>} />
+          <Route path="/test" element={<PrimeReact/>} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Route>
 			</Routes>

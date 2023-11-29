@@ -1,17 +1,17 @@
 {
   "guest": [
     {
-      "id": "uid1",
+      "id": "af1d0c2d-d727-4094-bd92-2630abdcaefb",
       "bayi": {
-        "namaBayi": "gojo satoru",
+        "tanggalLahir": "11/28/2023",
+        "namaBayi": "Rimuru Tempest",
         "jenisKelamin": "Laki-Laki",
-        "beratBayi": "500",
-        "tinggiBayi": "20",
-        "tanggalLahir": "11/28/2023"
+        "beratBayi": 0.5,
+        "tinggiBayi": 40
       },
       "namaIbu": "Salma Benazir Achmad",
       "pekerjaanIbu": "Make-Up Artist",
-      "NIK": "0001",
+      "NIK": "00023",
       "namaAyah": "Krisna Lavendra Irawan",
       "pekerjaanAyah": "Meratakan Dunia",
       "alamat": "Hegarmanah",
@@ -19,22 +19,32 @@
       "kota": "Sumedang"
     },
     {
-      "id": "4d3a41c6-ad58-4c1c-b478-2b7ef9f55715",
+      "id": "50019c22-d8d9-4429-9c93-fa907d686055",
       "bayi": {
-        "namaBayi": "dsa",
+        "tanggalLahir": "11/29/2023",
+        "namaBayi": "sad",
         "jenisKelamin": "Laki-Laki",
         "beratBayi": 0,
-        "tinggiBayi": 0,
-        "tanggalLahir": "11/28/2023"
+        "tinggiBayi": 0
       },
+      "TKA": [
+        {
+          "tanggal": "11/29/2023",
+          "umur": 0,
+          "beratBadan": 0,
+          "tinggiBadan": 0,
+          "KBM": 0,
+          "statusKenaikan": "Belum Ada"
+        }
+      ],
       "namaIbu": "asd",
-      "pekerjaanIbu": "asd",
-      "NIK": "ad",
-      "namaAyah": "asd",
-      "pekerjaanAyah": "ada",
-      "alamat": "asd",
-      "kecamatan": "ADS",
-      "kota": "ADS"
+      "pekerjaanIbu": "dsa",
+      "NIK": "sad",
+      "namaAyah": "dsa",
+      "pekerjaanAyah": "dsa",
+      "alamat": "dsa",
+      "kecamatan": "dsa",
+      "kota": "dsa"
     }
   ],
   "users": [
@@ -44,9 +54,5 @@
       "password": "12345"
     }
   ],
-  "rumah-sakit": [
-    {
-      "nama": "Mitra Keluarga"
-    }
-  ]
+  "TKA": []
 }
