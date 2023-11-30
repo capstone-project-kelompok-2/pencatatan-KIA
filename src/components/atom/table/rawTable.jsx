@@ -211,3 +211,238 @@ const radioData = () => {
         </>
     )
 }
+
+
+
+<form onSubmit={handleSubmit(onEditSubmit)} style={{ padding: '5%' }}>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <div className="mx-3">
+                    <label htmlFor="tanggal">Tanggal</label>
+                    </div>
+                </td>
+                <td>:</td>
+                <td>
+                    <div className="mx-[-10px]">
+                    <Controller
+                        name="tanggal"
+                        control={control}
+                        defaultValue={null}
+                        render={({ field }) => (
+                            <Calendar
+                                showIcon
+                                id="tanggal"
+                                value={field.value}
+                                onChange={(e) => field.onChange(e.value)}
+                                dateFormat="dd/mm/yy"
+                            />
+                        )}
+                    />
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div className="mx-3">
+                    <label htmlFor="umur">Umur</label>
+                    </div>
+                </td>
+                <td className="mx-5">:</td>
+                <td>
+                    <div className="mx-3 my-1.5">
+                    <Controller
+                        name="umur"
+                        control={control}
+                        defaultValue={0}
+                        render={({ field }) => (
+                            <InputNumber
+                                id="umur"
+                                value={field.value}
+                                onValueChange={(e) => field.onChange(e.value)}
+                            />
+                        )}
+                    />
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div className="mx-3">
+                    <label htmlFor="tinggiBadan">Tinggi Badan</label>
+                    </div>
+                </td>
+                <td>:</td>
+                <td>
+                    <div className="mx-3 my-1.5">
+                    <Controller
+                        name="tinggiBadan"
+                        control={control}
+                        defaultValue={0}
+                        render={({ field }) => (
+                            <InputNumber
+                                id="tinggiBadan"
+                                value={field.value}
+                                onValueChange={(e) => field.onChange(e.value)}
+                            />
+                        )}
+                    />
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div className="mx-3">
+                    <label htmlFor="beratBadan">Berat Badan</label>
+                    </div>
+                </td>
+                <td>:</td>
+                <td>
+                    <div className="mx-3 my-1.5">
+                    <Controller
+                        name="beratBadan"
+                        control={control}
+                        defaultValue={0}
+                        render={({ field }) => (
+                            <InputNumber
+                                minFractionDigits={1}
+                                id="beratBadan"
+                                value={field.value}
+                                onValueChange={(e) => field.onChange(e.value)}
+                            />
+                        )}
+                    />
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div className="mx-3">
+                    <label htmlFor="KBM">KBM</label>
+                    </div>
+                </td>
+                <td>:</td>
+                <td>
+                   <div className="mx-3 my-1.5">
+                   <Controller
+                        name="KBM"
+                        control={control}
+                        defaultValue={0}
+                        render={({ field }) => (
+                            <InputNumber
+                                id="KBM"
+                                value={field.value}
+                                onValueChange={(e) => field.onChange(e.value)}
+                            />
+                        )}
+                    />
+                   </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div className="mx-3">
+                    <label>Status</label>
+                    </div>
+                </td>
+                <td>:</td>
+                <td>
+                    <div className="p-inputgroup gap-5 my-3 px-5">
+                        <div className="p-field-checkbox">
+                            <Controller
+                                name="status"
+                                control={control}
+                                defaultValue="N"
+                                render={({ field }) => (
+                                    <Checkbox
+                                        inputId="naik"
+                                        onChange={(e) => {
+                                            field.onChange(e.checked);
+                                            handleCheckboxChange('N');
+                                        }}
+                                        checked={getValues('status') === 'N'}
+                                    />
+                                )}
+                            />
+                            <label htmlFor="naik">Naik</label>
+                        </div>
+
+                        <div className="p-field-checkbox">
+                            <Controller
+                                name="status"
+                                control={control}
+                                defaultValue={false}
+                                render={({ field }) => (
+                                    <Checkbox
+                                        inputId="turun"
+                                        onChange={(e) => {
+                                            field.onChange(e.checked);
+                                            handleCheckboxChange('T');
+                                        }}
+                                        checked={getValues('status') === 'T'}
+                                    />
+                                )}
+                            />
+                            <label htmlFor="turun">Turun</label>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div className="flex justify-end items-center p-5">
+        <Button
+            label="Cancel"
+            icon="pi pi-times"
+            onClick={() => {
+                setVisibleEdit(false);
+                setEditData(null);
+            }}
+            className="p-button-text"
+        />
+        <Button type="submit" label="Save" icon="pi pi-check" autoFocus style={{ marginLeft: '10px' }} />
+    </div>
+</form>
+
+const handleDelete = (id) => {
+        
+    Swal.fire({
+        title: "Apakah anda yakin?",
+        text: "Semua data tumbuh kembang anak akan terhapus dan tidak dapat dikembalikan!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya, hapus!",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios.get(`http://localhost:3000/guest/${id}`)
+                .then((res) => {
+                    axios.delete(`http://localhost:3000/guest/${id}`)
+                    .then(() => {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success",
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    });
+};

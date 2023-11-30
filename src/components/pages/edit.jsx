@@ -13,7 +13,7 @@ import InputNumber from "../atom/inputNumber"
 import Label from "../atom/label"
 import TableData from "../atom/table/tableData"
 import 'react-datepicker/dist/react-datepicker.css'
-const Create = () => {
+const Edit = () => {
     const navigate = useNavigate()
     const MySwal = withReactContent(Swal)
     const {  register, handleSubmit, formState: { errors } } = useForm()
@@ -248,7 +248,7 @@ const Create = () => {
                     </div>
                 </div>
             </div>
-            <button type="submit" className=" bg-emerald-400 text-white font-bold p-3 rounded-xl shadow-lg hover:bg-green-700 active:border-2 active:border-sky-400"><i className="fa-regular fa-square-plus ml-1 mr-2 fa-lg"></i>Create Data</button>
+            <button type="submit" className=" bg-emerald-400 text-white font-bold p-3 rounded-xl shadow-lg hover:bg-green-700 active:border-2 active:border-sky-400"><i className="fa-regular fa-square-plus ml-1 mr-2 fa-lg"></i>Edit Data</button>
         </form>
     </div>
     )
@@ -274,4 +274,4 @@ const showDataModal = (data) => {
     )
 }
 
-export default Create
+export default Edit
