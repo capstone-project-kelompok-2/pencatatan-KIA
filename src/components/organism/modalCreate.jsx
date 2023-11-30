@@ -18,16 +18,22 @@ const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, statusKenai
     delete data.N;
     delete data.T;
 
-    const formattedDate = new Date(getValues('tanggal')).toLocaleDateString();
-    data.tanggal = formattedDate;
-    const dataTKA    = {
-        id : uuidv4(),
-        namaIbu : parentBio.namaIbu,
-        tanggal: formattedDate,
+    const tanggalValue = data.tanggal instanceof Date ? data.tanggal : currentDate;
+
+    console.log('Type of tanggalValue:', typeof tanggalValue); // Tambahkan log ini
+
+
+    const dataTKA = {
+        id: uuidv4(),
+        NIK: parentBio.NIK,
+        namaIbu: parentBio.namaIbu,
         ...data,
-        statusKenaikan: statusKenaikan,        
-    }
-    console.log(dataTKA );
+        tanggal: data.tanggal.toLocaleDateString(),
+        statusKenaikan: statusKenaikan,
+        parentId: parentBio.id
+    };
+
+    console.log(dataTKA);
     axios.post(`http://localhost:3000/TKA`, dataTKA )
     .then(res => {
         console.log(res);
@@ -41,7 +47,6 @@ const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, statusKenai
     setTimeout(() => {
         window.location.reload();
     }, 1000);
-
 
   };
 
@@ -63,7 +68,7 @@ const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, statusKenai
                     <Controller
                         name="tanggal"
                         control={control}
-                        defaultValue={null}
+                        defaultValue={new Date()}
                         render={({ field }) => (
                             <Calendar
                                 showIcon

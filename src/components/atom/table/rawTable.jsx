@@ -410,3 +410,39 @@ const radioData = () => {
         <Button type="submit" label="Save" icon="pi pi-check" autoFocus style={{ marginLeft: '10px' }} />
     </div>
 </form>
+
+const handleDelete = (id) => {
+        
+    Swal.fire({
+        title: "Apakah anda yakin?",
+        text: "Semua data tumbuh kembang anak akan terhapus dan tidak dapat dikembalikan!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Ya, hapus!",
+        cancelButtonText: "Batal",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios.get(`http://localhost:3000/guest/${id}`)
+                .then((res) => {
+                    axios.delete(`http://localhost:3000/guest/${id}`)
+                    .then(() => {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success",
+                        }).then(() => {
+                            window.location.reload();
+                        });
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    });
+};

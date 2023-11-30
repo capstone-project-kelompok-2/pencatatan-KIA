@@ -9,7 +9,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast}) => {
-    const { register, control, handleSubmit, setValue, getValues } = useForm();
+    const { control, handleSubmit, setValue, getValues, } = useForm();
     const onEditSubmit = (data) => {
         // console.log(data);
         const date = new Date(data.tanggal);
@@ -20,6 +20,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast}) 
 
         const newData = {
             id: data.id,
+            NIK: data.NIK,
             namaIbu: data.namaIbu,
             tanggal: data.tanggal,
             umur: data.umur,
@@ -58,11 +59,15 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast}) 
         // console.log(newData);
     };
 
+    
+
     useEffect(() => {
         if (editData) {
             // console.log('Edit Data:', editData);
             setValue('id', editData.id);
+            setValue('userId', editData.userId);
             setValue('namaIbu', editData.namaIbu);
+            setValue('NIK', editData.NIK);
             setValue('tanggal', editData.tanggal);
             setValue('umur', editData.umur);
             setValue('tinggiBadan', editData.tinggiBadan);
@@ -101,7 +106,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast}) 
                     <Controller
                         name="tanggal"
                         control={control}
-                        defaultValue={null}
+                        defaultValue={new Date()}
                         render={({ field }) => (
                             <Calendar
                                 showIcon

@@ -1,197 +1,19 @@
 {
   "guest": [
     {
-      "id": "50019c22-d8d9-4429-9c93-fa907d686055",
+      "id": "0ff5390e-774c-4d1f-8b11-4bb42c00bdd1",
       "bayi": {
-        "tanggalLahir": "11/29/2023",
-        "namaBayi": "sad",
-        "jenisKelamin": "Laki-Laki",
-        "beratBayi": 0,
-        "tinggiBayi": 0
-      },
-      "TKA": [
-        {
-          "tanggal": "11/29/2023",
-          "umur": 0,
-          "beratBadan": 0,
-          "tinggiBadan": 0,
-          "KBM": 0,
-          "statusKenaikan": "Belum Ada"
-        }
-      ],
-      "namaIbu": "asd",
-      "pekerjaanIbu": "dsa",
-      "NIK": "sad",
-      "namaAyah": "dsa",
-      "pekerjaanAyah": "dsa",
-      "alamat": "dsa",
-      "kecamatan": "dsa",
-      "kota": "dsa"
-    },
-    {
-      "id": "3d9f8156-d2aa-46a7-9b52-966ff12a9789",
-      "bayi": {
-        "tanggalLahir": "11/29/2023",
+        "tanggalLahir": "11/30/2023",
         "namaBayi": "asd",
         "jenisKelamin": "Laki-Laki",
         "beratBayi": 0,
         "tinggiBayi": 0
       },
-      "TKA": [
-        {
-          "tanggal": "11/29/2023",
-          "umur": 0,
-          "beratBadan": 0,
-          "tinggiBadan": 0,
-          "KBM": 0,
-          "statusKenaikan": "Belum Ada"
-        }
-      ],
       "namaIbu": "dsa",
-      "pekerjaanIbu": "ads",
-      "NIK": "asd",
-      "namaAyah": "ads",
-      "pekerjaanAyah": "dsa",
-      "alamat": "dsa",
-      "kecamatan": "dsa",
-      "kota": "ads"
-    },
-    {
-      "id": "bfe2567b-2a1b-44a9-879c-8bd6ac990151",
-      "bayi": {
-        "tanggalLahir": "11/30/2023",
-        "namaBayi": "asd",
-        "jenisKelamin": "Laki-Laki",
-        "beratBayi": 0,
-        "tinggiBayi": 0
-      },
-      "TKA": [
-        {
-          "tanggal": "11/30/2023",
-          "umur": 0,
-          "beratBadan": 0,
-          "tinggiBadan": 0,
-          "KBM": 0,
-          "statusKenaikan": "Belum Ada"
-        }
-      ],
-      "namaIbu": "asd",
-      "pekerjaanIbu": "asd",
-      "NIK": "asd",
-      "namaAyah": "asd",
-      "pekerjaanAyah": "asd",
-      "alamat": "ads",
-      "kecamatan": "asd",
-      "kota": "asd"
-    },
-    {
-      "id": "effba515-2559-499e-9585-64ee61a1d929",
-      "bayi": {
-        "tanggalLahir": "11/30/2023",
-        "namaBayi": "asd",
-        "jenisKelamin": "Laki-Laki",
-        "beratBayi": 0,
-        "tinggiBayi": 0
-      },
-      "TKA": [
-        {
-          "tanggal": "11/30/2023",
-          "umur": 0,
-          "beratBadan": 0,
-          "tinggiBadan": 0,
-          "KBM": 0,
-          "statusKenaikan": "Belum Ada"
-        }
-      ],
-      "namaIbu": "asd",
-      "pekerjaanIbu": "asd",
-      "NIK": "asd",
-      "namaAyah": "asd",
-      "pekerjaanAyah": "asd",
-      "alamat": "asd",
-      "kecamatan": "asd",
-      "kota": "asd"
-    },
-    {
-      "id": "eb3987ca-6a46-4141-8ed8-32969eafe454",
-      "bayi": {
-        "tanggalLahir": "11/30/2023",
-        "namaBayi": "asd",
-        "jenisKelamin": "Laki-Laki",
-        "beratBayi": 0,
-        "tinggiBayi": 0
-      },
-      "TKA": [
-        {
-          "tanggal": "11/30/2023",
-          "umur": 0,
-          "beratBadan": 0,
-          "tinggiBadan": 0,
-          "KBM": 0,
-          "statusKenaikan": "Belum Ada"
-        }
-      ],
-      "namaIbu": "asd",
-      "pekerjaanIbu": "asd",
-      "NIK": "asd",
-      "namaAyah": "ads",
-      "pekerjaanAyah": "asd",
-      "alamat": "dsa",
-      "kecamatan": "asd",
-      "kota": "ads"
-    },
-    {
-      "id": "d7f8e5bb-f0de-43ae-a5bc-7873020640ef",
-      "bayi": {
-        "tanggalLahir": "11/30/2023",
-        "namaBayi": "asd",
-        "jenisKelamin": "Laki-Laki",
-        "beratBayi": 0,
-        "tinggiBayi": 0
-      },
-      "TKA": [
-        {
-          "tanggal": "11/30/2023",
-          "umur": 0,
-          "beratBadan": 0,
-          "tinggiBadan": 0,
-          "KBM": 0,
-          "statusKenaikan": "Belum Ada"
-        }
-      ],
-      "namaIbu": "asd",
-      "pekerjaanIbu": "ads",
-      "NIK": "ads",
+      "pekerjaanIbu": "dsa",
+      "NIK": 1,
       "namaAyah": "dsa",
-      "pekerjaanAyah": "dsa",
-      "alamat": "dsa",
-      "kecamatan": "dsa",
-      "kota": "dsa"
-    },
-    {
-      "id": "3d853449-393d-401a-9801-f6428de3528a",
-      "bayi": {
-        "tanggalLahir": "11/30/2023",
-        "namaBayi": "ads",
-        "jenisKelamin": "Laki-Laki",
-        "beratBayi": 0,
-        "tinggiBayi": 0
-      },
-      "TKA": [
-        {
-          "tanggal": "11/30/2023",
-          "umur": 0,
-          "beratBadan": 0,
-          "tinggiBadan": 0,
-          "KBM": 0,
-          "statusKenaikan": "Belum Ada"
-        }
-      ],
-      "namaIbu": "asd",
-      "pekerjaanIbu": "ads",
-      "NIK": "dsa",
-      "namaAyah": "dsa",
-      "pekerjaanAyah": "dsa",
+      "pekerjaanAyah": "ads",
       "alamat": "dsa",
       "kecamatan": "dsa",
       "kota": "dsa"
@@ -206,64 +28,38 @@
   ],
   "TKA": [
     {
-      "id": "6ef11348-f0b6-4aea-aca0-9e39b67a1648",
+      "id": "c70e5e9c-fa2d-4af3-99c0-dc3966c36bad",
+      "NIK": 1,
       "namaIbu": "dsa",
-      "tanggal": "1/1/1970",
+      "tanggal": "11/30/2023",
       "umur": 0,
-      "tinggiBadan": 0,
       "beratBadan": 0,
-      "KBM": 0,
-      "statusKenaikan": "N"
-    },
-    {
-      "id": "f74e2065-4380-4748-8463-72a23197f3f8",
-      "namaIbu": "asd",
-      "tanggal": "1/1/1970",
-      "umur": 2,
       "tinggiBadan": 0,
-      "beratBadan": 0,
-      "KBM": 0,
-      "statusKenaikan": "N"
-    },
-    {
-      "id": "1bac0b3c-9368-4a1f-9334-eae9a9449c80",
-      "namaIbu": "asd",
-      "tanggal": "1/1/1970",
-      "umur": 3,
-      "tinggiBadan": 0,
-      "beratBadan": 0,
-      "KBM": 0,
-      "statusKenaikan": "N"
-    },
-    {
-      "id": "9b326e3a-70c4-4964-879a-03197e9d77b5",
-      "namaIbu": "asd",
-      "tanggal": "1/11/2023",
-      "umur": 5,
-      "tinggiBadan": 12,
-      "beratBadan": 0.5,
-      "KBM": 1,
-      "statusKenaikan": "N"
-    },
-    {
-      "id": "5bf7b85d-0fcf-4589-890d-fcf1af6c127e",
-      "namaIbu": "asd",
-      "tanggal": "11/8/2023",
-      "umur": 2,
-      "tinggiBadan": 2,
-      "beratBadan": 0.02,
       "KBM": 0,
       "statusKenaikan": "T"
     },
     {
-      "id": "02e044cf-c31b-4d3c-bae5-aea359ffdd5e",
-      "namaIbu": "asd",
-      "tanggal": "1/1/1970",
-      "umur": 0,
-      "tinggiBadan": 2,
-      "beratBadan": 0,
+      "id": "e0e0d156-f0e8-4fa3-866e-db8004804548",
+      "NIK": 1,
+      "namaIbu": "dsa",
+      "tanggal": "16/11/2023",
+      "umur": 2,
+      "tinggiBadan": 1,
+      "beratBadan": 3,
       "KBM": 0,
       "statusKenaikan": "N"
+    },
+    {
+      "id": "585a6e18-4790-4a9c-b6ca-5d0540586ec5",
+      "NIK": 1,
+      "namaIbu": "dsa",
+      "tanggal": "11/30/2023",
+      "umur": 0,
+      "tinggiBadan": 0,
+      "beratBadan": 0,
+      "KBM": 0,
+      "statusKenaikan": "N",
+      "parentId": "0ff5390e-774c-4d1f-8b11-4bb42c00bdd1"
     }
   ]
 }

@@ -6,12 +6,14 @@ import { FilterMatchMode, FilterOperator } from 'primereact/api';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
+import { exportToExcel } from "../utils/exportExcell";
+import { exportToPDF } from "../utils/exportPDF";
 import Swal from "sweetalert2";
 import DetailLabel from "../molecules/detailLabel";
 import ModalCreate from "../organism/modalCreate";
 import ModalEdit from "../organism/modalEdit";
-import './style.css'
 import axios from "axios"
+import useTKAStore from "../store/useTKAStore";
 
 const Detail = () => {
     const navigate = useNavigate()
@@ -20,6 +22,10 @@ const Detail = () => {
     const show = () => {
         toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: 'data berhasil dibuat' });
     };
+
+    const setTKAData = useTKAStore((state) => state.setTKAData);
+    const TKAData = useTKAStore((state) => state.TKAData);
+
     const [statusKenaikan, setStatusKenaikan] = useState('N');
     const [guestId, setGuestId] = useState([])
     const [parentBio, setParentBio] = useState([])
@@ -28,8 +34,6 @@ const Detail = () => {
             try {
                 const responseParent = await axios.get(`http://localhost:3000/guest/${id}`);
                 setParentBio(responseParent.data);
-                // const response = await axios.get(`http://localhost:3000/TKA?userId=${id}`);
-                // setGuestId(response.data);
             } catch (error) {
                 console.error(error);
             }
@@ -39,14 +43,15 @@ const Detail = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/TKA?namaIbu=${parentBio.namaIbu}`);
+                const response = await axios.get(`http://localhost:3000/TKA?NIK=${parentBio.NIK}`);
                 setGuestId(response.data);
+                setTKAData(response.data);
             } catch (error) {
                 console.error(error);
             }
         };
         fetchData();
-    },[parentBio.namaIbu]);
+    },[parentBio.NIK, setTKAData]);
     // console.log([guestId]);
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -83,7 +88,7 @@ const Detail = () => {
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Yes, delete it!"
             }).then((result => {
-                axios.delete(`http://localhost:3000/TKA/${rowData.id}?userId=${rowData.userId}`)
+                axios.delete(`http://localhost:3000/TKA/${rowData.id}?NIK=${rowData.NIK}`)
                 toast.current.show({ severity: 'success', 
                     summary: 'Data berhasil dihapus', 
                     detail: 'Data berhasil dihapus',
@@ -99,15 +104,38 @@ const Detail = () => {
         }
     };
 
+    const handleExportToExcel = () => {
+        const filename = 'data_tka.xlsx';
+        exportToExcel(guestId, filename);
+    };
+
+    const handleExportToPDF = () => {
+        const filename = 'data_tka.pdf';
+        const columns = [
+            { field: 'tanggal', header: 'Tanggal' },
+            { field: 'umur', header: 'Umur' },
+            { field: 'tinggiBadan', header: 'Tinggi Badan' },
+            { field: 'beratBadan', header: 'Berat Badan' },
+            { field: 'KBM', header: 'KBM' },
+            { field: 'statusKenaikan', header: 'N/T' },
+        ];
+        exportToPDF(guestId, columns, filename, parentBio);
+    };
+
     //Template
 
     const renderHeader = () => {
         return (
             <div className="flex justify-end">
                 <span className="p-input-icon-left">
-                    <Button label="Create Data" icon="pi pi-plus-circle" onClick={() => setVisible(true)} style={{marginLeft:'20px', marginRight:'20px'}} />
+                    <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportToPDF} style={{marginRight:'20px'}} />
+                    <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportToExcel} style={{marginRight:'20px'}} />
+                    <Button label="Create Data" icon="pi pi-plus-circle" onClick={() => setVisible(true)} style={{marginRight:'20px'}} />
                     <i className="fa-solid fa-magnifying-glass flex pl-[85%]"></i>
-                    <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Keyword Search" />
+                    <span className="p-input-icon-right">
+                        <i className="pi pi-search pl-2 ml-1"/>
+                        <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Cari data..." style={{paddingLeft : '35px'}}/>
+                    </span>
                 </span>
             </div>
         );
@@ -122,6 +150,14 @@ const Detail = () => {
         );
     };
 
+    const renderNoColumn = (rowData, rowIndex) => {
+        return (
+            <span>{rowIndex + 1}</span>
+        );
+    };
+
+
+    //Modal
   
 
     const [visible, setVisible] = useState(false);
@@ -158,6 +194,8 @@ const Detail = () => {
         setVisibleEdit(true);
     };    
 
+
+
     return(
         
         <div className='body h-screen bg-gradient-to-b from-green-300 from-10% to-cyan-700 to-90% shadow-lg flex justify-center items-center'>
@@ -178,6 +216,8 @@ const Detail = () => {
                             <DetailLabel name="Nama Ibu" label="namaIbu" parentBio={parentBio} />
                             <DetailLabel name="Nama Bayi" label="namaBayi" parentBio={parentBio.bayi} />
                             <DetailLabel name="Tanggal Lahir" label="tanggalLahir" parentBio={parentBio.bayi} />
+                            {/* buatkan button yang menuju ke arah chart dengan id */}
+                            <button onClick={() => navigate(`/chart/${id}`)} className="bg-blue-500 rounded-lg p-2 my-4 text-white">Lihat Chart</button>
                         </div>
                     </div>
 
@@ -194,13 +234,23 @@ const Detail = () => {
                             emptyMessage="Data Kosong"
                             className=" bg-neutral-600 font-semibold shadow-lg rounded-3xl"
                         >
+                            {/* column untuk nomor */}
+                            <Column
+                                field="no"
+                                header="No"
+                                style={{ width: '5%' }}
+                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center' }}
+                                bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
+                                className="bg-gray-100 font-semibold"
+                                body={(rowData, { rowIndex }) => renderNoColumn(rowData, rowIndex)}
+                            ></Column>
                             <Column field="tanggal" header="Tanggal" 
                                 style={{ width: '25%' }}
-                                headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center', }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
-                                className="bg-gray-100 font-semibold"
+                                className="bg-gray-100 font-semibold "
                             ></Column>
-                            <Column field="umur" header="umur" 
+                            <Column field="umur" header="Umur" 
                                 style={{ width: '25%' }} 
                                 headerStyle={{ backgroundColor: 'gray', color: 'white'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
