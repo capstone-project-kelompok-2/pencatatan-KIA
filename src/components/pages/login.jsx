@@ -3,7 +3,7 @@ const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const onSubmit = data => console.log(data)
     return (
-    <div className="h-screen flex justify-center items-center bg-gradient-to-b from-green-300 from-10% to-cyan-700 to-90%">
+    <div className="h-screen flex justify-center items-center bg-gradient-to-b from-[#06b6d4] from-10% to-[#D9D9D9] to-90%">
         <div className=" flex justify-center items-center backdrop-blur-sm bg-white/30 w-[90%] h-[90%] rounded-3xl">
             <div className="grid grid-cols-2 w-full text-center h-full">
                 <div className="overflow-hidden flex justify-center items-center">
@@ -23,7 +23,7 @@ const Login = () => {
                         <label className="mr-[90%] mb-2" htmlFor="password">password</label>
                         <input type="text" placeholder="Password" {...register("password", { required: true })} className="rounded-2xl w-[130%] h-[45px] backdrop-blur-sm shadow-slate-500/50 bg-white/30 shadow-lg p-3 mb-5 " />
                         {errors.password && <span className="flex justify-center text-red-500 font-semibold mb-3">This field is required</span>}
-                        <button type="submit" className="bg-login-bg hover:bg-green-500 active:bg-login-bg active:shadow-lg active:shadow-login-bg/50 w-[50%] h-[40px] rounded-lg font-semibold">LOGIN</button>
+                        <button type="submit" className="bg-[#06b6d4] text-white hover:bg-sky-700 active:bg-login-bg active:shadow-lg active:shadow-login-bg/50 w-[50%] h-[40px] rounded-lg font-semibold">LOGIN</button>
                     </form>
                 </div>
             </div>

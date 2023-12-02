@@ -1,12 +1,12 @@
 import DatePicker from 'react-datepicker'
-import { v4 as uuidv4 } from 'uuid'
+import { parse, v4 as uuidv4 } from 'uuid'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
-import InputText from "../atom/InputText"
+import InputText from '../atom/InputText'
 import ErrorFieldText from "../atom/errorFieldText"
 import Select from "../atom/select"
 import InputNumber from "../atom/inputNumber"
@@ -30,7 +30,7 @@ const Create = () => {
             },
             namaIbu : data.namaIbu,
             pekerjaanIbu : data.pekerjaanIbu,
-            NIK : NIK,
+            NIK : parseInt(NIK),
             namaAyah : data.namaAyah,
             pekerjaanAyah : data.pekerjaanAyah,
             alamat : data.alamat,
@@ -40,7 +40,7 @@ const Create = () => {
 
         const dataTKA = {
             id : uuidv4(),
-            NIK : NIK,
+            NIK : parseInt(NIK),
             namaIbu : data.namaIbu,
             tanggal : startDate.toLocaleDateString(),
             umur : 0,
@@ -58,8 +58,20 @@ const Create = () => {
         //cek apakah NIK belum terdaftar? jika sudah maka tidak bisa mendaftar
         axios.get('http://localhost:3000/guest')
         .then((response) => {
+            console.log(response.data);
             const dataGuest = response.data
+            //jika panjang NIK kurang dari 16 maka tidak bisa mendaftar
+            // if(String(NIK).length < 16 || String(NIK).length > 16){
+            //     MySwal.fire({
+            //         title : 'NIK yang harus diisi adalah 16 digit',
+            //         icon : 'error',
+            //         confirmButtonText : 'Ok',
+            //         confirmButtonColor : 'red'
+            //     })
+            // return
+            // }
             const cekNIK = dataGuest.filter((data) => data.NIK === dataBayi.NIK)
+            console.log(cekNIK);
             if(cekNIK.length > 0){
                 MySwal.fire({
                     title : 'NIK sudah ada yang menggunakan, silahkan masukan NIK yang lain',
@@ -149,15 +161,15 @@ const Create = () => {
         // console.log(date.toLocaleDateString())
         setStartDate(date)
     }
-    // console.log(NIK);
+
     return (
-    <div className="h-screen flex justify-center items-center bg-gradient-to-b from-green-300 from-10% to-cyan-700 to-90%">
+    <div className="h-screen flex justify-center items-center bg-[#e5e7eb]">
         <form onSubmit={handleSubmit(onSubmit)} className=" flex flex-col gap-5 justify-center items-center backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl py-4">
             <div className="flex flex-col justify-center items-center">
                 <img src="./src/assets/img/pngwing1.png" alt="people icon" className="absolute w-[6%] border border-black rounded-full bg-slate-50 mb-[6.5%] -z-0" />
-                <span className=" flex justify-center w-[100px] bg-green-300 text-gray-800 text-xs shadow-md font-medium me-2 px-2.5 py-2 rounded-full z-30">Daftar</span>
+                <span className=" flex justify-center w-[100px] bg-primary text-white text-xs shadow-md font-medium me-2 px-2.5 py-2 rounded-full z-30">Daftar</span>
             </div>
-            <div className=" backdrop-blur bg-white/50 px-4 py-1 text-sm rounded-xl font-semibold">Keterangan Lahir</div>
+            <div className=" backdrop-blur bg-primary text-white px-4 py-1 text-sm rounded-xl font-semibold">Keterangan Lahir</div>
             <div className="backdrop-blur bg-white/50 w-[80%] rounded-3xl h-auto ">
                 <div className="grid grid-cols-2 p-5">
                     <div >
@@ -177,7 +189,7 @@ const Create = () => {
                                 <tr className="w-full flex items-center gap-5 border">
                                     <TableData children={<Label forHtml="namaBayi" name="Nama Bayi" />} className=" w-[20%] flex justify-start items-center pt-2" />
                                     <TableData children=":" className="flex justify-center items-center border" />
-                                    <TableData children={<InputText register={register} name="namaBayi" />} errors={errors.namaBayi && <ErrorFieldText />}  />
+                                    <TableData children={<InputText required='true' register={register} name="namaBayi" />} errors={errors.namaBayi && <ErrorFieldText />}  />
                                 </tr>
                                 <tr className="w-full flex items-center gap-5">
                                     <TableData children={<Label forHtml="jenisKelamin" name="Jenis Kelamin" />} className=" w-[20%] flex justify-start items-center pt-2" />
@@ -206,12 +218,12 @@ const Create = () => {
                                 <tr className="w-full flex items-center gap-5">
                                     <TableData children={<Label forHtml="namaIbu" name="Nama Ibu" />} className=" w-[20%] flex justify-start items-center pt-2" />
                                     <TableData children=":" className="flex justify-center items-center" />
-                                    <TableData children={<InputText register={register} name="namaIbu" />} errors={errors.namaIbu && <ErrorFieldText />}  />
+                                    <TableData children={<InputText required='true' register={register} name="namaIbu" />} errors={errors.namaIbu && <ErrorFieldText />}  />
                                 </tr>
                                 <tr className="w-full flex items-center gap-5">
                                     <TableData children={<Label forHtml="pekerjaanIbu" name="Pekerjaan Ibu" />} className=" w-[20%] flex justify-start items-center pt-2" />
                                     <TableData children=":" className="flex justify-center items-center" />
-                                    <TableData children={<InputText register={register} name="pekerjaanIbu" />} errors={errors.pekerjaanIbu && <ErrorFieldText />}  />
+                                    <TableData children={<InputText required='true' register={register} name="pekerjaanIbu" />} errors={errors.pekerjaanIbu && <ErrorFieldText />}  />
                                 </tr>
                                 <tr className="w-full flex items-center gap-5">
                                     <TableData children={<Label forHtml="NIK" name="NIK" />} className=" w-[20%] flex justify-start items-center pt-2" />
@@ -222,33 +234,33 @@ const Create = () => {
                                 <tr className="w-full flex items-center gap-5">
                                     <TableData children={<Label forHtml="namaAyah" name="Nama Ayah" />} className=" w-[20%] flex justify-start items-center pt-2" />
                                     <TableData children=":" className="flex justify-center items-center" />
-                                    <TableData children={<InputText register={register} name="namaAyah" />} errors={errors.namaAyah && <ErrorFieldText />}  />
+                                    <TableData children={<InputText required='true' register={register} name="namaAyah" />} errors={errors.namaAyah && <ErrorFieldText />}  />
                                 </tr>
                                 <tr className="w-full flex items-center gap-5">
                                     <TableData children={<Label forHtml="pekerjaanAyah" name="Pekerjaan Ayah" />} className=" w-[20%] flex justify-start items-center pt-2" />
                                     <TableData children=":" className="flex justify-center items-center" />
-                                    <TableData children={<InputText register={register} name="pekerjaanAyah" />} errors={errors.pekerjaanAyah && <ErrorFieldText />}  />
+                                    <TableData children={<InputText required='true' register={register} name="pekerjaanAyah" />} errors={errors.pekerjaanAyah && <ErrorFieldText />}  />
                                 </tr>
                                 <tr className="w-full flex items-center gap-5">
                                     <TableData children={<Label forHtml="alamat" name="Alamat" />} className=" w-[20%] flex justify-start items-center pt-2" />
                                     <TableData children=":" className="flex justify-center items-center" />
-                                    <TableData children={<InputText register={register} name="alamat" />} errors={errors.alamat && <ErrorFieldText />}  />
+                                    <TableData children={<InputText required='true' register={register} name="alamat" />} errors={errors.alamat && <ErrorFieldText />}  />
                                 </tr>
                                 <tr className="w-full flex items-center gap-5">
                                     <TableData children={<Label forHtml="kecamatan" name="Kecamatan" />} className=" w-[20%] flex justify-start items-center pt-2" />
                                     <TableData children=":" className="flex justify-center items-center" />
-                                    <TableData children={<InputText register={register} name="kecamatan" />} errors={errors.kecamatan && <ErrorFieldText />}  />
+                                    <TableData children={<InputText required='true' register={register} name="kecamatan" />} errors={errors.kecamatan && <ErrorFieldText />}  />
                                 </tr>
                                 <tr className="w-full flex items-center gap-5">
                                     <TableData children={<Label forHtml="kota" name="Kab/Kota" />} className=" w-[20%] flex justify-start items-center pt-2" />
                                     <TableData children=":" className="flex justify-center items-center" />
-                                    <TableData children={<InputText register={register} name="kota" />} errors={errors.kota && <ErrorFieldText />}  />
+                                    <TableData children={<InputText required='true' register={register} name="kota" />} errors={errors.kota && <ErrorFieldText />}  />
                                 </tr>
                             </table>
                     </div>
                 </div>
             </div>
-            <button type="submit" className=" bg-emerald-400 text-white font-bold p-3 rounded-xl shadow-lg hover:bg-green-700 active:border-2 active:border-sky-400"><i className="fa-regular fa-square-plus ml-1 mr-2 fa-lg"></i>Create Data</button>
+            <button type="submit" className=" bg-primary text-white font-bold p-3 rounded-xl shadow-lg hover:bg-sky-600 active:border-2 active:border-sky-400"><i className="fa-regular fa-square-plus ml-1 mr-2 fa-lg"></i>Create Data</button>
         </form>
     </div>
     )

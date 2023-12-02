@@ -1,10 +1,13 @@
     import { useEffect, useState } from "react"
     import { useNavigate } from "react-router-dom"
-    import { Button } from "primereact/button"
     import axios from "axios"
     import Swal from 'sweetalert2'
     import GetDataModal from "../organism/getDataModal"
     import { Paginator } from 'primereact/paginator';
+    import Navbar from "../molecules/navbar"
+    import Button from "../atom/button"
+    import NavbarLogo from "../atom/Navbar/navbarLogo"
+    import SearchForm from "../atom/searchForm"
     const Dashboard = () => {
         const navigate = useNavigate();
         const [guests, setGuests] = useState([]);   
@@ -12,7 +15,6 @@
         const [first, setFirst] = useState(0);
         const [rows, setRows] = useState(3);
         const [showGetDataModal, setShowGetDataModal] = useState(false);
-
         const toggleGetDataModal = () => {
             setShowGetDataModal(!showGetDataModal);
         };
@@ -59,10 +61,12 @@
         
         
         
-        
+        const handleEdit = (id) => {
+            console.log(id);
+            navigate(`/edit/${id}`)
+        }
 
         const handleDetail = (id) => {
-            // console.log(id);
             navigate(`/detail/${id}`)
         }
 
@@ -92,53 +96,27 @@
             );
         });
 
-        const totalPages = Math.ceil(filteredGuests.length / rows);
         const currentItems = filteredGuests.slice(first, first + rows);
-
         
         return(
-            <div className='body h-screen bg-gradient-to-b from-green-300 from-10% to-cyan-700 to-90% shadow-lg'>
-                <div className="navbar grid grid-cols-2 bg-bg-navbar px-10 shadow-lg shadow-green-900 z-50">
-                    <div className="navbar__logo  flex justify-start items-center gap-5">
-                        <img src="./src/assets/img/logo_00000.png" alt="logo" className="w-[70px]" />
-                        <p className="font-bold text-2xl mt-2">Posyandu Sehat</p>
-                    </div>
+            <div className='body h-screen bg-[#e5e7eb] shadow-lg'>
+                <div className="navbar grid grid-cols-2 bg-primary px-10 shadow-lg shadow-sky-900 z-50 mb-[20px]">
+                    <NavbarLogo />
                     <div className="navbar__menu flex justify-end">
-                        <div className="flex justify-center items-center mt-3 mx-3">
-                            <button onClick={ () => navigate('/create')} type="button" className="text-gray-900 font-semibold bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><i className="fa-solid fa-user-plus mr-3"></i> New Data</button>
-                        </div>
-                        {/* buat button untuk getdata berdasarkan tanggal */}
-                        <div className="flex justify-center items-center mt-3 mx-3">
-                            <button type="button" onClick={toggleGetDataModal} className="text-gray-900 font-semibold bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"><i className="fa-solid fa-download mr-3"></i>Get data</button>
-                        </div>
-
-                        {/* search button */}
-                        <div className="search-bar">
-                            
-                        <form action="" className="flex">
-                        <div className="mr-0 mt-4 h-[30px] p-5 bg-blue-500 flex justify-center items-center rounded-l-lg">
-                            <i className="fa-solid fa-user" style={{ color: "#fff" }}></i>
-                        </div>
-                        <input
-                            type="text"
-                            value={searchTerm}
-                            onChange={handleSearch}
-                            className="mt-4 ml-0 h-[30px] rounded-r-lg mx-3 p-5 active:border active:border-blue-700"
-                            placeholder="Search Data"
-                        />
-                    </form>
-                        </div>
-
+                        <Button label="New Data" handle={ () => navigate('/create')} className="text-primary border-2 border-blue-600 font-semibold bg-white   hover:bg-neutral-200  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" icon="fa-solid fa-user-plus mr-3" />
+                        <Button label="Get Data" className="text-primary border-2 border-blue-600 font-semibold bg-white   hover:bg-neutral-200  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" icon="fa-solid fa-download mr-3" handle={toggleGetDataModal} />
+                        <SearchForm value={searchTerm} handle={handleSearch} />
                     </div>
                 </div>
+                {/* <Navbar value={searchTerm} handleSearch={handleSearch} handle={ () => navigate('/create')} toggleGetDataModal={toggleGetDataModal} /> */}
 
                 <GetDataModal visible={showGetDataModal} onHide={toggleGetDataModal} />
 
-                <div className="row h-auto ">
+                <div className="row h-auto">
                 {currentItems.length > 0 ? (
                     currentItems.map((guest) => (
                         <div key={guest.id} className="z-0 h-auto flex flex-col gap-5 justify-center items-center overflow-visible py-5">
-                            <div className='row-data grid grid-cols-2 card justify-start p-10 gap-10 items-center w-[90%] backdrop-blur-sm bg-white/30 h-40 rounded-2xl'>
+                            <div className='row-data grid grid-cols-2 card justify-start p-10 gap-10 items-center w-[90%] backdrop-blur-sm bg-[#fff] shadow-lg drop-shadow-lg h-40 rounded-2xl'>
                                 <div className='flex gap-10'>
                                     <img src="./src/assets/img/pngwing1.png" alt="" className='w-[15%]' />
                                     <div className='flex flex-col justify-center '>
@@ -149,9 +127,34 @@
                                     </div>
                                 </div>
                                 <div className='flex justify-end items-center gap-5'>
-                                    <button onClick={() => handleDetail(guest.id)} className='bg-sky-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-blue-800'><i className="fa-regular fa-eye mr-2"></i>View</button>
-                                    <button onClick={() => handleDelete(guest.id)} className='bg-red-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-red-800'><i className="fa-solid fa-trash mr-2"></i> Delete</button>
-                                    <button className='bg-yellow-600 w-[20%] h-[40px] rounded-lg text-white hover:bg-red-800'><i className="fa-solid fa-user-pen mr-2"></i> Edit</button>
+                                    <button onClick={() => handleDetail(guest.id)} 
+                                        className='bg-white shadow-lg text-primary border border-primary w-[20%] h-[40px] rounded-lg hover:bg-blue-600 hover:text-white'><i style={{color : '#06b6d4'}}
+                                        onMouseEnter={(e) => {
+                                            e.target.style.color = '#fff';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.target.style.color = '#06b6d4';
+                                        }}
+                                        className="fa-regular fa-eye mr-2 "></i>
+                                        View
+                                    </button>
+                                    <button onClick={() => handleDelete(guest.id)} 
+                                    className='bg-white w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-red-600 hover:text-white'><i style={{color : '#06b6d4'}} 
+                                    onMouseEnter={(e) => {
+                                            e.target.style.color = '#fff';
+                                        }} 
+                                        onMouseLeave={(e) => {
+                                            e.target.style.color = '#06b6d4';
+                                        }}
+                                    className="fa-solid fa-trash mr-2"></i> Delete</button>
+                                    <button onClick={() => handleEdit(guest.id)}  
+                                    className='bg-white w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-yellow-600 hover:text-white'><i style={{color : '#06b6d4'}} onMouseEnter={(e) => {
+                                            e.target.style.color = '#fff';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.target.style.color = '#06b6d4';
+                                        }}
+                                        className="fa-solid fa-user-pen mr-2"></i> Edit</button>
                                 </div>
                             </div>
                         </div>

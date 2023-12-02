@@ -198,7 +198,7 @@ const Detail = () => {
 
     return(
         
-        <div className='body h-screen bg-gradient-to-b from-green-300 from-10% to-cyan-700 to-90% shadow-lg flex justify-center items-center'>
+        <div className='body h-screen bg-[#e5e7eb] flex justify-center items-center'>
             <Toast ref={toast} />
             <ModalCreateWrapper />
             <ModalEdit
@@ -210,14 +210,14 @@ const Detail = () => {
             />
             <div className=" flex flex-col gap-5 justify-center items-start  backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl px-20">
                 <div className="info flex gap-20 justify-end items-center w-auto">
-                    <div className="flex items-center flex-col w-[20%] pl-10 mr-40">
-                        <img src="../src/assets/img/pngwing1.png" alt="hehe" className='bg-white border border-b-2lack rounded-full'/>
+                    <div className="flex items-center flex-col w-[20%] pl-10 mr-40 ">
+                        <img src="../src/assets/img/pngwing1.png" alt="hehe" className='bg-white border border-b-2lack rounded-full shadow-lg drop-shadow-lg'/>
                         <div className="w-full items-center flex-col flex">
                             <DetailLabel name="Nama Ibu" label="namaIbu" parentBio={parentBio} />
                             <DetailLabel name="Nama Bayi" label="namaBayi" parentBio={parentBio.bayi} />
                             <DetailLabel name="Tanggal Lahir" label="tanggalLahir" parentBio={parentBio.bayi} />
                             {/* buatkan button yang menuju ke arah chart dengan id */}
-                            <button onClick={() => navigate(`/chart/${id}`)} className="bg-blue-500 rounded-lg p-2 my-4 text-white">Lihat Chart</button>
+                            <button onClick={() => navigate(`/chart/${id}`)} className="bg-primary rounded-lg p-2 my-4 text-white">Lihat Chart</button>
                         </div>
                     </div>
 
@@ -233,7 +233,8 @@ const Detail = () => {
                             globalFilterFields={['tanggal', 'umur', 'tinggiBadan', 'beratBadan', 'KBM', 'statusstatusKenaikan']}
                             emptyMessage="Data Kosong"
                             className=" bg-neutral-600 font-semibold shadow-lg rounded-3xl"
-                        >
+                            // style={{ color: 'white' }}
+                            >
                             {/* column untuk nomor */}
                             <Column
                                 field="no"

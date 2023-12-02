@@ -15,7 +15,8 @@ export default {
         'gradient-down': '#2B2A4C',
         'font-bg-primary' : '2B2A4C',
         'login-bg' : '#7CE495',
-        'bg-navbar' : "#72D793"
+        'bg-navbar' : "#72D793",
+        'primary' : "#06b6d4"
       },
     },
   },
