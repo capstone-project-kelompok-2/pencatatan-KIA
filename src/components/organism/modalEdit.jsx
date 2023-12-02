@@ -5,11 +5,13 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Calendar } from 'primereact/calendar';
 import { Checkbox } from 'primereact/checkbox';
 import { Button } from 'primereact/button';
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast}) => {
     const { control, handleSubmit, setValue, getValues, } = useForm();
+    const { id } = useParams();
     const onEditSubmit = (data) => {
         // console.log(data);
         const date = new Date(data.tanggal);
@@ -27,8 +29,10 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast}) 
             tinggiBadan: data.tinggiBadan,
             beratBadan: data.beratBadan,
             KBM: data.KBM,
-            statusKenaikan: data.status
+            statusKenaikan: data.status,
+            parentId: id
         };
+        console.log(newData);
 
         try{
             setVisibleEdit(false);
@@ -56,7 +60,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast}) 
         }catch(error){
             console.log(error);
         }
-        // console.log(newData);
+        console.log(newData);
     };
 
     
