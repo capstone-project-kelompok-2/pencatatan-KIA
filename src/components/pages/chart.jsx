@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Chart } from 'primereact/chart';
+import { motion, useAnimation } from 'framer-motion';
 import axios from 'axios';
-import { Button } from 'primereact/button';
+import MotionButton from '../motion/motionButton';
 
 const ChartPage = () => {
     const { id } = useParams();
@@ -16,7 +17,6 @@ const ChartPage = () => {
                 console.log(res.data);
                 const datas = res.data;
                 const tanggal = datas.map(data => data.tanggal);
-                const umur = datas.map(data => data.umur);
                 const tinggiBadan = datas.map(data => data.tinggiBadan);
                 const beratBadan = datas.map(data => data.beratBadan);
 
@@ -93,12 +93,22 @@ const ChartPage = () => {
         <div className='body h-screen w-full bg-white shadow-lg flex justify-center items-center'>
             <div className="chart-container w-[90%]">
                 <div>
-                    <button className='bg-primary text-white font-semibold p-3 rounded-lg hover:bg-sky-600' onClick={handleToggleChartType}>
+                    <motion.button 
+                    whileHover={{ scale: 1.25 }}
+                    className='bg-primary text-white font-semibold p-3 rounded-lg hover:bg-sky-600' onClick={handleToggleChartType}>
                         Switch type
-                    </button>
+                    </motion.button>
                 </div>
                 {chartData.labels && (
+                    <motion.div
+                    //animasi dari kiri ke kanan
+                    initial={{ x: "-100%" }}
+                    animate={{ x: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="chart"
+                >
                     <Chart type={chartType} data={chartData} options={chartOptions} />
+                </motion.div>
                 )}
             </div>
         </div>

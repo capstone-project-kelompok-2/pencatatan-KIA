@@ -6,6 +6,7 @@ import withReactContent from 'sweetalert2-react-content'
 import { useForm } from "react-hook-form"
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
+import { motion, useAnimation } from "framer-motion"
 import InputText from '../atom/InputText'
 import ErrorFieldText from "../atom/errorFieldText"
 import Select from "../atom/select"
@@ -55,7 +56,6 @@ const Create = () => {
 
         console.log(dataTKA);
 
-        //cek apakah NIK belum terdaftar? jika sudah maka tidak bisa mendaftar
         axios.get('http://localhost:3000/guest')
         .then((response) => {
             console.log(response.data);
@@ -170,7 +170,12 @@ const Create = () => {
                 <span className=" flex justify-center w-[100px] bg-primary text-white text-xs shadow-md font-medium me-2 px-2.5 py-2 rounded-full z-30">Daftar</span>
             </div>
             <div className=" backdrop-blur bg-primary text-white px-4 py-1 text-sm rounded-xl font-semibold">Keterangan Lahir</div>
-            <div className="backdrop-blur bg-white/50 w-[80%] rounded-3xl h-auto ">
+            <motion.div 
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            transition={{ duration: 0.8 }}
+
+            className="backdrop-blur bg-white/50 w-[80%] rounded-3xl h-auto">
                 <div className="grid grid-cols-2 p-5">
                     <div >
                         <p>Informasi Bayi</p>
@@ -183,12 +188,12 @@ const Create = () => {
                                 <tbody>
                                 <tr className="w-full flex items-center gap-5">
                                 <TableData children={<Label forHtml="tanggalLahir" name="Tanggal Lahir" />} className=" w-[20%] flex justify-start items-center pt-2" />
-                                    <TableData children=":" className="flex justify-center items-center border" />
-                                    <TableData children={<DatePicker showIcon selected={startDate} onChange={handleDate} className="rounded-lg bg-slate-400 w-[272px] py-2 px-10" />} />
+                                    <TableData children=":" className="flex justify-center items-center " />
+                                    <TableData children={<DatePicker showIcon selected={startDate} onChange={handleDate} className="border-2 border-primary rounded-lg w-[272px] py-2 px-10" />} />
                                 </tr>
-                                <tr className="w-full flex items-center gap-5 border">
+                                <tr className="w-full flex items-center gap-5 ">
                                     <TableData children={<Label forHtml="namaBayi" name="Nama Bayi" />} className=" w-[20%] flex justify-start items-center pt-2" />
-                                    <TableData children=":" className="flex justify-center items-center border" />
+                                    <TableData children=":" className="flex justify-center items-center " />
                                     <TableData children={<InputText required='true' register={register} name="namaBayi" />} errors={errors.namaBayi && <ErrorFieldText />}  />
                                 </tr>
                                 <tr className="w-full flex items-center gap-5">
@@ -211,7 +216,7 @@ const Create = () => {
                                 </tbody>
                             </table>
                     </div>
-                    <div className="border-l-2 border-emerald-800 px-7">
+                    <div className="border-l-2 px-7">
                         <p>Data diri orang tua</p>
 
                             <table className="table-auto w-full ml-5">
@@ -259,8 +264,14 @@ const Create = () => {
                             </table>
                     </div>
                 </div>
-            </div>
-            <button type="submit" className=" bg-primary text-white font-bold p-3 rounded-xl shadow-lg hover:bg-sky-600 active:border-2 active:border-sky-400"><i className="fa-regular fa-square-plus ml-1 mr-2 fa-lg"></i>Create Data</button>
+            </motion.div>
+                <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    type="submit" 
+                    className=" bg-primary text-white font-bold p-3 rounded-xl shadow-lg hover:bg-sky-600 active:border-2 active:border-sky-400">
+                    <i className="fa-regular fa-square-plus ml-1 mr-2 fa-lg"></i>
+                    Create Data
+                </motion.button>
         </form>
     </div>
     )
