@@ -2,10 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Chart } from 'primereact/chart';
 import { motion, useAnimation } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import MotionButton from '../motion/motionButton';
 
 const ChartPage = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        const user = localStorage.getItem("user")
+        if (!user) {
+            navigate("/login")
+        }
+    }, [navigate])
     const { id } = useParams();
     const [chartData, setChartData] = useState({});
     const [chartOptions, setChartOptions] = useState({});
@@ -94,8 +101,13 @@ const ChartPage = () => {
             <div className="chart-container w-[90%]">
                 <div>
                     <motion.button 
-                    whileHover={{ scale: 1.25 }}
-                    className='bg-primary text-white font-semibold p-3 rounded-lg hover:bg-sky-600' onClick={handleToggleChartType}>
+                    whileHover={{ scale: 1.1 }}
+                    className='hover:bg-red-500 hover:text-white hover:border-0 font-semibold p-3 mx-1 rounded-lg border-2 border-primary text-primary' onClick={() => navigate(`/detail/${id}`) }>
+                        Kembali
+                    </motion.button>
+                    <motion.button 
+                    whileHover={{ scale: 1.1 }}
+                    className='hover:bg-primary hover:text-white hover:border-0 border-2 border-primary text-primary font-semibold p-3 mx-1 rounded-lg ' onClick={handleToggleChartType}>
                         Switch type
                     </motion.button>
                 </div>

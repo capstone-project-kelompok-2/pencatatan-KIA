@@ -2,8 +2,9 @@ import { useEffect, useState, useRef } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { FilterMatchMode, FilterOperator } from 'primereact/api';
+import { FilterMatchMode } from 'primereact/api';
 import { InputText } from 'primereact/inputtext';
+import { Skeleton } from 'primereact/skeleton';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { exportToExcel } from "../utils/exportExcell";
@@ -18,6 +19,13 @@ import useTKAStore from "../store/useTKAStore";
 
 const Detail = () => {
     const navigate = useNavigate()
+    useEffect(() => {
+        const user = localStorage.getItem("user")
+        if (!user) {
+            navigate("/login")
+        }
+    }, [navigate])
+
     const { id } = useParams()
     const toast = useRef(null);
     const show = () => {
@@ -148,10 +156,10 @@ const Detail = () => {
                 <motion.button
                 whileHover={{ scale: 1.25 }}
                 
-                 className="w-20 bg-yellow-400 rounded-lg p-2 text-gray-700"  onClick={() => handleEdit(rowData)}><i className="fa-solid fa-pen-to-square"></i> Edit</motion.button>
+                 className="w-20 border-2 border-primary text-primary  hover:bg-yellow-400 rounded-lg p-2 hover:text-gray-700 hover:border-0"  onClick={() => handleEdit(rowData)}><i className="fa-solid fa-pen-to-square"></i> Edit</motion.button>
                 <motion.button 
                 whileHover={{ scale: 1.25 }}
-                className="w-24 bg-red-500 rounded-lg p-2" onClick={() => handleDelete(rowData)}>
+                className="w-24 border-2 text-primary hover:text-white hover:border-0 border-primary hover:bg-red-500 rounded-lg p-2" onClick={() => handleDelete(rowData)}>
                     <i className="fa-solid fa-trash mx-1"></i>
                     Delete</motion.button>
             </div>
@@ -204,20 +212,32 @@ const Detail = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
 
-            className=" flex flex-col gap-5 justify-center items-start  backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl px-20">
+            className=" flex flex-col gap-5 justify-center items-start shadow-2xl backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl px-20">
                 <div 
 
                 className="info flex gap-20 justify-end items-center w-auto">
                     <div className="flex items-center flex-col w-[20%] pl-10 mr-40 ">
-                        <img src="../src/assets/img/pngwing1.png" alt="hehe" className='bg-white border border-b-2lack rounded-full shadow-lg drop-shadow-lg'/>
+                        <motion.img 
+                        src="../src/assets/img/pngwing1.png" alt="hehe" 
+                        whileHover={{ scale: 1.25 }}
+                        className='bg-white border border-primary rounded-full shadow-lg drop-shadow-lg'/>
                         <div className="w-full items-center flex-col flex">
                             <DetailLabel name="Nama Ibu" label="namaIbu" parentBio={parentBio} />
                             <DetailLabel name="Nama Bayi" label="namaBayi" parentBio={parentBio.bayi} />
                             <DetailLabel name="Tanggal Lahir" label="tanggalLahir" parentBio={parentBio.bayi} />
                             {/* buatkan button yang menuju ke arah chart dengan id */}
-                            <motion.button 
+                            <motion.button
                             whileHover={{ scale: 1.25 }}
-                            onClick={() => navigate(`/chart/${id}`)} className="font-semibold bg-primary rounded-lg p-2 my-4 text-white hover:bg-sky-600">Lihat Grafik</motion.button>
+                            onClick={() => navigate(`/chart/${id}`)} 
+                            className="font-semibold border w-[140px] bg-white border-primary rounded-lg p-2 my-4 text-primary hover:border-0 hover:text-white hover:bg-primary">
+                            <i className="pi pi-chart-line mx-2"></i>
+                            Lihat Grafik</motion.button>
+                            <motion.button
+                            whileHover={{ scale: 1.25 }}
+                            onClick={() => navigate(`/`)} 
+                            className="w-[140px] font-semibold border bg-white border-primary rounded-lg p-2 text-primary hover:border-0 hover:text-white hover:bg-red-500">
+                            <i className="pi pi-backward mx-2"></i>
+                            Kembali</motion.button>
                         </div>
                     </div>
 

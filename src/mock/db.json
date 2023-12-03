@@ -42,6 +42,11 @@
       "kodeId": 1,
       "username": "kader1",
       "password": "12345"
+    },
+    {
+      "kodeId": 2,
+      "username": "kader2",
+      "password": "12345"
     }
   ],
   "TKA": [
