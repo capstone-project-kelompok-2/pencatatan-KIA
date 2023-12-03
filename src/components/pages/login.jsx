@@ -1,12 +1,34 @@
 import { useForm } from "react-hook-form";
 import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import MotionButton from "../motion/motionButton";
+import { Toast } from 'primereact/toast';
+import axios from "axios";
 
 
 const Login = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
+
+    const toast = useRef(null);
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => {
+    console.log(data);
+    axios.get('http://localhost:3000/users')
+      .then((response) => {
+        console.log(response.data);
+        const user = response.data.find((user) => user.username === data.username && user.password === data.password);
+        if (user) {
+            console.log('berhasil login');
+            localStorage.setItem('user', JSON.stringify(user));
+            window.location.href = '/';
+        } else {
+            console.log('gagal login');
+            LoginFailed();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const controls = useAnimation();
 
@@ -14,8 +36,13 @@ const Login = () => {
     controls.start({ x: 0 });
   }, [controls]);
 
+  const LoginFailed = () => {
+    toast.current.show({ severity: 'error', summary: 'Login Failed', detail: 'Username or Password is wrong', life: 3000 });
+  }
+
   return (
     <div className="h-screen flex justify-center items-center bg-gradient-to-b from-[#06b6d4] from-10% to-[#D9D9D9] to-90%">
+        <Toast ref={toast} />
       <div className="flex justify-center items-center backdrop-blur-sm bg-white/30 w-[90%] h-[90%] rounded-3xl">
         <div className="grid grid-cols-2 w-full text-center h-full">
           <motion.div 

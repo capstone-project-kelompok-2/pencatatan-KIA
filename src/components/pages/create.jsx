@@ -1,12 +1,13 @@
-import DatePicker from 'react-datepicker'
-import { parse, v4 as uuidv4 } from 'uuid'
+import { useForm } from "react-hook-form"
+import { useEffect, useState } from "react"
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import { useForm } from "react-hook-form"
-import { useState } from "react"
-import { useNavigate } from 'react-router-dom'
-import { motion, useAnimation } from "framer-motion"
+import DatePicker from 'react-datepicker'
+import { v4 as uuidv4 } from 'uuid'
+import { motion } from "framer-motion"
+import { showDataModalCreate } from '../utils/showModalDataCreate'
 import InputText from '../atom/InputText'
 import ErrorFieldText from "../atom/errorFieldText"
 import Select from "../atom/select"
@@ -16,6 +17,14 @@ import TableData from "../atom/table/tableData"
 import 'react-datepicker/dist/react-datepicker.css'
 const Create = () => {
     const navigate = useNavigate()
+    useEffect(() => {
+        const user = localStorage.getItem("user")
+        if (!user) {
+            navigate("/login")
+        }
+    }, [navigate])
+
+
     const MySwal = withReactContent(Swal)
     const {  register, handleSubmit, formState: { errors } } = useForm()
     const onSubmit = data => {
@@ -83,7 +92,7 @@ const Create = () => {
             }else{
                 MySwal.fire({
             title : 'Apakah data yang anda masukan sudah benar?',
-            html : showDataModal(dataBayi),
+            html : showDataModalCreate(dataBayi),
             icon : 'question',
             confirmButtonText : 'Ya',
             showCancelButton : true,
@@ -158,32 +167,36 @@ const Create = () => {
 
     const [startDate, setStartDate] = useState(new Date());
     const handleDate = (date) => {
-        // console.log(date.toLocaleDateString())
         setStartDate(date)
     }
 
     return (
     <div className="h-screen flex justify-center items-center bg-[#e5e7eb]">
-        <form onSubmit={handleSubmit(onSubmit)} className=" flex flex-col gap-5 justify-center items-center backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl py-4">
+        <form onSubmit={handleSubmit(onSubmit)} className=" flex flex-col gap-5 justify-center items-center shadow-2xl backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl py-4">
             <div className="flex flex-col justify-center items-center">
                 <img src="./src/assets/img/pngwing1.png" alt="people icon" className="absolute w-[6%] border border-black rounded-full bg-slate-50 mb-[6.5%] -z-0" />
                 <span className=" flex justify-center w-[100px] bg-primary text-white text-xs shadow-md font-medium me-2 px-2.5 py-2 rounded-full z-30">Daftar</span>
             </div>
-            <div className=" backdrop-blur bg-primary text-white px-4 py-1 text-sm rounded-xl font-semibold">Keterangan Lahir</div>
+            <div>
+                <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    type="button" 
+                    className=" hover:bg-red-500 hover:border-0 hover:text-white font-bold p-2 rounded-xl shadow-lg border-2 border-primary text-primary active:border-2 active:border-sky-400"
+                    onClick={() => navigate('/')}
+                    >
+                    <i className="pi pi-backward mr-1"></i>
+                    Kembali
+                </motion.button>
+            </div>
             <motion.div 
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             transition={{ duration: 0.8 }}
 
-            className="backdrop-blur bg-white/50 w-[80%] rounded-3xl h-auto">
+            className="backdrop-blur bg-white/50 w-[80%] rounded-3xl h-auto shadow-lg">
                 <div className="grid grid-cols-2 p-5">
-                    <div >
-                        <p>Informasi Bayi</p>
-                            <div className=" w-full flex items-center justify-start gap-5 my-3">
-
-                            </div>
-                            <p className="my-3">telah lahir seorang bayi : </p>
-                            
+                    <div className="flex flex-col items-center" >
+                        <p className="bg-primary rounded-2xl text-white p-2 my-2 font-medium">Informasi Bayi</p>                        
                             <table className="table-auto w-full ml-5">
                                 <tbody>
                                 <tr className="w-full flex items-center gap-5">
@@ -217,7 +230,7 @@ const Create = () => {
                             </table>
                     </div>
                     <div className="border-l-2 px-7">
-                        <p>Data diri orang tua</p>
+                    <p className='bg-primary text-white p-1 rounded-2xl text-center w-30 font-medium'>Data diri orang tua</p>
 
                             <table className="table-auto w-full ml-5">
                                 <tr className="w-full flex items-center gap-5">
@@ -233,7 +246,6 @@ const Create = () => {
                                 <tr className="w-full flex items-center gap-5">
                                     <TableData children={<Label forHtml="NIK" name="NIK" />} className=" w-[20%] flex justify-start items-center pt-2" />
                                     <TableData children=":" className="flex justify-center items-center" />
-                                    {/* input Number for NIK */}
                                     <TableData children={<InputNumber value={NIK} handle={handleNIK} />} />
                                 </tr>
                                 <tr className="w-full flex items-center gap-5">
@@ -277,24 +289,5 @@ const Create = () => {
     )
 }
 
-const showDataModal = (data) => {
-    return(
-        <div className="flex justify-center items-center flex-col p-5 border-2 border-black rounded-lg font-semibold">
-            <span>Nama Bayi : {data.bayi.namaBayi}</span>
-            <span>Tanggal Lahir : {data.bayi.tanggalLahir}</span>
-            <span>Jenis Kelamin : {data.bayi.jenisKelamin}</span>
-            <span>Berat Bayi : {data.bayi.beratBayi} kg</span>
-            <span>Tinggi Bayi : {data.bayi.tinggiBayi} cm</span>
-            <span>Nama Ibu : {data.namaIbu}</span>
-            <span>Pekerjaan Ibu : {data.pekerjaanIbu}</span>
-            <span>NIK : {data.NIK}</span>
-            <span>Nama Ayah : {data.namaAyah}</span>
-            <span>Pekerjaan Ayah : {data.pekerjaanAyah}</span>  
-            <span>Alamat : {data.alamat}</span>
-            <span>Kecamatan : {data.kecamatan}</span>
-            <span>Kota : {data.kota}</span>
-        </div>
-    )
-}
 
 export default Create

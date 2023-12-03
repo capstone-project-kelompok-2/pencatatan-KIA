@@ -16,6 +16,13 @@ import TableData from "../atom/table/tableData"
 import 'react-datepicker/dist/react-datepicker.css'
 import { useParams } from 'react-router-dom'
 const Edit = () => {
+    const navigate = useNavigate()
+    useEffect(() => {
+        const user = localStorage.getItem("user")
+        if (!user) {
+            navigate("/login")
+        }
+    }, [navigate])
     const [dataEdit, setDataEdit] = useState({})
     const [dataEditBayi, setDataEditBayi] = useState({})
     const [NIK, setNIK] = useState(dataEdit ? dataEdit.NIK : 0);
@@ -34,7 +41,6 @@ const Edit = () => {
 
     // console.log(dataEdit);
     const { id } = useParams()
-    const navigate = useNavigate()
     const MySwal = withReactContent(Swal)
     const {  register, handleSubmit, formState: { errors } } = useForm()
     
@@ -140,26 +146,30 @@ const Edit = () => {
     
     return (
     <div className="h-screen flex justify-center items-center bg-[#e5e7eb]">
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 justify-center items-center backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl py-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col shadow-2xl gap-5 justify-center items-center backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl py-4">
             <div className="flex flex-col justify-center items-center">
                 <img src="../src/assets/img/pngwing1.png" alt="people icon" className="absolute w-[6%] border border-black rounded-full bg-slate-50 mb-[6.5%] -z-0" />
                 <span className=" flex justify-center w-[100px] bg-primary text-white text-xs shadow-md font-medium me-2 px-2.5 py-2 rounded-full z-30">Daftar</span>
             </div>
-            <div className=" backdrop-blur bg-primary text-neutral-100 px-4 py-1 text-sm rounded-xl font-semibold">Keterangan Lahir</div>
+            <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    type="button" 
+                    className=" hover:bg-red-500 hover:border-0 hover:text-white font-bold p-2 rounded-xl shadow-lg border-2 border-primary text-primary active:border-2 active:border-sky-400"
+                    onClick={() => navigate('/')}
+                    >
+                    <i className="pi pi-backward mr-1"></i>
+                    Kembali
+                </motion.button>
             <motion.div
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
 
-             className="backdrop-blur bg-white/50 w-[80%] rounded-3xl h-auto ">
+             className="backdrop-blur bg-white/50 w-[80%] rounded-3xl h-auto shadow-lg ">
                 <div className="grid grid-cols-2 p-5  rounded-xl backdrop-blur-lg">
-                    <div >
-                        <p>Informasi Bayi</p>
-                            <div className=" w-full flex items-center justify-start gap-5 my-3">
+                    <div className='flex flex-col items-center'>
+                        <p className='text-center bg-primary text-white p-2 rounded-2xl font-medium my-2'>Informasi Bayi</p>
 
-                            </div>
-                            <p className="my-3">telah lahir seorang bayi : </p>
-                            
                             <table className="table-auto w-full ml-5">
                                 <tbody>
                                 <tr className="w-full flex items-center gap-5">
@@ -181,7 +191,7 @@ const Edit = () => {
                             </table>
                     </div>
                     <div className="border-l-2 border-emerald-800 px-7">
-                        <p>Data diri orang tua</p>
+                        <p className='bg-primary text-white p-1 rounded-xl text-center w-30 font-medium'>Data diri orang tua</p>
 
                             <table className="table-auto w-full ml-5">
                                 <tr className="w-full flex items-center gap-5">
@@ -230,7 +240,7 @@ const Edit = () => {
             </motion.div>
             <motion.button 
             whileHover={{ scale: 1.1 }}
-            type="submit" className=" bg-primary text-white font-bold p-3 rounded-xl shadow-lg hover:bg-sky-600 active:border active:border-sky-400"><i className="fa-regular fa-square-plus ml-1 mr-2 fa-lg"></i>Edit Data</motion.button>
+            type="submit" className=" bg-primary text-white font-bold p-3 rounded-xl hover:bg-sky-600 active:border active:border-sky-400 shadow-lg"><i className="fa-regular fa-square-plus ml-1 mr-2 fa-lg"></i>Edit Data</motion.button>
         </form>
     </div>
     )
