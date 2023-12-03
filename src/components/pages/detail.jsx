@@ -8,6 +8,7 @@ import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { exportToExcel } from "../utils/exportExcell";
 import { exportToPDF } from "../utils/exportPDF";
+import { motion } from 'framer-motion';
 import Swal from "sweetalert2";
 import DetailLabel from "../molecules/detailLabel";
 import ModalCreate from "../organism/modalCreate";
@@ -134,7 +135,7 @@ const Detail = () => {
                     <i className="fa-solid fa-magnifying-glass flex pl-[85%]"></i>
                     <span className="p-input-icon-right">
                         <i className="pi pi-search pl-2 ml-1"/>
-                        <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Cari data..." style={{paddingLeft : '35px'}}/>
+                        <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Cari data..." style={{paddingLeft : '35px', borderColor : "white"}}/>
                     </span>
                 </span>
             </div>
@@ -144,8 +145,15 @@ const Detail = () => {
     const actionTemplate = (rowData) => {
         return (
             <div className="flex justify-center items-center gap-3">
-                <button className="bg-yellow-400 rounded-lg p-2 text-gray-700"  onClick={() => handleEdit(rowData)}>Edit</button>
-                <button className="bg-red-500 rounded-lg p-2" onClick={() => handleDelete(rowData)}>Delete</button>
+                <motion.button
+                whileHover={{ scale: 1.25 }}
+                
+                 className="w-20 bg-yellow-400 rounded-lg p-2 text-gray-700"  onClick={() => handleEdit(rowData)}><i className="fa-solid fa-pen-to-square"></i> Edit</motion.button>
+                <motion.button 
+                whileHover={{ scale: 1.25 }}
+                className="w-24 bg-red-500 rounded-lg p-2" onClick={() => handleDelete(rowData)}>
+                    <i className="fa-solid fa-trash mx-1"></i>
+                    Delete</motion.button>
             </div>
         );
     };
@@ -170,30 +178,12 @@ const Detail = () => {
     const [visibleEdit, setVisibleEdit] = useState(false);
     const [editData, setEditData] = useState(null);
     
-    const actionTemplateEdit = (rowData) => {
-        return (
-            <div className="flex justify-center items-center gap-3">
-                <button
-                    className="bg-yellow-400 rounded-lg p-2 text-gray-700"
-                    onClick={() => handleEdit(rowData)}
-                >
-                    Edit
-                </button>
-                <button
-                    className="bg-red-500 rounded-lg p-2"
-                    onClick={() => handleDelete(rowData)}
-                >
-                    Delete
-                </button>
-            </div>
-        );
-    };
+
     
     const handleEdit = (rowData) => {
         setEditData(rowData);
         setVisibleEdit(true);
     };    
-
 
 
     return(
@@ -208,8 +198,16 @@ const Detail = () => {
                 setEditData={setEditData}
                 toast={toast}
             />
-            <div className=" flex flex-col gap-5 justify-center items-start  backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl px-20">
-                <div className="info flex gap-20 justify-end items-center w-auto">
+            <motion.div 
+
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+
+            className=" flex flex-col gap-5 justify-center items-start  backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl px-20">
+                <div 
+
+                className="info flex gap-20 justify-end items-center w-auto">
                     <div className="flex items-center flex-col w-[20%] pl-10 mr-40 ">
                         <img src="../src/assets/img/pngwing1.png" alt="hehe" className='bg-white border border-b-2lack rounded-full shadow-lg drop-shadow-lg'/>
                         <div className="w-full items-center flex-col flex">
@@ -217,11 +215,14 @@ const Detail = () => {
                             <DetailLabel name="Nama Bayi" label="namaBayi" parentBio={parentBio.bayi} />
                             <DetailLabel name="Tanggal Lahir" label="tanggalLahir" parentBio={parentBio.bayi} />
                             {/* buatkan button yang menuju ke arah chart dengan id */}
-                            <button onClick={() => navigate(`/chart/${id}`)} className="bg-primary rounded-lg p-2 my-4 text-white">Lihat Chart</button>
+                            <motion.button 
+                            whileHover={{ scale: 1.25 }}
+                            onClick={() => navigate(`/chart/${id}`)} className="font-semibold bg-primary rounded-lg p-2 my-4 text-white hover:bg-sky-600">Lihat Grafik</motion.button>
                         </div>
                     </div>
 
-                    <div className="card rounded-3x ">
+                    <div 
+                    className="card rounded-3x ">
                         <DataTable
                             header={renderHeader}
                             value={guestId  }
@@ -294,7 +295,7 @@ const Detail = () => {
                             </DataTable>
                     </div>           
                 </div>
-            </div>
+            </motion.div>
         </div>
 
         

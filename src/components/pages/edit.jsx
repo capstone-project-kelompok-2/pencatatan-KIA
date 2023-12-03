@@ -6,6 +6,7 @@ import withReactContent from 'sweetalert2-react-content'
 import { useForm } from "react-hook-form"
 import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router-dom'
+import { motion, useAnimation } from "framer-motion"
 import InputText from "../atom/InputText"
 import ErrorFieldText from "../atom/errorFieldText"
 import Select from "../atom/select"
@@ -122,12 +123,7 @@ const Edit = () => {
 
         
     }
-    
-    const [namaBayiText, setNamaBayiText] = useState(dataEditBayi)
 
-    const handleNamaBayiText = (e) => {
-        setNamaBayiText(e.target.value)
-    }
     const handleNIK = (e) => {
         if(e.target.value < 0){
             setNIK(1)
@@ -143,15 +139,20 @@ const Edit = () => {
     }
     
     return (
-    <div className="h-screen flex justify-center items-center bg-gradient-to-b from-green-300 from-10% to-cyan-700 to-90%">
-        <form onSubmit={handleSubmit(onSubmit)} className=" flex flex-col gap-5 justify-center items-center backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl py-4">
+    <div className="h-screen flex justify-center items-center bg-[#e5e7eb]">
+        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5 justify-center items-center backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl py-4">
             <div className="flex flex-col justify-center items-center">
                 <img src="../src/assets/img/pngwing1.png" alt="people icon" className="absolute w-[6%] border border-black rounded-full bg-slate-50 mb-[6.5%] -z-0" />
-                <span className=" flex justify-center w-[100px] bg-green-300 text-gray-800 text-xs shadow-md font-medium me-2 px-2.5 py-2 rounded-full z-30">Daftar</span>
+                <span className=" flex justify-center w-[100px] bg-primary text-white text-xs shadow-md font-medium me-2 px-2.5 py-2 rounded-full z-30">Daftar</span>
             </div>
-            <div className=" backdrop-blur bg-white/50 px-4 py-1 text-sm rounded-xl font-semibold">Keterangan Lahir</div>
-            <div className="backdrop-blur bg-white/50 w-[80%] rounded-3xl h-auto ">
-                <div className="grid grid-cols-2 p-5">
+            <div className=" backdrop-blur bg-primary text-neutral-100 px-4 py-1 text-sm rounded-xl font-semibold">Keterangan Lahir</div>
+            <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+
+             className="backdrop-blur bg-white/50 w-[80%] rounded-3xl h-auto ">
+                <div className="grid grid-cols-2 p-5  rounded-xl backdrop-blur-lg">
                     <div >
                         <p>Informasi Bayi</p>
                             <div className=" w-full flex items-center justify-start gap-5 my-3">
@@ -163,12 +164,12 @@ const Edit = () => {
                                 <tbody>
                                 <tr className="w-full flex items-center gap-5">
                                     <TableData children={<Label forHtml="tanggalLahir" name="Tanggal Lahir" />} className=" w-[20%] flex justify-start items-center pt-2" />
-                                    <TableData children=":" className="flex justify-center items-center border" />
-                                    <TableData children={<DatePicker showIcon selected={startDate} onChange={handleDate} className="rounded-lg bg-slate-400 w-[272px] py-2 px-10" />} />
+                                    <TableData children=":" className="flex justify-center items-center " />
+                                    <TableData children={<DatePicker showIcon selected={startDate} onChange={handleDate} className="border border-primary rounded-lg  w-[272px] py-2 px-10" />} />
                                 </tr>
-                                <tr className="w-full flex items-center gap-5 border">
+                                <tr className="w-full flex items-center gap-5 ">
                                     <TableData children={<Label forHtml="namaBayi" name="Nama Bayi" />} className=" w-[20%] flex justify-start items-center pt-2" />
-                                    <TableData children=":" className="flex justify-center items-center border" />
+                                    <TableData children=":" className="flex justify-center items-center " />
                                     <TableData children={<InputText register={register} name="namaBayi" defaultValue={dataEditBayi ? dataEditBayi.namaBayi : ''} />} errors={errors.namaBayi && <ErrorFieldText />}  />
                                 </tr>
                                 <tr className="w-full flex items-center gap-5">
@@ -226,8 +227,10 @@ const Edit = () => {
                             </table>
                     </div>
                 </div>
-            </div>
-            <button type="submit" className=" bg-emerald-400 text-white font-bold p-3 rounded-xl shadow-lg hover:bg-green-700 active:border-2 active:border-sky-400"><i className="fa-regular fa-square-plus ml-1 mr-2 fa-lg"></i>Edit Data</button>
+            </motion.div>
+            <motion.button 
+            whileHover={{ scale: 1.1 }}
+            type="submit" className=" bg-primary text-white font-bold p-3 rounded-xl shadow-lg hover:bg-sky-600 active:border active:border-sky-400"><i className="fa-regular fa-square-plus ml-1 mr-2 fa-lg"></i>Edit Data</motion.button>
         </form>
     </div>
     )
@@ -235,7 +238,7 @@ const Edit = () => {
 
 const showDataModal = (data) => {
     return(
-        <div className="flex justify-center items-center flex-col p-5 border-2 border-black rounded-lg font-semibold">
+        <div className="flex justify-center items-center flex-col p-5 border border-black rounded-lg font-semibold">
             <span>Nama Bayi : {data.bayi.namaBayi}</span>
             <span>Tanggal Lahir : {data.bayi.tanggalLahir}</span>
             <span>Jenis Kelamin : {data.bayi.jenisKelamin}</span>

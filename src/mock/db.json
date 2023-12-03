@@ -1,54 +1,38 @@
 {
   "guest": [
     {
-      "id": "f92fabbc-df09-42f3-8b24-6996f9b46898",
+      "id": "d0f8772c-d9ba-4625-8c29-822869e8f714",
       "bayi": {
         "tanggalLahir": "12/2/2023",
-        "namaBayi": "krisna lavendra",
-        "jenisKelamin": "Laki-Laki"
+        "namaBayi": "Gojo Satoru",
+        "jenisKelamin": "Laki-Laki",
+        "beratBayi": "80",
+        "tinggiBayi": "6"
       },
-      "namaIbu": "sofi",
+      "namaIbu": "dewi",
       "pekerjaanIbu": "ibu rumah tangga",
       "NIK": 4,
-      "namaAyah": "udin",
-      "pekerjaanAyah": "wiraswasta",
-      "alamat": "Hegarmanah",
-      "kecamatan": "Jatinangor",
-      "kota": "Sumedang"
+      "namaAyah": "naruto",
+      "pekerjaanAyah": "hokage",
+      "alamat": "hidden leaf village",
+      "kecamatan": "konoha",
+      "kota": "desa api"
     },
     {
-      "id": "8db6d318-c961-45ec-a85a-91253397fc80",
+      "id": "77ae1727-850b-4df2-a46a-7a7c924f2cf6",
       "bayi": {
-        "tanggalLahir": "12/2/2023",
-        "namaBayi": "asd",
+        "tanggalLahir": "12/3/2023",
+        "namaBayi": "dsadas",
         "jenisKelamin": "Laki-Laki",
         "beratBayi": 0,
         "tinggiBayi": 0
       },
-      "namaIbu": "asd",
-      "pekerjaanIbu": "dsa",
+      "namaIbu": "dsadsa",
+      "pekerjaanIbu": "saasd",
       "NIK": 1,
-      "namaAyah": "dsa",
-      "pekerjaanAyah": "sad",
-      "alamat": "dsa",
-      "kecamatan": "dsa",
-      "kota": "dsa"
-    },
-    {
-      "id": "3a48b006-3d25-4716-a5dc-7ce71395e4d2",
-      "bayi": {
-        "tanggalLahir": "12/2/2023",
-        "namaBayi": "asd",
-        "jenisKelamin": "Laki-Laki",
-        "beratBayi": 0,
-        "tinggiBayi": 0
-      },
-      "namaIbu": "sad",
-      "pekerjaanIbu": "dsa",
-      "NIK": 2,
-      "namaAyah": "dsa",
-      "pekerjaanAyah": "dsa",
-      "alamat": "sad",
+      "namaAyah": "sad",
+      "pekerjaanAyah": "asd",
+      "alamat": "asd",
       "kecamatan": "asd",
       "kota": "asd"
     }
@@ -65,25 +49,25 @@
       "id": "37c23546-04ed-4d21-8d94-919f7e3b44f0",
       "NIK": "4",
       "namaIbu": "sofi",
-      "tanggal": "12/2/2023",
+      "tanggal": "2/12/2023",
       "umur": 0,
       "tinggiBadan": 50,
       "beratBadan": 2,
       "KBM": 0,
       "statusKenaikan": "N",
-      "parentId": "f92fabbc-df09-42f3-8b24-6996f9b46898"
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
     },
     {
       "id": "bfa70190-a637-4fdd-a7c9-01927e113671",
       "NIK": "4",
       "namaIbu": "sofi",
-      "tanggal": "1/2/2024",
+      "tanggal": "2/1/2024",
       "umur": 1,
       "tinggiBadan": 53,
       "beratBadan": 3,
       "KBM": 0,
       "statusKenaikan": "N",
-      "parentId": "f92fabbc-df09-42f3-8b24-6996f9b46898"
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
     },
     {
       "id": "c39e4c06-1324-423e-80f4-b4a411120770",
@@ -95,19 +79,19 @@
       "beratBadan": 4,
       "KBM": 0,
       "statusKenaikan": "N",
-      "parentId": "f92fabbc-df09-42f3-8b24-6996f9b46898"
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
     },
     {
       "id": "716e28c8-af35-4c2d-aaab-78b1f836019e",
       "NIK": "4",
       "namaIbu": "sofi",
-      "tanggal": "2/3/2024",
+      "tanggal": "3/2/2024",
       "umur": 3,
       "tinggiBadan": 59,
       "beratBadan": 5,
       "KBM": 0,
       "statusKenaikan": "N",
-      "parentId": "f92fabbc-df09-42f3-8b24-6996f9b46898"
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
     },
     {
       "id": "bb8197e0-bcf4-449c-96ee-868ffbbf9c23",
@@ -119,7 +103,7 @@
       "beratBadan": 6,
       "KBM": 0,
       "statusKenaikan": "N",
-      "parentId": "f92fabbc-df09-42f3-8b24-6996f9b46898"
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
     },
     {
       "id": "0044cc00-6097-4fd4-8742-feb1d3d5558e",
@@ -133,42 +117,20 @@
       "statusKenaikan": "T"
     },
     {
-      "id": "eb7bd162-3824-46aa-bc36-efe53167da7f",
-      "NIK": "1",
-      "namaIbu": "asd",
-      "tanggal": "12/2/2023",
-      "umur": 0,
-      "beratBadan": 0,
-      "tinggiBadan": 0,
-      "KBM": 0,
-      "statusKenaikan": "T"
-    },
-    {
-      "id": "f9c2c848-cae1-46a3-8781-cb681eba12d5",
-      "NIK": "1",
-      "namaIbu": "dsa",
-      "tanggal": "12/2/2023",
-      "umur": 0,
-      "beratBadan": 0,
-      "tinggiBadan": 0,
-      "KBM": 0,
-      "statusKenaikan": "T"
-    },
-    {
-      "id": "5a825193-4bc5-4f7a-8d8c-f8a845512d47",
-      "NIK": 1,
-      "namaIbu": "asd",
-      "tanggal": "12/2/2023",
-      "umur": 0,
-      "beratBadan": 0,
-      "tinggiBadan": 0,
-      "KBM": 0,
-      "statusKenaikan": "T"
-    },
-    {
       "id": "c015e0e7-1e3c-4b0d-8b34-a8834c9069b3",
       "NIK": 2,
       "namaIbu": "sad",
+      "tanggal": "12/2/2023",
+      "umur": 0,
+      "beratBadan": 0,
+      "tinggiBadan": 0,
+      "KBM": 0,
+      "statusKenaikan": "T"
+    },
+    {
+      "id": "9fc7dc86-7627-4219-a4f1-155482783416",
+      "NIK": 2,
+      "namaIbu": "dsa",
       "tanggal": "12/2/2023",
       "umur": 0,
       "beratBadan": 0,
