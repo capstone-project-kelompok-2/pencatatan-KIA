@@ -16,7 +16,6 @@ import ModalCreate from "../organism/modalCreate";
 import ModalEdit from "../organism/modalEdit";
 import axios from "axios"
 import useTKAStore from "../store/useTKAStore";
-
 const Detail = () => {
     const navigate = useNavigate()
     useEffect(() => {
@@ -143,9 +142,9 @@ const Detail = () => {
                     <i className="fa-solid fa-magnifying-glass flex pl-[85%]"></i>
                     <span className="p-input-icon-right">
                         <i className="pi pi-search pl-2 ml-1"/>
-                        <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Cari data..." style={{paddingLeft : '35px', borderColor : "white"}}/>
+                        <InputText className="border-2 " value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Cari data..." style={{paddingLeft : '35px', borderColor : "#06b6d4"}}/>
                     </span>
-                </span>
+                </span> 
             </div>
         );
     };
@@ -253,15 +252,12 @@ const Detail = () => {
                             filterDisplay="row"
                             globalFilterFields={['tanggal', 'umur', 'tinggiBadan', 'beratBadan', 'KBM', 'statusstatusKenaikan']}
                             emptyMessage="Data Kosong"
-                            className=" bg-neutral-600 font-semibold shadow-lg rounded-3xl"
-                            // style={{ color: 'white' }}
                             >
-                            {/* column untuk nomor */}
                             <Column
                                 field="no"
                                 header="No"
                                 style={{ width: '5%' }}
-                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center' }}
+                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center'  }}
                                 bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
                                 className="bg-gray-100 font-semibold"
                                 body={(rowData, { rowIndex }) => renderNoColumn(rowData, rowIndex)}
