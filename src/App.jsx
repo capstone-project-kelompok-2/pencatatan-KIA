@@ -9,9 +9,41 @@ import ChartPage from "./components/pages/chart";
 import PrimeReact from "./components/pages/primeReact";
 import './App.css'
 import 'primeicons/primeicons.css';
+// sidebar
+import Sidebar from "./components/molecules/Sidebar";
+import {
+  LifeBuoy,
+  Receipt,
+  Boxes,
+  Package,
+  UserCircle,
+  BarChart3,
+  LayoutDashboard,
+  Settings
+} from "lucide-react";
 
 function App() {
   return(
+    <main className="App">
+        <Sidebar>
+          <SidebarItem
+            icon={<LayoutDashboard size={20} />}
+            text="Dasboard"
+            alert
+          />
+          <SidebarItem icon={<BarChart3 size={20} />} text="Statistics" active />
+          <SidebarItem icon={<UserCircle size={20} />} text="Users" />
+          <SidebarItem icon={<Boxes size={20} />} text="Inventory" />
+          <SidebarItem icon={<Package size={20} />} text="Orders" alert />
+          <SidebarItem icon={<Receipt size={20} />} text= "Billings" />
+          <hr className="my-3" />
+          <SidebarItem icon={<Settings size={20} />} text="Settings" />
+          <SidebarItem icon={<LifeBuoy size={20} />} text="Help" />
+        </Sidebar>
+      
+    
+
+
     <Router>
 			<Routes>
         <Route>
@@ -27,7 +59,8 @@ function App() {
         </Route>
 			</Routes>
 		</Router>
-  )
+    </main>
+  );
 }
 
 export default App

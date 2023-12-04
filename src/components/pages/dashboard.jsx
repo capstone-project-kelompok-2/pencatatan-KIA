@@ -1,5 +1,5 @@
     import { useEffect, useState } from "react"
-    import { useNavigate } from "react-router-dom"
+    import { Link, useNavigate } from "react-router-dom"
     import { Button } from "primereact/button"
     import axios from "axios"
     import Swal from 'sweetalert2'
@@ -166,9 +166,7 @@
                 </div>
             </div> 
 
-            </div>
-
-            
+            </div> 
         )
     }
 
