@@ -9,58 +9,179 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast}) => {
+const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, parentBio}) => {
     const { control, handleSubmit, setValue, getValues, } = useForm();
     const { id } = useParams();
     const onEditSubmit = (data) => {
-        // console.log(data);
-        const date = new Date(data.tanggal);
-        const tanggal = date.getDate();
-        const bulan = date.getMonth() + 1;
-        const tahun = date.getFullYear();
-        data.tanggal = `${tanggal}/${bulan}/${tahun}`;
+        console.log(data);
+        axios.get(`http://localhost:3000/TKA?NIK=${parentBio.NIK}`)
+        .then(res => {
+            // console.log(res.data.length);
 
-        const newData = {
-            id: data.id,
-            NIK: data.NIK,
-            namaIbu: data.namaIbu,
-            tanggal: data.tanggal,
-            umur: data.umur,
-            tinggiBadan: data.tinggiBadan,
-            beratBadan: data.beratBadan,
-            KBM: data.KBM,
-            statusKenaikan: data.status,
-            parentId: id
-        };
-        console.log(newData);
-
-        try{
-            setVisibleEdit(false);
-            Swal.fire({
-                title: "Perhatian!",
-                text: "apakah anda yakin ingin mengubah data ini?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ya, Ubah!",
-                cancelButtonText: "Tidak"
-            }).then((result => {
-                if(result.isConfirmed){
-                    axios.put(`http://localhost:3000/TKA/${data.id}`, newData)
-                    .then((res) => {
-                        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Data Updated', life: 3000 });
-                        window.location.reload();
-                    })
-                }else{
-                    setVisibleEdit(true);
+            const dataIndex = res.data.findIndex(entry => entry.id === data.id);
+            let lastData = res.data[dataIndex-1];
+            if(lastData === undefined){
+                lastData = res.data[dataIndex]
+                const selBeratBadan = data.beratBadan - 0;
+                console.log(selBeratBadan);
+                let status = '';
+                let dataBeratBadan = selBeratBadan*1000;
+                if(dataBeratBadan < data.KBM){
+                    status = 'T'
                 }
-            }))
+                else{
+                    status = 'N';
+                }
+                const date = new Date(data.tanggal);
+                const tanggal = date.getDate();
+                const bulan = date.getMonth() + 1;
+                const tahun = date.getFullYear();
+                data.tanggal = `${tanggal}/${bulan}/${tahun}`;
+                const newData = {
+                    id: data.id,
+                    NIK: data.NIK,
+                    namaIbu: data.namaIbu,
+                    tanggal: data.tanggal,
+                    umur: data.umur,
+                    tinggiBadan: data.tinggiBadan,
+                    beratBadan: data.beratBadan,
+                    KBM: data.KBM,
+                    statusKenaikan: status,
+                    parentId: id
+                };
+                console.log(newData);
+                
+                try{
+                    setVisibleEdit(false);
+                    Swal.fire({
+                        title: "Perhatian!",
+                        text: "apakah anda yakin ingin mengubah data ini?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Ya, Ubah!",
+                        cancelButtonText: "Tidak"
+                    }).then((result => {
+                        if(result.isConfirmed){
+                            axios.put(`http://localhost:3000/TKA/${data.id}`, newData)
+                            .then((res) => {
+                                toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Data Updated', life: 3000 });
+                                window.location.reload();
+                            })
+                        }else{
+                            setVisibleEdit(true);
+                        }
+                    }))
 
-        }catch(error){
-            console.log(error);
-        }
-        console.log(newData);
+                }catch(error){
+                    console.log(error);
+                }
+                return
+            }
+            lastData = res.data[dataIndex-1];
+            const selBeratBadan = data.beratBadan - lastData.beratBadan;
+            
+            console.log(selBeratBadan);
+            let status = '';
+            let dataBeratBadan = selBeratBadan*1000;
+            if(dataBeratBadan < data.KBM){
+                status = 'T'
+            }else{
+                status = 'N';
+            }
+            const date = new Date(data.tanggal);
+            const tanggal = date.getDate();
+            const bulan = date.getMonth() + 1;
+            const tahun = date.getFullYear();
+            data.tanggal = `${tanggal}/${bulan}/${tahun}`;
+            const newData = {
+                id: data.id,
+                NIK: data.NIK,
+                namaIbu: data.namaIbu,
+                tanggal: data.tanggal,
+                umur: data.umur,
+                tinggiBadan: data.tinggiBadan,
+                beratBadan: data.beratBadan,
+                KBM: data.KBM,
+                statusKenaikan: status,
+                parentId: id
+            };
+            console.log(newData);
+            try{
+                setVisibleEdit(false);
+                Swal.fire({
+                    title: "Perhatian!",
+                    text: "apakah anda yakin ingin mengubah data ini?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya, Ubah!",
+                    cancelButtonText: "Tidak"
+                }).then((result => {
+                    if(result.isConfirmed){
+                        axios.put(`http://localhost:3000/TKA/${data.id}`, newData)
+                        .then((res) => {
+                            toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Data Updated', life: 3000 });
+                            window.location.reload();
+                        })
+                    }else{
+                        setVisibleEdit(true);
+                    }
+                }))
+            }catch(error){
+                console.log(error);
+            }
+        })
+
+        // const date = new Date(data.tanggal);
+        // const tanggal = date.getDate();
+        // const bulan = date.getMonth() + 1;
+        // const tahun = date.getFullYear();
+        // data.tanggal = `${tanggal}/${bulan}/${tahun}`;
+
+        // const newData = {
+        //     id: data.id,
+        //     NIK: data.NIK,
+        //     namaIbu: data.namaIbu,
+        //     tanggal: data.tanggal,
+        //     umur: data.umur,
+        //     tinggiBadan: data.tinggiBadan,
+        //     beratBadan: data.beratBadan,
+        //     KBM: data.KBM,
+        //     statusKenaikan: data.status,
+        //     parentId: id
+        // };
+        // console.log(newData);
+
+        // try{
+        //     setVisibleEdit(false);
+        //     Swal.fire({
+        //         title: "Perhatian!",
+        //         text: "apakah anda yakin ingin mengubah data ini?",
+        //         icon: "warning",
+        //         showCancelButton: true,
+        //         confirmButtonColor: "#3085d6",
+        //         cancelButtonColor: "#d33",
+        //         confirmButtonText: "Ya, Ubah!",
+        //         cancelButtonText: "Tidak"
+        //     }).then((result => {
+        //         if(result.isConfirmed){
+        //             axios.put(`http://localhost:3000/TKA/${data.id}`, newData)
+        //             .then((res) => {
+        //                 toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Data Updated', life: 3000 });
+        //                 window.location.reload();
+        //             })
+        //         }else{
+        //             setVisibleEdit(true);
+        //         }
+        //     }))
+
+        // }catch(error){
+        //     console.log(error);
+        // }
+        // console.log(newData);
     };
 
     
@@ -202,6 +323,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast}) 
             </tr>
 
             <tr>
+                {/* KBM */}
                 <td>
                     <div className="mx-3">
                     <label htmlFor="KBM">KBM</label>
@@ -209,8 +331,8 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast}) 
                 </td>
                 <td>:</td>
                 <td>
-                   <div className="mx-3 my-1.5">
-                   <Controller
+                    <div className="mx-3 my-1.5">
+                    <Controller
                         name="KBM"
                         control={control}
                         defaultValue={0}
@@ -222,59 +344,10 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast}) 
                             />
                         )}
                     />
-                   </div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div className="mx-3">
-                    <label>Status</label>
-                    </div>
-                </td>
-                <td>:</td>
-                <td>
-                    <div className="p-inputgroup gap-5 my-3 px-5">
-                        <div className="p-field-checkbox">
-                            <Controller
-                                name="status"
-                                control={control}
-                                defaultValue="N"
-                                render={({ field }) => (
-                                    <Checkbox
-                                        inputId="naik"
-                                        onChange={(e) => {
-                                            field.onChange(e.checked);
-                                            handleCheckboxChange('N');
-                                        }}
-                                        checked={getValues('status') === 'N'}
-                                    />
-                                )}
-                            />
-                            <label htmlFor="naik">Naik</label>
-                        </div>
-
-                        <div className="p-field-checkbox">
-                            <Controller
-                                name="status"
-                                control={control}
-                                defaultValue={false}
-                                render={({ field }) => (
-                                    <Checkbox
-                                        inputId="turun"
-                                        onChange={(e) => {
-                                            field.onChange(e.checked);
-                                            handleCheckboxChange('T');
-                                        }}
-                                        checked={getValues('status') === 'T'}
-                                    />
-                                )}
-                            />
-                            <label htmlFor="turun">Turun</label>
-                        </div>
                     </div>
                 </td>
             </tr>
+
         </tbody>
     </table>
 

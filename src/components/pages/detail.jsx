@@ -204,6 +204,7 @@ const Detail = () => {
                 editData={editData}
                 setEditData={setEditData}
                 toast={toast}
+                parentBio={parentBio}
             />
             <motion.div 
 
@@ -252,7 +253,8 @@ const Detail = () => {
                             filterDisplay="row"
                             globalFilterFields={['tanggal', 'umur', 'tinggiBadan', 'beratBadan', 'KBM', 'statusstatusKenaikan']}
                             emptyMessage="Data Kosong"
-                            >
+                        
+                           >
                             <Column
                                 field="no"
                                 header="No"
@@ -289,11 +291,12 @@ const Detail = () => {
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 body={(rowData) => <span>{rowData.beratBadan} kg</span>}>
                             </Column>
-                            <Column field="KBM" header="KBM" 
+                            <Column field="KBM" header="Kenaikan BB minimal" 
                                 className="bg-gray-100 font-semibold"
-                                headerStyle={{ backgroundColor: 'gray', color: 'white'  }}
+                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
-                                style={{ width: '25%' }}>
+                                style={{ width: '25%' }}
+                                body={(rowData) => <span>{rowData.KBM} gr</span>}>    
                             </Column>
                             <Column field="statusKenaikan" header="N/T" 
                                 className="bg-gray-100 font-semibold "
