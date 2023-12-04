@@ -15,38 +15,112 @@ const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, statusKenai
   };
 
   const onSubmit = data => {
-    delete data.N;
-    delete data.T;
-
-    const tanggalValue = data.tanggal instanceof Date ? data.tanggal : currentDate;
-
-    console.log('Type of tanggalValue:', typeof tanggalValue); // Tambahkan log ini
-
-
-    const dataTKA = {
-        id: uuidv4(),
-        NIK: parentBio.NIK,
-        namaIbu: parentBio.namaIbu,
-        ...data,
-        tanggal: data.tanggal.toLocaleDateString(),
-        statusKenaikan: statusKenaikan,
-        parentId: parentBio.id
-    };
-
-    console.log(dataTKA);
-    axios.post(`http://localhost:3000/TKA`, dataTKA )
+    // delete data.N;
+    // delete data.T;
+    axios.get(`http://localhost:3000/TKA?NIK=${parentBio.NIK}`)
     .then(res => {
-        console.log(res);
-        console.log(res.data);
+        console.log(res.data.length);
+        if(res.data.length === 0){
+            const dataTKA = {
+                id: uuidv4(),
+                NIK: parentBio.NIK,
+                namaIbu: parentBio.namaIbu,
+                ...data,
+                tanggal: data.tanggal.toLocaleDateString(),
+                statusKenaikan: 'N',
+                parentId: parentBio.id
+            };
+            axios.post(`http://localhost:3000/TKA`, dataTKA )
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+            setVisible(false)
+            show();
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        }else{
+
+        let KBM = 0;
+        switch (res.data.length) {
+            case 0:
+                KBM = 0;
+                break;
+            case 1:
+                KBM = 800;
+                break;
+            case 2 :
+                KBM = 900;
+                break;
+            case 3 :
+                KBM = 800;
+                break;
+            case 4 :
+                KBM = 600;
+                break;
+            case 5 :
+                KBM = 500;
+                break;
+            case 6 :
+                KBM = 400;
+                break;
+            case 7 :
+                KBM = 300;
+                break;
+            case 8 :
+                KBM = 300;
+                break;
+            case 9 :
+                KBM = 300;
+                break;
+            case 10 :
+                KBM = 300;
+                break;
+            default:
+                KBM = 200;
+                break;
+        }
+        let lastData = res.data[res.data.length-1];
+        const selBeratBadan = data.beratBadan - lastData.beratBadan;
+        let status = '';
+        let dataBeratBadan = selBeratBadan*1000;
+        if(dataBeratBadan < KBM){
+            status = 'T'
+        }else{
+            status = 'N';
+        }
+        console.log(status);
+        console.log(dataBeratBadan);
+        const dataTKA = {
+            id: uuidv4(),
+            NIK: parentBio.NIK,
+            namaIbu: parentBio.namaIbu,
+            KBM: KBM,
+            ...data,
+            tanggal: data.tanggal.toLocaleDateString(),
+            statusKenaikan: status,
+            parentId: parentBio.id,
+        }
+        // console.log(dataTKA);
+        axios.post(`http://localhost:3000/TKA`, dataTKA )
+        .then(res => {
+            console.log(res);
+            console.log(res.data);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+        setVisible(false)
+        show();
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
+        }
     })
-    .catch(err => {
-        console.log(err);
-    })
-    setVisible(false)
-    show();
-    setTimeout(() => {
-        window.location.reload();
-    }, 1000);
 
   };
 
@@ -159,80 +233,8 @@ const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, statusKenai
                 </td>
             </tr>
 
-            <tr>
-                <td>
-                    <div className="mx-3">
-                    <label htmlFor="KBM">KBM</label>
-                    </div>
-                </td>
-                <td>:</td>
-                <td>
-                   <div className="mx-3 my-1.5">
-                   <Controller
-                        name="KBM"
-                        control={control}
-                        defaultValue={0}
-                        render={({ field }) => (
-                            <InputNumber
-                                id="KBM"
-                                value={field.value}
-                                onValueChange={(e) => field.onChange(e.value)}
-                            />
-                        )}
-                    />
-                   </div>
-                </td>
-            </tr>
 
-            <tr>
-                <td>
-                    <div className="mx-3">
-                    <label>Status</label>
-                    </div>
-                </td>
-                <td>:</td>
-                <td>
-                    <div className="p-inputgroup gap-5 my-3 px-5">
-                        <div className="p-field-checkbox">
-                        <Controller
-                        name="N"
-                        control={control}
-                        defaultValue={false}
-                        render={({ field }) => (
-                            <Checkbox
-                                inputId="N"
-                                onChange={(e) => {
-                                    field.onChange(e.checked);
-                                    handleCheckboxChange('N');
-                                }}
-                                checked={statusKenaikan === 'N'}
-                            />
-                        )}
-                    />
-                        <label htmlFor="naik">Naik</label>
-                        </div>
 
-                        <div className="p-field-checkbox">
-                        <Controller
-                        name="T"
-                        control={control}
-                        defaultValue={false}
-                        render={({ field }) => (
-                            <Checkbox
-                                inputId="T"
-                                onChange={(e) => {
-                                    field.onChange(e.checked);
-                                    handleCheckboxChange('T');
-                                }}
-                                checked={statusKenaikan === 'T'}
-                            />
-                        )}
-                            />
-                            <label htmlFor="turun">Turun</label>
-                        </div>
-                    </div>
-                </td>
-            </tr>
         </tbody>
     </table>
 

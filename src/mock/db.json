@@ -111,18 +111,6 @@
       "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
     },
     {
-      "id": "0044cc00-6097-4fd4-8742-feb1d3d5558e",
-      "NIK": 1,
-      "namaIbu": "asd",
-      "tanggal": "13/2/2023",
-      "umur": 0,
-      "tinggiBadan": 50,
-      "beratBadan": 3,
-      "KBM": 0,
-      "statusKenaikan": "T",
-      "parentId": "77ae1727-850b-4df2-a46a-7a7c924f2cf6"
-    },
-    {
       "id": "c015e0e7-1e3c-4b0d-8b34-a8834c9069b3",
       "NIK": 2,
       "namaIbu": "sad",
@@ -143,6 +131,66 @@
       "tinggiBadan": 0,
       "KBM": 0,
       "statusKenaikan": "T"
+    },
+    {
+      "id": "3ce3ce6c-1fc0-49f6-83c7-a58b0cc31417",
+      "NIK": 4,
+      "namaIbu": "dewi",
+      "tanggal": "5/2/2024",
+      "umur": 7,
+      "tinggiBadan": 70,
+      "beratBadan": 6.5,
+      "KBM": 0,
+      "statusKenaikan": "N",
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
+    },
+    {
+      "id": "bc9de329-9bf0-421e-8305-7fa683fe82ef",
+      "NIK": 4,
+      "namaIbu": "dewi",
+      "tanggal": "12/4/2023",
+      "umur": 0,
+      "tinggiBadan": 0,
+      "beratBadan": 0,
+      "KBM": 0,
+      "statusKenaikan": "N",
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
+    },
+    {
+      "id": "656a5796-0466-4581-8bb6-9a25535c235d",
+      "NIK": 1,
+      "namaIbu": "dsadsa",
+      "tanggal": "4/12/2023",
+      "umur": 0,
+      "tinggiBadan": 50,
+      "beratBadan": 2,
+      "KBM": 0,
+      "statusKenaikan": "N",
+      "parentId": "77ae1727-850b-4df2-a46a-7a7c924f2cf6"
+    },
+    {
+      "id": "7a116dc8-66f0-40ba-841b-83a1bc9a14b4",
+      "NIK": 1,
+      "namaIbu": "dsadsa",
+      "tanggal": "4/12/2023",
+      "umur": 1,
+      "tinggiBadan": 53,
+      "beratBadan": 2.9,
+      "KBM": 800,
+      "statusKenaikan": "N",
+      "parentId": "77ae1727-850b-4df2-a46a-7a7c924f2cf6"
+    },
+    {
+      "id": "882875a8-7cba-4d65-a4b3-770496e030e8",
+      "NIK": 1,
+      "namaIbu": "dsadsa",
+      "tanggal": "4/12/2023",
+      "umur": 0,
+      "tinggiBadan": 0,
+      "beratBadan": 4,
+      "KBM": 900,
+      "statusKenaikan": "N",
+      "parentId": "77ae1727-850b-4df2-a46a-7a7c924f2cf6"
     }
   ]
 }
