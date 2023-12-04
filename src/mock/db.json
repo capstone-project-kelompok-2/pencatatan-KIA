@@ -114,12 +114,13 @@
       "id": "0044cc00-6097-4fd4-8742-feb1d3d5558e",
       "NIK": 1,
       "namaIbu": "asd",
-      "tanggal": "12/2/2023",
+      "tanggal": "13/2/2023",
       "umur": 0,
-      "beratBadan": 0,
-      "tinggiBadan": 0,
+      "tinggiBadan": 50,
+      "beratBadan": 3,
       "KBM": 0,
-      "statusKenaikan": "T"
+      "statusKenaikan": "T",
+      "parentId": "77ae1727-850b-4df2-a46a-7a7c924f2cf6"
     },
     {
       "id": "c015e0e7-1e3c-4b0d-8b34-a8834c9069b3",

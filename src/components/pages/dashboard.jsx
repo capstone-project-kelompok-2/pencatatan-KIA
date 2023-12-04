@@ -226,40 +226,26 @@
                                     animate={{ y: 0 }}
                                     transition={{ duration: 0.5 }}
                                     whileHover={{ scale: 1.25 }}
-                                        className='bg-white shadow-lg text-primary border border-primary w-[20%] h-[40px] rounded-lg hover:bg-blue-600 hover:text-white'><i style={{color : '#06b6d4'}}
-                                        onMouseEnter={(e) => {
-                                            e.target.style.color = '#fff';
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            e.target.style.color = '#06b6d4';
-                                        }}
+                                        className='bg-white shadow-lg hover:border-0  text-primary border border-primary w-[20%] h-[40px] rounded-lg hover:bg-blue-500 hover:text-white'>
+                                        <i 
                                         className="fa-regular fa-eye mr-2 "></i>
                                         View
                                     </motion.button>
                                     <motion.button onClick={() => handleDelete(guest.id)} 
-                                    initial={{ y: "-100%" }}
-                                    animate={{ y: 0 }}
-                                    whileHover={{ scale: 1.25 }}
-                                    transition={{ duration: 0.5 }}
-                                    className='bg-white w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-red-600 hover:text-white'><i style={{color : '#06b6d4'}} 
-                                    onMouseEnter={(e) => {
-                                            e.target.style.color = '#fff';
-                                        }} 
-                                        onMouseLeave={(e) => {
-                                            e.target.style.color = '#06b6d4';
-                                        }}
-                                    className="fa-solid fa-trash mr-2"></i> Delete</motion.button>
+                                        initial={{ y: "-100%" }}
+                                        animate={{ y: 0 }}
+                                        whileHover={{ scale: 1.25 }}
+                                        transition={{ duration: 0.5 }}
+                                        className='bg-white hover:border-0 w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-red-500 hover:text-white'>
+                                        <i className="fa-solid fa-trash mr-2"></i> 
+                                        Delete
+                                    </motion.button>
                                     <motion.button onClick={() => handleEdit(guest.id)}
                                     initial={{ y: "-100%" }}
                                     animate={{ y: 0 }}
                                     transition={{ duration: 0.5 }}
                                     whileHover={{ scale: 1.25 }}
-                                    className='bg-white w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-yellow-600 hover:text-white'><i style={{color : '#06b6d4'}} onMouseEnter={(e) => {
-                                            e.target.style.color = '#fff';
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            e.target.style.color = '#06b6d4';
-                                        }}
+                                    className='hover:border-0 bg-white w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-yellow-500 hover:text-white'><i 
                                         className="fa-solid fa-user-pen mr-2"></i> Edit</motion.button>
                                 </div>
                             </div>
