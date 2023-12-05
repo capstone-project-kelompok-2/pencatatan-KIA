@@ -58,7 +58,7 @@
       "umur": 0,
       "tinggiBadan": 50,
       "beratBadan": 2,
-      "KBM": 0,
+      "KBM": 800,
       "statusKenaikan": "N",
       "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
     },
@@ -70,7 +70,7 @@
       "umur": 1,
       "tinggiBadan": 53,
       "beratBadan": 3,
-      "KBM": 0,
+      "KBM": 900,
       "statusKenaikan": "N",
       "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
     },
@@ -191,6 +191,46 @@
       "KBM": 900,
       "statusKenaikan": "N",
       "parentId": "77ae1727-850b-4df2-a46a-7a7c924f2cf6"
+    },
+    {
+      "id": "eab4cd32-7830-4f66-9066-9f77b3164600",
+      "NIK": 1,
+      "namaIbu": "dsadsa",
+      "KBM": 800,
+      "tanggal": "12/6/2023",
+      "umur": 0,
+      "tinggiBadan": 0,
+      "beratBadan": 0,
+      "statusKenaikan": "T",
+      "parentId": "77ae1727-850b-4df2-a46a-7a7c924f2cf6"
+    }
+  ],
+  "medical": [
+    {
+      "id": 1,
+      "NIK": 4,
+      "tanggal": "20/12/2023",
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714",
+      "penyakit": "demam",
+      "rujukan": "rsud",
+      "keterangan": "demam tinggi"
+    },
+    {
+      "id": "803144ae-193c-4d32-8c60-1a5c8fc57dd5",
+      "NIK": 4,
+      "tanggal": "2023-12-04",
+      "penyakit": "",
+      "rujukan": "",
+      "keterangan": ""
+    },
+    {
+      "id": "2f2a029b-7bc7-476a-9fbf-0a1ab8a87ac6",
+      "NIK": 4,
+      "tanggal": "5/12/2023",
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714",
+      "penyakit": "asd",
+      "rujukan": "sadasdad",
+      "keterangan": "hehe"
     }
   ]
 }

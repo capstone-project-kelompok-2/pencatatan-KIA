@@ -3,20 +3,14 @@ import { useForm, Controller } from 'react-hook-form';
 import { InputNumber } from 'primereact/inputnumber';
 import { Calendar } from 'primereact/calendar';
 import { Button } from 'primereact/button';
-import { Checkbox } from 'primereact/checkbox';
 import { Dialog } from 'primereact/dialog';
+import ErrorFieldText from '../atom/errorFieldText';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid'
-const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, statusKenaikan, parentBio }) => {
-    const { register, control, handleSubmit, getValues } = useForm();
-
-  const handleCheckboxChange = (type) => {
-    setStatusKenaikan((prev) => (prev === type ? '' : type));
-  };
+const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, parentBio }) => {
+    const { control, handleSubmit, getValues, formState: { errors } } = useForm();
 
   const onSubmit = data => {
-    // delete data.N;
-    // delete data.T;
     axios.get(`http://localhost:3000/TKA?NIK=${parentBio.NIK}`)
     .then(res => {
         console.log(res.data.length);
@@ -170,12 +164,16 @@ const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, statusKenai
                         name="umur"
                         control={control}
                         defaultValue={0}
+                        rules={{ required: true }}
                         render={({ field }) => (
+                            <>
                             <InputNumber
                                 id="umur"
                                 value={field.value}
                                 onValueChange={(e) => field.onChange(e.value)}
-                            />
+                                />
+                            {errors.umur && <ErrorFieldText />}
+                            </>
                         )}
                     />
                     </div>
@@ -193,14 +191,18 @@ const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, statusKenai
                     <div className="mx-3 my-1.5">
                     <Controller
                         name="tinggiBadan"
+                        rules={{ required: true }}
                         control={control}
                         defaultValue={0}
                         render={({ field }) => (
+                            <>
                             <InputNumber
                                 id="tinggiBadan"
                                 value={field.value}
                                 onValueChange={(e) => field.onChange(e.value)}
-                            />
+                                />
+                            {errors.tinggiBadan && <ErrorFieldText />}
+                            </>
                         )}
                     />
                     </div>
@@ -219,14 +221,18 @@ const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, statusKenai
                     <Controller
                         name="beratBadan"
                         control={control}
+                        rules={{ required: true }}
                         defaultValue={0}
                         render={({ field }) => (
+                            <>
                             <InputNumber
                                 minFractionDigits={1}
                                 id="beratBadan"
                                 value={field.value}
                                 onValueChange={(e) => field.onChange(e.value)}
-                            />
+                                />
+                            {errors.beratBadan && <ErrorFieldText />}
+                            </>
                         )}
                     />
                     </div>
