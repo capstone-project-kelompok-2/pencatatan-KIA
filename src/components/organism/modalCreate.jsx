@@ -7,12 +7,16 @@ import { Dialog } from 'primereact/dialog';
 import ErrorFieldText from '../atom/errorFieldText';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid'
-const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, parentBio }) => {
+const ModalCreate = ({ setVisible, show, visible, parentBio }) => {
     const { control, handleSubmit, getValues, formState: { errors } } = useForm();
 
   const onSubmit = data => {
     axios.get(`http://localhost:3000/TKA?NIK=${parentBio.NIK}`)
     .then(res => {
+        const day = data.tanggal.getDate();
+        const month = data.tanggal.getMonth() + 1;
+        const year = data.tanggal.getFullYear();
+        const formattedDate = `${day}/${month}/${year}`;
         console.log(res.data.length);
         if(res.data.length === 0){
             const dataTKA = {
@@ -20,7 +24,7 @@ const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, parentBio }
                 NIK: parentBio.NIK,
                 namaIbu: parentBio.namaIbu,
                 ...data,
-                tanggal: data.tanggal.toLocaleDateString(),
+                tanggal: formattedDate,
                 statusKenaikan: 'N',
                 parentId: parentBio.id
             };
@@ -87,6 +91,7 @@ const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, parentBio }
         }else{
             status = 'N';
         }
+
         console.log(status);
         console.log(dataBeratBadan);
         const dataTKA = {
@@ -95,7 +100,7 @@ const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, parentBio }
             namaIbu: parentBio.namaIbu,
             KBM: KBM,
             ...data,
-            tanggal: data.tanggal.toLocaleDateString(),
+            tanggal: formattedDate,
             statusKenaikan: status,
             parentId: parentBio.id,
         }

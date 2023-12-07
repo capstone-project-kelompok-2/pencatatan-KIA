@@ -1,15 +1,24 @@
 import { useForm } from "react-hook-form";
 import { motion, useAnimation } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import MotionButton from "../motion/motionButton";
 import { Toast } from 'primereact/toast';
 import axios from "axios";
+import ModalRegister from "../organism/modalRegister";
+import { Button } from "primereact/button";
 
 
 const Login = () => {
-
     const toast = useRef(null);
+    const showSuccess = () => {
+      toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: 'data berhasil dibuat' });
+  };
+  const showErrorUsername = () => {
+      toast.current.show({ severity: 'error', summary: 'Form Submitted', detail: 'username sudah ada' });
+  }
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [showLogin, setShowLogin] = useState(true);
+    const [showModalRegister, setShowModalRegister] = useState(false);
     const onSubmit = data => {
     console.log(data);
     axios.get('http://localhost:3000/users')
@@ -30,6 +39,19 @@ const Login = () => {
       });
   }
 
+  const handleRegisterClick = () => {
+    setShowLogin(false);
+    setShowModalRegister(true);
+  };
+
+  const handleModalClose = () => {
+    setShowModalRegister(false);
+    setShowLogin(true);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
+
   const controls = useAnimation();
 
   useEffect(() => {
@@ -43,7 +65,9 @@ const Login = () => {
   return (
     <div className="h-screen flex justify-center items-center bg-gradient-to-b from-[#06b6d4] from-10% to-[#D9D9D9] to-90%">
         <Toast ref={toast} />
+      {showLogin ? (
       <div className="flex justify-center items-center backdrop-blur-sm bg-white/30 w-[90%] h-[90%] rounded-3xl">
+
         <div className="grid grid-cols-2 w-full text-center h-full">
           <motion.div 
           className="overflow-hidden flex justify-center items-center"
@@ -99,9 +123,16 @@ const Login = () => {
 
               <MotionButton />
             </form>
+            <div>
+              belum punya akun? <button onClick={handleRegisterClick} className="text-blue-500">Daftar</button>
+            </div>
           </motion.div>
         </div>
       </div>
+        ) : (
+          <ModalRegister setVisible={handleModalClose} visible={showModalRegister} setShowLogin={setShowLogin} showSuccess={showSuccess} showErrorUsername={showErrorUsername} showLogin={showLogin} setShowModalRegister={setShowModalRegister} />
+        )}
+      
     </div>
   );
 };
