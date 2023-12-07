@@ -21,95 +21,41 @@
     {
       "id": "77ae1727-850b-4df2-a46a-7a7c924f2cf6",
       "bayi": {
-        "tanggalLahir": "12/3/2023",
-        "namaBayi": "dsadas",
-        "jenisKelamin": "Laki-Laki",
-        "beratBayi": 0,
-        "tinggiBayi": 0
+        "tanggalLahir": "12/7/2023",
+        "namaBayi": "upin",
+        "jenisKelamin": "Laki-Laki"
       },
-      "namaIbu": "dsadsa",
-      "pekerjaanIbu": "saasd",
+      "namaIbu": "ningrum",
+      "pekerjaanIbu": "ibu rumah tangga",
       "NIK": 1,
-      "namaAyah": "sad",
-      "pekerjaanAyah": "asd",
-      "alamat": "asd",
-      "kecamatan": "asd",
-      "kota": "asd"
+      "namaAyah": "yanto",
+      "pekerjaanAyah": "programmer",
+      "alamat": "kampung durian runtuh",
+      "kecamatan": "boboiboy",
+      "kota": "kuala lumpur"
     }
   ],
   "users": [
     {
-      "kodeId": 1,
+      "id": "7508626e-bebf-4daf-8630-a8d83a19542b",
+      "namaDepan": "Krisna",
+      "namaBelakang": "Lavendra",
       "username": "kader1",
-      "password": "12345"
+      "email": "krisnalavendrairawan@gmail.com",
+      "password": "12345",
+      "noHp": "+6288809580511"
     },
     {
-      "kodeId": 2,
+      "id": "60cb5b20-64a2-467e-bddd-168a3b8ab268",
+      "namaDepan": "salma",
+      "namaBelakang": "benazir",
       "username": "kader2",
-      "password": "12345"
+      "email": "salmabenazirachmad@gmail.com",
+      "password": "12345",
+      "noHp": "+62819732123"
     }
   ],
   "TKA": [
-    {
-      "id": "37c23546-04ed-4d21-8d94-919f7e3b44f0",
-      "NIK": "4",
-      "namaIbu": "sofi",
-      "tanggal": "2/12/2023",
-      "umur": 0,
-      "tinggiBadan": 50,
-      "beratBadan": 2,
-      "KBM": 800,
-      "statusKenaikan": "N",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
-    },
-    {
-      "id": "bfa70190-a637-4fdd-a7c9-01927e113671",
-      "NIK": "4",
-      "namaIbu": "sofi",
-      "tanggal": "2/1/2024",
-      "umur": 1,
-      "tinggiBadan": 53,
-      "beratBadan": 3,
-      "KBM": 900,
-      "statusKenaikan": "N",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
-    },
-    {
-      "id": "c39e4c06-1324-423e-80f4-b4a411120770",
-      "NIK": "4",
-      "namaIbu": "sofi",
-      "tanggal": "2/2/2024",
-      "umur": 2,
-      "tinggiBadan": 56,
-      "beratBadan": 4,
-      "KBM": 0,
-      "statusKenaikan": "N",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
-    },
-    {
-      "id": "716e28c8-af35-4c2d-aaab-78b1f836019e",
-      "NIK": "4",
-      "namaIbu": "sofi",
-      "tanggal": "3/2/2024",
-      "umur": 3,
-      "tinggiBadan": 59,
-      "beratBadan": 5,
-      "KBM": 0,
-      "statusKenaikan": "N",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
-    },
-    {
-      "id": "bb8197e0-bcf4-449c-96ee-868ffbbf9c23",
-      "NIK": "4",
-      "namaIbu": "sofi",
-      "tanggal": "4/4/2024",
-      "umur": 4,
-      "tinggiBadan": 57,
-      "beratBadan": 6,
-      "KBM": 0,
-      "statusKenaikan": "N",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
-    },
     {
       "id": "c015e0e7-1e3c-4b0d-8b34-a8834c9069b3",
       "NIK": 2,
@@ -131,30 +77,6 @@
       "tinggiBadan": 0,
       "KBM": 0,
       "statusKenaikan": "T"
-    },
-    {
-      "id": "3ce3ce6c-1fc0-49f6-83c7-a58b0cc31417",
-      "NIK": 4,
-      "namaIbu": "dewi",
-      "tanggal": "5/2/2024",
-      "umur": 7,
-      "tinggiBadan": 70,
-      "beratBadan": 6.5,
-      "KBM": 0,
-      "statusKenaikan": "N",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
-    },
-    {
-      "id": "bc9de329-9bf0-421e-8305-7fa683fe82ef",
-      "NIK": 4,
-      "namaIbu": "dewi",
-      "tanggal": "12/4/2023",
-      "umur": 0,
-      "tinggiBadan": 0,
-      "beratBadan": 0,
-      "KBM": 0,
-      "statusKenaikan": "N",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
     },
     {
       "id": "656a5796-0466-4581-8bb6-9a25535c235d",
@@ -196,20 +118,67 @@
       "id": "eab4cd32-7830-4f66-9066-9f77b3164600",
       "NIK": 1,
       "namaIbu": "dsadsa",
-      "KBM": 800,
-      "tanggal": "12/6/2023",
+      "tanggal": "6/12/2023",
       "umur": 0,
       "tinggiBadan": 0,
-      "beratBadan": 0,
-      "statusKenaikan": "T",
+      "beratBadan": 5,
+      "KBM": 800,
+      "statusKenaikan": "N",
       "parentId": "77ae1727-850b-4df2-a46a-7a7c924f2cf6"
+    },
+    {
+      "id": "5f8c9e35-87b8-47c4-8436-e322c14dfef2",
+      "NIK": 4,
+      "namaIbu": "dewi",
+      "tanggal": "7/12/2023",
+      "umur": 0,
+      "tinggiBadan": 50,
+      "beratBadan": 2,
+      "statusKenaikan": "N",
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
+    },
+    {
+      "id": "e929c9a2-041f-49a5-a0da-99b2d1b2ad88",
+      "NIK": 4,
+      "namaIbu": "dewi",
+      "tanggal": "7/1/2024",
+      "umur": 1,
+      "tinggiBadan": 53,
+      "beratBadan": 3,
+      "KBM": 800,
+      "statusKenaikan": "N",
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
+    },
+    {
+      "id": "bb99e2f6-40f2-4eee-9684-91a2974404fc",
+      "NIK": 4,
+      "namaIbu": "dewi",
+      "tanggal": "7/2/2024",
+      "umur": 2,
+      "tinggiBadan": 56,
+      "beratBadan": 3.9,
+      "KBM": 900,
+      "statusKenaikan": "T",
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
+    },
+    {
+      "id": "96a2fe1c-a3dc-4a5f-ad75-2026a5242553",
+      "NIK": 4,
+      "namaIbu": "dewi",
+      "KBM": 800,
+      "tanggal": "7/3/2024",
+      "umur": 3,
+      "tinggiBadan": 60,
+      "beratBadan": 5,
+      "statusKenaikan": "N",
+      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
     }
   ],
   "medical": [
     {
       "id": 1,
       "NIK": 4,
-      "tanggal": "20/12/2023",
+      "tanggal": "7/12/2023",
       "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714",
       "penyakit": "demam",
       "rujukan": "rsud",
@@ -222,15 +191,6 @@
       "penyakit": "",
       "rujukan": "",
       "keterangan": ""
-    },
-    {
-      "id": "2f2a029b-7bc7-476a-9fbf-0a1ab8a87ac6",
-      "NIK": 4,
-      "tanggal": "5/12/2023",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714",
-      "penyakit": "asd",
-      "rujukan": "sadasdad",
-      "keterangan": "hehe"
     }
   ]
 }

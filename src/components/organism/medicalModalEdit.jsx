@@ -17,15 +17,14 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
     const onEditSubmit = data => {
         axios.get(`http://localhost:3000/medical?NIK=${parentId.NIK}`)
         .then(res => {
-            const date = new Date(data.tanggal);
-            const tanggal = date.getDate();
-            const bulan = date.getMonth() + 1;
-            const tahun = date.getFullYear();
-            data.tanggal = `${tanggal}/${bulan}/${tahun}`;
+            const day = data.tanggal.getDate();
+            const month = data.tanggal.getMonth() + 1;
+            const year = data.tanggal.getFullYear();
+            const formattedDate = `${day}/${month}/${year}`;
             const medicalEdit = {
                 id: data.id,
                 NIK: parentId.NIK,
-                tanggal: data.tanggal,
+                tanggal: formattedDate,
                 parentId: id,
                 penyakit: data.penyakit,
                 rujukan: data.rujukan,
@@ -62,10 +61,14 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
     };
 
     useEffect(() => {
+        const day = editData?.tanggal.split('/')[0];
+        const month = editData?.tanggal.split('/')[1];
+        const year = editData?.tanggal.split('/')[2];
+        const formattedDate = `${day}/${month}/${year}`;
         if(editData){
         setValue('id', editData.id);
         setValue('NIK', editData.NIK);
-        setValue('tanggal', new Date(editData.tanggal));
+        setValue('tanggal', new Date(formattedDate));
         setValue('penyakit', editData.penyakit);
         setValue('rujukan', editData.rujukan);
         setValue('keterangan', editData.keterangan);

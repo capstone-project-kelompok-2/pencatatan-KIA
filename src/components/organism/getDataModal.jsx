@@ -12,8 +12,11 @@ const GetDataModal = ({ visible, onHide }) => {
     const [data, setData] = useState([]);
 
     const handleExportToPDF = () => {
-
-        const formattedDate = new Date(selectedDate).toLocaleDateString();
+        const day = selectedDate.getDate();
+        const month = selectedDate.getMonth() + 1;
+        const year = selectedDate.getFullYear();
+        const formattedDate = `${day}/${month}/${year}`;
+        // console.log(formattedDate);
         axios.get(`http://localhost:3000/TKA?tanggal=${formattedDate}`)
             .then((res) => {
                 setData(res.data);
@@ -37,12 +40,17 @@ const GetDataModal = ({ visible, onHide }) => {
     };
 
     const handleExportToExcel = () => {
-        const formattedDate = new Date(selectedDate).toLocaleDateString();
+        const day = selectedDate.getDate();
+        const month = selectedDate.getMonth() + 1;
+        const year = selectedDate.getFullYear();
+        const formattedDate = `${day}/${month}/${year}`;
 
         axios.get(`http://localhost:3000/TKA?tanggal=${formattedDate}`)
             .then((res) => {
                 setData(res.data);
-                const sortedTable = res.data.sort((a, b) => a.namaIbu.localeCompare(b.namaIbu));
+                const newData = data.map(({ id, parentId, NIK, ...item }) => item);
+
+                const sortedTable = newData.sort((a, b) => a.namaIbu.localeCompare(b.namaIbu));
 
                 const worksheet = XLSX.utils.json_to_sheet(sortedTable);
                 const workbook = XLSX.utils.book_new();

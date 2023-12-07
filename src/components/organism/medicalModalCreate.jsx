@@ -15,15 +15,14 @@
             axios.get(`http://localhost:3000/medical?parentId=${parentId.id}`)
             .then(res => {
                 console.log(res.data);
-                const date = new Date(data.tanggal);
-                const tanggal = date.getDate();
-                const bulan = date.getMonth() + 1;
-                const tahun = date.getFullYear();
-                data.tanggal = `${tanggal}/${bulan}/${tahun}`;
+                const day = data.tanggal.getDate();
+                const month = data.tanggal.getMonth() + 1;
+                const year = data.tanggal.getFullYear();
+                const formattedDate = `${day}/${month}/${year}`;
                 const medicalData = {
                     id: uuidv4(),
                     ...data,
-                    tanggal: data.tanggal,
+                    tanggal: formattedDate,
                     NIK : parentId.NIK,
                     parentId: parentId.id
                 }
@@ -69,7 +68,7 @@
                                     id="tanggal"
                                     value={field.value}
                                     onChange={(e) => field.onChange(e.value)}
-                                    dateFormat="dd/mm/yy"
+                                    dateFormat="mm/dd/yy"
                                 />
                             )}
                         />
