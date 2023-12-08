@@ -118,7 +118,7 @@ const HomePage = () => {
                     <div className="flex-container">
                     <div className="text-center">
                          <hi className="title font-Feature text-left">{features[1].title}</hi>
-                         <h2 className="content text-left text-justify">{features[1].content}</h2>
+                         <h2 className="content text-left">{features[1].content}</h2>
                      </div>
                      <img src={features[1].image} alt={features[1].title} className="card-image-feature"/>
                     </div>
