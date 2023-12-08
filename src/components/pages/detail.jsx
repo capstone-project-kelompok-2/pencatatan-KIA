@@ -2,21 +2,29 @@ import { useEffect, useState, useRef } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { FilterMatchMode, FilterOperator } from 'primereact/api';
+import { FilterMatchMode } from 'primereact/api';
 import { InputText } from 'primereact/inputtext';
+import { Skeleton } from 'primereact/skeleton';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { exportToExcel } from "../utils/exportExcell";
 import { exportToPDF } from "../utils/exportPDF";
+import { motion } from 'framer-motion';
 import Swal from "sweetalert2";
 import DetailLabel from "../molecules/detailLabel";
 import ModalCreate from "../organism/modalCreate";
 import ModalEdit from "../organism/modalEdit";
 import axios from "axios"
 import useTKAStore from "../store/useTKAStore";
-
 const Detail = () => {
     const navigate = useNavigate()
+    useEffect(() => {
+        const user = localStorage.getItem("user")
+        if (!user) {
+            navigate("/login")
+        }
+    }, [navigate])
+
     const { id } = useParams()
     const toast = useRef(null);
     const show = () => {
@@ -134,9 +142,9 @@ const Detail = () => {
                     <i className="fa-solid fa-magnifying-glass flex pl-[85%]"></i>
                     <span className="p-input-icon-right">
                         <i className="pi pi-search pl-2 ml-1"/>
-                        <InputText value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Cari data..." style={{paddingLeft : '35px'}}/>
+                        <InputText className="border-2 " value={globalFilterValue} onChange={onGlobalFilterChange} placeholder="Cari data..." style={{paddingLeft : '35px', borderColor : "#06b6d4"}}/>
                     </span>
-                </span>
+                </span> 
             </div>
         );
     };
@@ -144,8 +152,15 @@ const Detail = () => {
     const actionTemplate = (rowData) => {
         return (
             <div className="flex justify-center items-center gap-3">
-                <button className="bg-yellow-400 rounded-lg p-2 text-gray-700"  onClick={() => handleEdit(rowData)}>Edit</button>
-                <button className="bg-red-500 rounded-lg p-2" onClick={() => handleDelete(rowData)}>Delete</button>
+                <motion.button
+                whileHover={{ scale: 1.25 }}
+                
+                 className="w-20 border-2 border-primary text-primary  hover:bg-yellow-400 rounded-lg p-2 hover:text-gray-700 hover:border-0"  onClick={() => handleEdit(rowData)}><i className="fa-solid fa-pen-to-square"></i> Edit</motion.button>
+                <motion.button 
+                whileHover={{ scale: 1.25 }}
+                className="w-24 border-2 text-primary hover:text-white hover:border-0 border-primary hover:bg-red-500 rounded-lg p-2" onClick={() => handleDelete(rowData)}>
+                    <i className="fa-solid fa-trash mx-1"></i>
+                    Delete</motion.button>
             </div>
         );
     };
@@ -170,24 +185,7 @@ const Detail = () => {
     const [visibleEdit, setVisibleEdit] = useState(false);
     const [editData, setEditData] = useState(null);
     
-    const actionTemplateEdit = (rowData) => {
-        return (
-            <div className="flex justify-center items-center gap-3">
-                <button
-                    className="bg-yellow-400 rounded-lg p-2 text-gray-700"
-                    onClick={() => handleEdit(rowData)}
-                >
-                    Edit
-                </button>
-                <button
-                    className="bg-red-500 rounded-lg p-2"
-                    onClick={() => handleDelete(rowData)}
-                >
-                    Delete
-                </button>
-            </div>
-        );
-    };
+
     
     const handleEdit = (rowData) => {
         setEditData(rowData);
@@ -195,10 +193,9 @@ const Detail = () => {
     };    
 
 
-
     return(
         
-        <div className='body h-screen bg-gradient-to-b from-green-300 from-10% to-cyan-700 to-90% shadow-lg flex justify-center items-center'>
+        <div className='body h-screen bg-[#e5e7eb] flex justify-center items-center'>
             <Toast ref={toast} />
             <ModalCreateWrapper />
             <ModalEdit
@@ -208,20 +205,43 @@ const Detail = () => {
                 setEditData={setEditData}
                 toast={toast}
             />
-            <div className=" flex flex-col gap-5 justify-center items-start  backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl px-20">
-                <div className="info flex gap-20 justify-end items-center w-auto">
-                    <div className="flex items-center flex-col w-[20%] pl-10 mr-40">
-                        <img src="../src/assets/img/pngwing1.png" alt="hehe" className='bg-white border border-b-2lack rounded-full'/>
+            <motion.div 
+
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+
+            className=" flex flex-col gap-5 justify-center items-start shadow-2xl backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl px-20">
+                <div 
+
+                className="info flex gap-20 justify-end items-center w-auto">
+                    <div className="flex items-center flex-col w-[20%] pl-10 mr-40 ">
+                        <motion.img 
+                        src="../src/assets/img/pngwing1.png" alt="hehe" 
+                        whileHover={{ scale: 1.25 }}
+                        className='bg-white border border-primary rounded-full shadow-lg drop-shadow-lg'/>
                         <div className="w-full items-center flex-col flex">
                             <DetailLabel name="Nama Ibu" label="namaIbu" parentBio={parentBio} />
                             <DetailLabel name="Nama Bayi" label="namaBayi" parentBio={parentBio.bayi} />
                             <DetailLabel name="Tanggal Lahir" label="tanggalLahir" parentBio={parentBio.bayi} />
                             {/* buatkan button yang menuju ke arah chart dengan id */}
-                            <button onClick={() => navigate(`/chart/${id}`)} className="bg-blue-500 rounded-lg p-2 my-4 text-white">Lihat Chart</button>
+                            <motion.button
+                            whileHover={{ scale: 1.25 }}
+                            onClick={() => navigate(`/chart/${id}`)} 
+                            className="font-semibold border w-[140px] bg-white border-primary rounded-lg p-2 my-4 text-primary hover:border-0 hover:text-white hover:bg-primary">
+                            <i className="pi pi-chart-line mx-2"></i>
+                            Lihat Grafik</motion.button>
+                            <motion.button
+                            whileHover={{ scale: 1.25 }}
+                            onClick={() => navigate(`/`)} 
+                            className="w-[140px] font-semibold border bg-white border-primary rounded-lg p-2 text-primary hover:border-0 hover:text-white hover:bg-red-500">
+                            <i className="pi pi-backward mx-2"></i>
+                            Kembali</motion.button>
                         </div>
                     </div>
 
-                    <div className="card rounded-3x ">
+                    <div 
+                    className="card rounded-3x ">
                         <DataTable
                             header={renderHeader}
                             value={guestId  }
@@ -232,14 +252,12 @@ const Detail = () => {
                             filterDisplay="row"
                             globalFilterFields={['tanggal', 'umur', 'tinggiBadan', 'beratBadan', 'KBM', 'statusstatusKenaikan']}
                             emptyMessage="Data Kosong"
-                            className=" bg-neutral-600 font-semibold shadow-lg rounded-3xl"
-                        >
-                            {/* column untuk nomor */}
+                            >
                             <Column
                                 field="no"
                                 header="No"
                                 style={{ width: '5%' }}
-                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center' }}
+                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center'  }}
                                 bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
                                 className="bg-gray-100 font-semibold"
                                 body={(rowData, { rowIndex }) => renderNoColumn(rowData, rowIndex)}
@@ -293,7 +311,7 @@ const Detail = () => {
                             </DataTable>
                     </div>           
                 </div>
-            </div>
+            </motion.div>
         </div>
 
         

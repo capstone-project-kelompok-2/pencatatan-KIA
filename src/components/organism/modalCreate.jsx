@@ -209,7 +209,7 @@ const ModalCreate = ({ setVisible, show, setStatusKenaikan, visible, statusKenai
                             />
                         )}
                     />
-                            <label htmlFor="naik">Naik</label>
+                        <label htmlFor="naik">Naik</label>
                         </div>
 
                         <div className="p-field-checkbox">

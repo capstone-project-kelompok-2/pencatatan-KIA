@@ -5,3 +5,78 @@ body{
 .body-dashboard{
     background: linear-gradient(0deg, #010608 10%, #077da7 30%)
 }
+
+/* HOME */
+
+
+.background-white {
+    background-color: white;
+    width: 100%;
+}
+
+.info-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 0;
+}
+.flex-container {
+    display: flex;
+    align-items: center;
+}
+.flex-content {
+    margin-left: 10px;
+}
+.text-right {
+    text-align: right;
+}
+.text-left {
+    text-align: left;
+}
+.text-justify {
+    text-align: justify;
+    padding: 50px;
+}
+
+.font-App {
+    font-size: 70px;
+}
+.font-Feature {
+    font-size: 40px;
+}
+.font-right {
+    padding-left: 50px;
+}
+.title {
+    /* font-size: 70px; */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.content {
+    font-size: 18px;
+    font-weight: 500;
+    /* text-align: right; */
+
+}
+
+.card-image-about {
+    width: 40%;
+    height: 40%;
+    margin: 0 auto;
+}
+.card-image-feature {
+    width: 40%;
+    height: 40%;
+    margin: 20px;
+}
+.card-image-flow {
+    width: 20%;
+    height: 20%;
+    margin: 20px;
+}
+
+.highlight {
+    color: #077da7;
+}

@@ -37,7 +37,7 @@ const GetDataModal = ({ visible, onHide }) => {
     };
 
     const handleExportToExcel = () => {
-        const formattedDate = new Date(sdelectedDate).toLocaleDateString();
+        const formattedDate = new Date(selectedDate).toLocaleDateString();
 
         axios.get(`http://localhost:3000/TKA?tanggal=${formattedDate}`)
             .then((res) => {
@@ -66,7 +66,7 @@ const GetDataModal = ({ visible, onHide }) => {
                     <Calendar
                         id="selectedDate"
                         value={selectedDate}
-                        defaultDate={new Date()}
+                        defaultValue={new Date()}
                         onChange={(e) => setSelectedDate(e.value)}
                         showIcon
                         dateFormat="dd/mm/yy"

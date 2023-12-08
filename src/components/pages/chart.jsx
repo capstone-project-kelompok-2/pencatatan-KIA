@@ -1,89 +1,127 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Chart from 'chart.js/auto';
+import { Chart } from 'primereact/chart';
+import { motion, useAnimation } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const ChartPage = () => {
-    const { id } = useParams();
-    const [chartUser, setChartUser] = useState([]);
-    const chartRef = useRef(null);
-
-    const fetchData = async () => {
-        try {
-            const response = await axios.get(`http://localhost:3000/TKA?parentId=${id}`);
-            setChartUser(response.data);
-        } catch (error) {
-            console.error(error);
+    const navigate = useNavigate();
+    useEffect(() => {
+        const user = localStorage.getItem("user")
+        if (!user) {
+            navigate("/login")
         }
-    };
+    }, [navigate])
+    const { id } = useParams();
+    const [chartData, setChartData] = useState({});
+    const [chartOptions, setChartOptions] = useState({});
+    const [chartType, setChartType] = useState('line');
 
     useEffect(() => {
-        const renderChart = () => {
-            if (chartUser.length === 0) return;
+        axios.get(`http://localhost:3000/TKA?parentId=${id}`)
+            .then(res => {
+                console.log(res.data);
+                const datas = res.data;
+                const tanggal = datas.map(data => data.tanggal);
+                const tinggiBadan = datas.map(data => data.tinggiBadan);
+                const beratBadan = datas.map(data => data.beratBadan);
 
-            const labels = chartUser.map(entry => entry.date);
-            const weightData = chartUser.map(entry => entry.weight);
-            const heightData = chartUser.map(entry => entry.height);
-
-            const ctx = chartRef.current.getContext('2d');
-
-            // Destroy the existing chart if it exists
-            if (chartRef.current.chart) {
-                chartRef.current.chart.destroy();
-            }
-
-            chartRef.current.chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
+                const data = {
+                    labels: tanggal,
                     datasets: [
                         {
-                            label: 'Weight',
-                            data: weightData,
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            borderWidth: 2,
-                            fill: false,
+                            type: chartType,
+                            label: 'Tinggi Badan',
+                            data: tinggiBadan,
+                            borderColor: 'blue',
+                            backgroundColor: chartType === 'bar' ? 'blue' : 'rgba(0,0,0,0)',
+                            borderWidth: 1,
+                            tension: chartType === 'line' ? 0.1 : 0
                         },
                         {
-                            label: 'Height',
-                            data: heightData,
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 2,
-                            fill: false,
-                        },
-                    ],
-                },
-                options: {
+                            type: chartType,
+                            label: 'Berat Badan',
+                            data: beratBadan,
+                            borderColor: 'red',
+                            backgroundColor: chartType === 'bar' ? 'red' : 'rgba(0,0,0,0)',
+                            borderWidth: 1,
+                            tension: chartType === 'line' ? 0.1 : 0
+                        }
+                    ]
+                };
+
+                const options = {
+                    maintainAspectRatio: false,
+                    aspectRatio: 0.6,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: 'black',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    },
                     scales: {
                         x: {
-                            type: 'linear',
-                            position: 'bottom',
-                            title: {
-                                display: true,
-                                text: 'Date',
+                            ticks: {
+                                color: 'rgba(0,0,0,1)'
                             },
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            }
                         },
                         y: {
-                            type: 'linear',
-                            position: 'left',
-                            title: {
-                                display: true,
-                                text: 'Value',
+                            ticks: {
+                                color: 'rgba(0,0,0,1)',
                             },
-                        },
-                    },
-                },
-            });
-        };
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)',
+                            }
+                        }
+                    }
+                };
 
-        fetchData();
-        renderChart();
-    }, [id]); // Only re-run the effect if id changes
+                setChartData(data);
+                setChartOptions(options);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, [chartType, id]);
+
+    const handleToggleChartType = () => {
+        setChartType((prevType) => (prevType === 'line' ? 'bar' : 'line'));
+    };
 
     return (
-        <div className='body h-screen bg-green-300 shadow-lg flex justify-center items-center'>
-            <div className="chart-container">
-                <canvas ref={chartRef} width={800} height={400}></canvas>
+        <div className='body h-screen w-full bg-white shadow-lg flex justify-center items-center'>
+            <div className="chart-container w-[90%]">
+                <div>
+                    <motion.button 
+                    whileHover={{ scale: 1.1 }}
+                    className='hover:bg-red-500 hover:text-white hover:border-0 font-semibold p-3 mx-1 rounded-lg border-2 border-primary text-primary' onClick={() => navigate(`/detail/${id}`) }>
+                        Kembali
+                    </motion.button>
+                    <motion.button 
+                    whileHover={{ scale: 1.1 }}
+                    className='hover:bg-primary hover:text-white hover:border-0 border-2 border-primary text-primary font-semibold p-3 mx-1 rounded-lg ' onClick={handleToggleChartType}>
+                        Switch type
+                    </motion.button>
+                </div>
+                {chartData.labels && (
+                    <motion.div
+                    //animasi dari kiri ke kanan
+                    initial={{ x: "-100%" }}
+                    animate={{ x: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="chart"
+                >
+                    <Chart type={chartType} data={chartData} options={chartOptions} />
+                </motion.div>
+                )}
             </div>
         </div>
     );
