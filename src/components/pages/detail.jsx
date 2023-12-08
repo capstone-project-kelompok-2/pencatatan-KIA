@@ -5,6 +5,7 @@ import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import InfoPasien from "../atom/infoPasien";
 import { Toast } from 'primereact/toast';
 import { exportToExcel } from "../utils/exportExcell";
 import { exportToPDF } from "../utils/exportPDF";
@@ -15,6 +16,7 @@ import ModalCreate from "../organism/modalCreate";
 import ModalEdit from "../organism/modalEdit";
 import axios from "axios"
 import useTKAStore from "../store/useTKAStore";
+import useParentStore from "../store/useParentStore";
 const Detail = () => {
     const navigate = useNavigate()
     useEffect(() => {
@@ -26,6 +28,14 @@ const Detail = () => {
 
     const { id } = useParams()
     const toast = useRef(null);
+    const [infoVisible, setInfoVisible] = useState(false);
+    const setParentStore = useParentStore((state) => state.setParentBio);
+    const parentData = useParentStore((state) => state.parentBio);
+    const showInfo = () => {
+        setParentStore(parentBio);
+        setInfoVisible(true);
+    }
+
     const show = () => {
         toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: 'data berhasil dibuat' });
     };
@@ -134,7 +144,7 @@ const Detail = () => {
     };
 
     //Template
-
+    
     const renderHeader = () => {
         return (
             <div className="flex justify-end">
@@ -200,6 +210,7 @@ const Detail = () => {
         
         <div className='body h-screen bg-[#e5e7eb] flex justify-center items-center'>
             <Toast ref={toast} />
+            <InfoPasien parentData={parentBio} visible={infoVisible} setVisible={setInfoVisible} />  
             <ModalCreateWrapper />
             <ModalEdit
                 visibleEdit={visibleEdit}
@@ -222,13 +233,13 @@ const Detail = () => {
                     <div className="flex items-center flex-col w-[20%] pl-10 mr-40 ">
                         <motion.img 
                         src="../src/assets/img/pngwing1.png" alt="hehe" 
+                        onClick={() => showInfo()}
                         whileHover={{ scale: 1.25 }}
                         className='bg-white border border-primary rounded-full shadow-lg drop-shadow-lg'/>
                         <div className="w-full items-center flex-col flex">
                             <DetailLabel name="Nama Ibu" label="namaIbu" parentBio={parentBio} />
                             <DetailLabel name="Nama Bayi" label="namaBayi" parentBio={parentBio.bayi} />
                             <DetailLabel name="Tanggal Lahir" label="tanggalLahir" parentBio={parentBio.bayi} />
-                            {/* buatkan button yang menuju ke arah chart dengan id */}
                             <div className="flex gap-2">
                                 <motion.button
                                 whileHover={{ scale: 1.25 }}
@@ -256,14 +267,14 @@ const Detail = () => {
                     className="card rounded-3x ">
                         <DataTable
                             header={renderHeader}
-                            value={guestId  }
+                            value={guestId}
                             paginator
                             rows={4}
                             tableStyle={{ minWidth: '50rem', borderRadius: '10px 0 0 0', width: '100%' }}
                             filters={filters}
                             filterDisplay="row"
                             globalFilterFields={['tanggal', 'umur', 'tinggiBadan', 'beratBadan', 'KBM', 'statusstatusKenaikan']}
-                            emptyMessage="Data Kosong"
+                            emptyMessage={<span className='text-black font-semibold'>Data Kosong</span>}
                             className="bg-gray-100 font-semibold shadow-xl"
                            >
                             <Column

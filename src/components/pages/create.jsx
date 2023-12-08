@@ -7,7 +7,6 @@ import withReactContent from 'sweetalert2-react-content'
 import DatePicker from 'react-datepicker'
 import { v4 as uuidv4 } from 'uuid'
 import { motion } from "framer-motion"
-import { showDataModalCreate } from '../utils/showModalDataCreate'
 import InputText from '../atom/InputText'
 import ErrorFieldText from "../atom/errorFieldText"
 import Select from "../atom/select"
