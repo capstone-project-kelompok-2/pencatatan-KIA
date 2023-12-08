@@ -196,7 +196,7 @@ const MedicalDetail = () => {
                 tableStyle={{ minWidth: '50rem', borderRadius: '10px 0 0 0', width: '100%' }}
                 paginator
                 rows={4}
-                emptyMessage="Data Kosong"
+                emptyMessage={<span className='text-black font-semibold'>Data Kosong</span>}
                 >
                     <Column 
                         field="tanggal" 

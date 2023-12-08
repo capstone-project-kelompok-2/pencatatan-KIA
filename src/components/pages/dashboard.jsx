@@ -5,12 +5,13 @@
     import GetDataModal from "../organism/getDataModal"
     import { Paginator } from 'primereact/paginator';
     import Button from "../atom/button"
-    import { Sidebar } from 'primereact/sidebar';
+    import { Carousel } from 'primereact/carousel';
+    import { Tag } from 'primereact/tag';
+    import { Card } from 'primereact/card';
     import NavbarLogo from "../atom/Navbar/navbarLogo"
     import SearchForm from "../atom/searchForm"
     import InfoKaderModal from "../molecules/infoKaderModal";
     import SidebarCoomponent from "../organism/sidebar"
-        // import {items} from "../utils/items"
     import { motion } from "framer-motion"
     import { handleCardAnimation } from "../utils/motion"
     const Dashboard = () => {
@@ -18,7 +19,9 @@
         const [userLogin, setUserLogin] = useState(JSON.parse(localStorage.getItem("user")));
         const [position, setPosition] = useState("center");
         const [infoVisible, setInfoVisible] = useState(false);
-        const [guests, setGuests] = useState([]);   
+        const [guests, setGuests] = useState([]);
+        const [kader , setKader] = useState([]);
+        const [medical , setMedical] = useState([]);
         const [searchTerm, setSearchTerm] = useState("");
         const [first, setFirst] = useState(0);
         const [rows, setRows] = useState(3);
@@ -125,6 +128,10 @@
         const fetchData = async () => {
             try {
             const response = await axios.get('http://localhost:3000/guest');
+            const responseKader = await axios.get('http://localhost:3000/users');
+            const responseMedical = await axios.get('http://localhost:3000/medical');
+            setKader(responseKader.data);
+            setMedical(responseMedical.data);
             setGuests(response.data);
             } catch (error) {
             console.error(error);
@@ -144,6 +151,8 @@
         });
 
         const currentItems = filteredGuests.slice(first, first + rows);
+
+        
         
         return(
             <div className='body h-screen bg-[#e5e7eb] shadow-lg overflow-auto'>
@@ -181,82 +190,108 @@
                 <InfoKaderModal userLogin={userLogin} position={position} visible={infoVisible} setVisible={setInfoVisible}/>
 
 
-                <div className="row h-auto">
-                {currentItems.length > 0 ? (
-                    currentItems.map((guest) => (
-                        <motion.div 
-                        key={guest.id} 
-                        variants={handleCardAnimation}
-                            initial="initial"
-                            animate="animate"
-                            transition={{ duration: 0.5 }}
-
-                        className="z-0 h-auto flex flex-col gap-5 justify-center items-center overflow-visible py-5">
-                            <div className='row-data grid grid-cols-2 card justify-start p-10 gap-10 items-center w-[90%] backdrop-blur-sm bg-[#fff] shadow-lg drop-shadow-lg h-40 rounded-2xl'>
-                                <div className='flex gap-10'>
-                                    <motion.img src="./src/assets/img/pngwing1.png" alt="" 
-                                    initial={{ y: "-100%" }}
-                                    animate={{ y: 0 }}
-                                    transition={{ duration: 0.5 }}  
-                                    whileHover={{ scale: 1.25 }}
-                                    className='w-[15%] border-2 border-black p-2 rounded-full' />
-                                    <motion.div 
-                                    initial={{ y: "-100%" }}
-                                    animate={{ y: 0 }}
-                                    transition={{ duration: 0.5 }}
-                                    className='flex flex-col justify-center '>
-                                        <p className='font-semibold'>Nama Ibu : {guest.namaIbu} </p>
-                                        <p className='font-semibold'>Nama Anak : {guest.bayi.namaBayi} </p>
-                                        <p className='font-semibold'>Tanggal Kelahiran : {guest.bayi.tanggalLahir} </p>
-                                        <p className='font-semibold'>NIK : {guest.NIK} </p>
-                                    </motion.div>
-                                </div>
-                                <div className='flex justify-end items-center gap-5'>
-                                    <motion.button onClick={() => handleDetail(guest.id)} 
-                                    initial={{ y: "-100%" }}
-                                    animate={{ y: 0 }}
-                                    transition={{ duration: 0.5 }}
-                                    whileHover={{ scale: 1.25 }}
-                                        className='bg-white shadow-lg hover:border-0  text-primary border border-primary w-[20%] h-[40px] rounded-lg hover:bg-blue-500 hover:text-white'>
-                                        <i 
-                                        className="fa-regular fa-eye mr-2 "></i>
-                                        View
-                                    </motion.button>
-                                    <motion.button onClick={() => handleDelete(guest.id)} 
+            <div className="flex border">
+                <div className="row h-auto w-full  ">
+                    {currentItems.length > 0 ? (
+                        currentItems.map((guest) => (
+                            <motion.div 
+                            key={guest.id} 
+                            variants={handleCardAnimation}
+                                initial="initial"
+                                animate="animate"
+                                transition={{ duration: 0.5 }}
+                                className="z-0 h-auto flex flex-col gap-5 justify-center items-center overflow-visible py-5">
+                                <div className='row-data grid grid-cols-2 card justify-start p-10 gap-10 items-center w-[90%] backdrop-blur-sm bg-[#fff] shadow-lg drop-shadow-lg h-40 rounded-2xl'>
+                                    <div className='flex gap-10'>
+                                        <motion.img src="./src/assets/img/pngwing1.png" alt="" 
                                         initial={{ y: "-100%" }}
                                         animate={{ y: 0 }}
+                                        transition={{ duration: 0.5 }}  
                                         whileHover={{ scale: 1.25 }}
+                                        className='w-[20%] border-2 border-black p-2 rounded-full' />
+                                        <motion.div 
+                                        initial={{ y: "-100%" }}
+                                        animate={{ y: 0 }}
                                         transition={{ duration: 0.5 }}
-                                        className='bg-white hover:border-0 w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-red-500 hover:text-white'>
-                                        <i className="fa-solid fa-trash mr-2"></i> 
-                                        Delete
-                                    </motion.button>
-                                    <motion.button onClick={() => handleEdit(guest.id)}
-                                    initial={{ y: "-100%" }}
-                                    animate={{ y: 0 }}
-                                    transition={{ duration: 0.5 }}
-                                    whileHover={{ scale: 1.25 }}
-                                    className='hover:border-0 bg-white w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-yellow-500 hover:text-white'><i 
-                                        className="fa-solid fa-user-pen mr-2"></i> Edit</motion.button>
+                                        className='flex flex-col justify-center '>
+                                            <p className='font-semibold'>Nama Ibu : {guest.namaIbu} </p>
+                                            <p className='font-semibold'>Nama Anak : {guest.bayi.namaBayi} </p>
+                                            <p className='font-semibold'>Tanggal Kelahiran : {guest.bayi.tanggalLahir} </p>
+                                            <p className='font-semibold'>NIK : {guest.NIK} </p>
+                                        </motion.div>
+                                    </div>
+                                    <div className='flex justify-end items-center gap-5'>
+                                        <motion.button onClick={() => handleDetail(guest.id)} 
+                                        initial={{ y: "-100%" }}
+                                        animate={{ y: 0 }}
+                                        transition={{ duration: 0.5 }}
+                                        whileHover={{ scale: 1.25 }}
+                                            className='bg-white shadow-lg hover:border-0  text-primary border border-primary w-[20%] h-[40px] rounded-lg hover:bg-blue-500 hover:text-white'>
+                                            <i 
+                                            className="fa-regular fa-eye mr-2 "></i>
+                                            View
+                                        </motion.button>
+                                        <motion.button onClick={() => handleDelete(guest.id)} 
+                                            initial={{ y: "-100%" }}
+                                            animate={{ y: 0 }}
+                                            whileHover={{ scale: 1.25 }}
+                                            transition={{ duration: 0.5 }}
+                                            className='bg-white hover:border-0 w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-red-500 hover:text-white'>
+                                            <i className="fa-solid fa-trash mr-2"></i> 
+                                            Delete
+                                        </motion.button>
+                                        <motion.button onClick={() => handleEdit(guest.id)}
+                                        initial={{ y: "-100%" }}
+                                        animate={{ y: 0 }}
+                                        transition={{ duration: 0.5 }}
+                                        whileHover={{ scale: 1.25 }}
+                                        className='hover:border-0 bg-white w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-yellow-500 hover:text-white'><i 
+                                            className="fa-solid fa-user-pen mr-2"></i> Edit</motion.button>
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.div>
-                    ))
-                ) : (
-                    <div className="h-full my-[18%] flex justify-center items-center">
-                        <p className=" font-bold text-xl text-black">Data Kosong</p>
-                    </div>
-                )}
+                            </motion.div>
+                        ))
+                    ) : (
+                        <div className="h-full my-[18%] flex justify-center items-center">
+                            <p className=" font-bold text-xl text-black">Data Kosong</p>
+                        </div>
+                    )}
+                            <Paginator
+                                first={first}
+                                rows={rows}
+                                totalRecords={filteredGuests.length}
+                                onPageChange={onPageChange}
+                                style={{boxShadow : '2px 2px 2px 2px #000'}}
+                                className="w-[90%] mx-auto"
+                            />
+                </div> 
+                <div className="w-[20%]  flex justify-start py-5 ">
+                    <div className="card flex justify-content-center flex-col gap-2">
+                    <Card title="Kader" subTitle="Total Kader" className="md:w-25rem">
+                        <p className="m-0 flex items-center justify-center font-bold">
+                        <i className="fa-solid fa-user-nurse mr-3"></i>
+                           {kader ? kader.length : ''}
+                        </p>
+                    </Card>
+                    <Card title="Pasien" subTitle="Total Pasien" className="md:w-25rem">
+                        <p className="m-0 flex items-center justify-center font-bold">
+                        <i className="pi pi-users mr-3"></i>
+                           {guests ? guests.length : ''}
+                        </p>
+                    </Card>
+                    <Card title="Riwayat Penyakit" subTitle="Total Riwayat Penyakit Anak" className="md:w-25rem">
+                        <p className="m-0 flex items-center justify-center font-bold">
+                        <i className="fa-solid fa-book-medical mr-3"></i>
+                           {medical ? medical.length : ''}
+                        </p>
+                    </Card>
 
-            </div> 
-            <Paginator
-                first={first}
-                rows={rows}
-                totalRecords={filteredGuests.length}
-                onPageChange={onPageChange}
-                style={{boxShadow : '2px 2px 2px 2px #000'}}
-                className="w-[90%] mx-auto"
-            />
+                    </div>
+                </div>
+            </div>
+            
+                
+
             </div>
             
             

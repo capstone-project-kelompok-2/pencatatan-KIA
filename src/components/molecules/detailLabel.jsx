@@ -1,5 +1,7 @@
+import { useNavigate } from 'react-router-dom';
 import { Skeleton } from 'primereact/skeleton';
 const DetailLabel = ({ name, label, parentBio }) => {
+    const navigate = useNavigate()
     const value = parentBio ? parentBio.label : 'Tanggal lahir tidak tersedia'
     const user = localStorage.getItem("user");
     if (!user) {

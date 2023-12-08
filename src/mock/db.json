@@ -33,6 +33,42 @@
       "alamat": "kampung durian runtuh",
       "kecamatan": "boboiboy",
       "kota": "kuala lumpur"
+    },
+    {
+      "id": "b3387196-9797-4872-a366-81de67a04c34",
+      "bayi": {
+        "tanggalLahir": "12/8/2023",
+        "namaBayi": "asddsa",
+        "jenisKelamin": "Laki-Laki",
+        "beratBayi": 0,
+        "tinggiBayi": 0
+      },
+      "namaIbu": "asd",
+      "pekerjaanIbu": "asd",
+      "NIK": 2,
+      "namaAyah": "ads",
+      "pekerjaanAyah": "ads",
+      "alamat": "asd",
+      "kecamatan": "asd",
+      "kota": "ads"
+    },
+    {
+      "id": "b53ea81e-861f-49ed-aa90-f0b35f3946a4",
+      "bayi": {
+        "tanggalLahir": "12/8/2023",
+        "namaBayi": "asd",
+        "jenisKelamin": "Laki-Laki",
+        "beratBayi": 0,
+        "tinggiBayi": 0
+      },
+      "namaIbu": "asd",
+      "pekerjaanIbu": "asd",
+      "NIK": 13,
+      "namaAyah": "asd",
+      "pekerjaanAyah": "asd",
+      "alamat": "ads",
+      "kecamatan": "asd",
+      "kota": "asd"
     }
   ],
   "users": [
@@ -172,6 +208,28 @@
       "beratBadan": 5,
       "statusKenaikan": "N",
       "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
+    },
+    {
+      "id": "058de591-6246-47dd-a3f9-5f200f20fa4d",
+      "NIK": 2,
+      "namaIbu": "asd",
+      "tanggal": "12/8/2023",
+      "umur": 0,
+      "beratBadan": 0,
+      "tinggiBadan": 0,
+      "KBM": 0,
+      "statusKenaikan": "T"
+    },
+    {
+      "id": "36a4deff-f925-451b-b8a9-aa616947d663",
+      "NIK": 13,
+      "namaIbu": "asd",
+      "tanggal": "12/8/2023",
+      "umur": 0,
+      "beratBadan": 0,
+      "tinggiBadan": 0,
+      "KBM": 0,
+      "statusKenaikan": "T"
     }
   ],
   "medical": [
