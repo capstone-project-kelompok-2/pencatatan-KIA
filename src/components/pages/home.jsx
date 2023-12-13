@@ -61,12 +61,24 @@ const workFlow = [
         image: "src/assets/img/view.png",
         content: "Anda akan diarahkan kembali ke halaman utama untuk melihat data informasi yang sudah dibuat tadi. Selanjutnya pilih tombol view pada data yang ingin anda masukkan informasi penimbangannya"
     },
+    {
+        image: "src/assets/img/create.jpeg",
+        content: "Ketika sudah memilih tombol view akan ada beberapa pilihan diatas, dan pilih tombol create data untuk memasukkan data hasil penimbangan"
+    },
+    {
+        image: "src/assets/img/edit.jpeg",
+        content: "Jika ingin melakukan perubahan, disamping kanan terdapat pilihan edit untuk melakukan perubahan data"
+    },
+    {
+        image: "src/assets/img/edit.jpeg",
+        content: "Selain itu juga terdapat beberapa fitur seperti fitur grafik yang digunakan untuk melihat perkembangan"
+    },
 ];
 
 const HomePage = () => {
     const renderAppInfo = () => {
         return appInfo.map((infoItem, index) => (
-            <div key={index} className="p-col-12 p-md-4 background-white info-container">
+            <div key={index} className="p-col-12 p-md-4 background-home info-container animate-fadeIn">
                 <div className="flex-container">
                     <img src="src/assets/img/logo.png" alt={infoItem.title} className="card-image"/>
                     <div className="text-right font-App">

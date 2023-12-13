@@ -9,47 +9,27 @@
     import { Sidebar } from 'primereact/sidebar';
     import NavbarLogo from "../atom/Navbar/navbarLogo"
     import SearchForm from "../atom/searchForm"
-    import { motion, useAnimation } from "framer-motion"
+    import InfoKaderModal from "../molecules/infoKaderModal";
+    import SidebarCoomponent from "../organism/sidebar"
+        // import {items} from "../utils/items"
+    import { motion } from "framer-motion"
     import { handleCardAnimation } from "../utils/motion"
     const Dashboard = () => {
         const navigate = useNavigate();
         const [userLogin, setUserLogin] = useState(JSON.parse(localStorage.getItem("user")));
-        useEffect(() => {
-            const user = localStorage.getItem("user")
-            setUserLogin(JSON.parse(user))
-            if (!user) {
-                navigate("/login")
-            }
-        }, [navigate])
-
-
-
-        const handleLogout = () => {
-            hideSidebar();
-            Swal.fire({
-                title: "Apakah anda yakin?",
-                text: "Anda akan keluar dari aplikasi",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ya, keluar!",
-                cancelButtonText: "Batal",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    localStorage.removeItem("user");
-                    window.location.href = '/';
-                }
-            });
-        }
-
-
+        const [position, setPosition] = useState("center");
+        const [infoVisible, setInfoVisible] = useState(false);
         const [guests, setGuests] = useState([]);   
         const [searchTerm, setSearchTerm] = useState("");
         const [first, setFirst] = useState(0);
         const [rows, setRows] = useState(3);
         const [showGetDataModal, setShowGetDataModal] = useState(false);
         const [isSidebarVisible, setSidebarVisible] = useState(false);
+
+        const showInfo = (position) => {
+            setPosition(position);
+            setInfoVisible(true);
+        }
 
         const showSidebar = () => {
             setSidebarVisible(true);
@@ -117,7 +97,32 @@
             setSearchTerm(event.target.value);
         };
 
+        const handleLogout = () => {
+            hideSidebar();
+            Swal.fire({
+                title: "Apakah anda yakin?",
+                text: "Anda akan keluar dari aplikasi",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, keluar!",
+                cancelButtonText: "Batal",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    localStorage.removeItem("user");
+                    window.location.href = '/';
+                }
+            });
+        }
+
+
         useEffect(() => {
+            const user = localStorage.getItem("user")
+            setUserLogin(JSON.parse(user))
+            if (!user) {
+                navigate("/login")
+            }
         const fetchData = async () => {
             try {
             const response = await axios.get('http://localhost:3000/guest');
@@ -128,7 +133,7 @@
         };
     
         fetchData();
-        }, []);
+        }, [navigate]);
 
         const filteredGuests = guests.filter((guest) => {
             return (
@@ -164,6 +169,7 @@
 
 
 
+
                 {/* Sidebar */}
                 <Sidebar visible={isSidebarVisible} onHide={hideSidebar} style={{backgroundColor : 'white'}}>
                     <div className="p-4 flex flex-col">
@@ -189,8 +195,21 @@
                         <Button label="Logout" handle={handleLogout} className="text-primary border-2 border-primary font-semibold bg-white   hover:bg-red-500 hover:text-white hover:border-white hover:scale-125 rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" icon="pi pi-sign-out mr-3" />
                     </div>
                 </Sidebar>
+
+                <SidebarCoomponent
+                    showInfo={showInfo}
+                    isSidebarVisible={isSidebarVisible}
+                    hideSidebar={hideSidebar}
+                    userLogin={userLogin}
+                    handleLogout={handleLogout}
+                />
+                
+
                 {/* get data modal */}
                 <GetDataModal visible={showGetDataModal} onHide={toggleGetDataModal} />
+                    {/* info kader */}
+                <InfoKaderModal userLogin={userLogin} position={position} visible={infoVisible} setVisible={setInfoVisible}/>
+
 
                 <div className="row h-auto">
                 {currentItems.length > 0 ? (

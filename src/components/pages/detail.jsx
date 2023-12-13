@@ -4,7 +4,6 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { FilterMatchMode } from 'primereact/api';
 import { InputText } from 'primereact/inputtext';
-import { Skeleton } from 'primereact/skeleton';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
 import { exportToExcel } from "../utils/exportExcell";
@@ -117,7 +116,11 @@ const Detail = () => {
         exportToExcel(guestId, filename);
     };
 
+    
+
     const handleExportToPDF = () => {
+        const label = parentBio.namaIbu;
+        const caption = `Data TKA`;
         const filename = 'data_tka.pdf';
         const columns = [
             { field: 'tanggal', header: 'Tanggal' },
@@ -127,7 +130,7 @@ const Detail = () => {
             { field: 'KBM', header: 'KBM' },
             { field: 'statusKenaikan', header: 'N/T' },
         ];
-        exportToPDF(guestId, columns, filename, parentBio);
+        exportToPDF(guestId, columns, filename, label, caption);
     };
 
     //Template
@@ -204,6 +207,7 @@ const Detail = () => {
                 editData={editData}
                 setEditData={setEditData}
                 toast={toast}
+                parentBio={parentBio}
             />
             <motion.div 
 
@@ -225,12 +229,20 @@ const Detail = () => {
                             <DetailLabel name="Nama Bayi" label="namaBayi" parentBio={parentBio.bayi} />
                             <DetailLabel name="Tanggal Lahir" label="tanggalLahir" parentBio={parentBio.bayi} />
                             {/* buatkan button yang menuju ke arah chart dengan id */}
-                            <motion.button
-                            whileHover={{ scale: 1.25 }}
-                            onClick={() => navigate(`/chart/${id}`)} 
-                            className="font-semibold border w-[140px] bg-white border-primary rounded-lg p-2 my-4 text-primary hover:border-0 hover:text-white hover:bg-primary">
-                            <i className="pi pi-chart-line mx-2"></i>
-                            Lihat Grafik</motion.button>
+                            <div className="flex gap-2">
+                                <motion.button
+                                whileHover={{ scale: 1.25 }}
+                                onClick={() => navigate(`/chart/${id}`)} 
+                                className="font-semibold border w-[140px] bg-white border-primary rounded-lg p-2 my-4 text-primary hover:border-0 hover:text-white hover:bg-primary">
+                                <i className="pi pi-chart-line mx-2"></i>
+                                Lihat Grafik</motion.button>
+                                <motion.button
+                                whileHover={{ scale: 1.25 }}
+                                onClick={() => navigate(`/medicalDetail/${id}`)} 
+                                className="font-semibold border w-[140px] bg-white border-primary rounded-lg p-2 my-4 text-primary hover:border-0 hover:text-white hover:bg-green-500">
+                                <i className="fa-solid fa-notes-medical mx-2"></i>
+                                Kesehatan</motion.button>
+                            </div>
                             <motion.button
                             whileHover={{ scale: 1.25 }}
                             onClick={() => navigate(`/`)} 
@@ -252,7 +264,8 @@ const Detail = () => {
                             filterDisplay="row"
                             globalFilterFields={['tanggal', 'umur', 'tinggiBadan', 'beratBadan', 'KBM', 'statusstatusKenaikan']}
                             emptyMessage="Data Kosong"
-                            >
+                            className="bg-gray-100 font-semibold shadow-xl"
+                           >
                             <Column
                                 field="no"
                                 header="No"
@@ -289,11 +302,12 @@ const Detail = () => {
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 body={(rowData) => <span>{rowData.beratBadan} kg</span>}>
                             </Column>
-                            <Column field="KBM" header="KBM" 
+                            <Column field="KBM" header="Kenaikan BB minimal" 
                                 className="bg-gray-100 font-semibold"
-                                headerStyle={{ backgroundColor: 'gray', color: 'white'  }}
+                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
-                                style={{ width: '25%' }}>
+                                style={{ width: '25%' }}
+                                body={(rowData) => <span>{rowData.KBM} gr</span>}>    
                             </Column>
                             <Column field="statusKenaikan" header="N/T" 
                                 className="bg-gray-100 font-semibold "
