@@ -262,6 +262,15 @@ import { classNames } from "primereact/utils"
                                             className="fa-regular fa-eye mr-2 "></i>
                                             View
                                         </motion.button>
+                                        <motion.button onClick={() => handleEdit(guest.id)}
+                                        initial={{ y: "-100%" }}
+                                        animate={{ y: 0 }}
+                                        transition={{ duration: 0.5 }}
+                                        whileHover={{ scale: 1.25 }}
+                                        className='hover:border-0 bg-white w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-yellow-500 hover:text-white'><i 
+                                        className="fa-solid fa-user-pen mr-2"></i> 
+                                            Edit
+                                        </motion.button>
                                         <motion.button onClick={() => handleDelete(guest.id)} 
                                             initial={{ y: "-100%" }}
                                             animate={{ y: 0 }}
@@ -271,13 +280,7 @@ import { classNames } from "primereact/utils"
                                             <i className="fa-solid fa-trash mr-2"></i> 
                                             Delete
                                         </motion.button>
-                                        <motion.button onClick={() => handleEdit(guest.id)}
-                                        initial={{ y: "-100%" }}
-                                        animate={{ y: 0 }}
-                                        transition={{ duration: 0.5 }}
-                                        whileHover={{ scale: 1.25 }}
-                                        className='hover:border-0 bg-white w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-yellow-500 hover:text-white'><i 
-                                            className="fa-solid fa-user-pen mr-2"></i> Edit</motion.button>
+
                                     </div>
                                 </div>
                             </motion.div>

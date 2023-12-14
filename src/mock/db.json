@@ -19,20 +19,18 @@
     {
       "id": "26a9a07d-7078-4632-aaae-c606df2a2227",
       "bayi": {
-        "tanggalLahir": "14/12/2023",
-        "namaBayi": "asda",
-        "jenisKelamin": "Laki-Laki",
-        "beratBayi": 0,
-        "tinggiBayi": 0
+        "tanggalLahir": "15/12/2023",
+        "namaBayi": "ace",
+        "jenisKelamin": "Laki-Laki"
       },
-      "namaIbu": "asd",
-      "pekerjaanIbu": "asd",
+      "namaIbu": "rogue",
+      "pekerjaanIbu": "ibu rumah tangga",
       "NIK": 2,
-      "namaAyah": "sad",
-      "pekerjaanAyah": "asd",
-      "alamat": "asda",
-      "kecamatan": "asd",
-      "kota": "asd"
+      "namaAyah": "roger",
+      "pekerjaanAyah": "raja bajak laut",
+      "alamat": "east blue",
+      "kecamatan": "grand line",
+      "kota": "new world"
     }
   ],
   "users": [
@@ -123,30 +121,6 @@
       "beratBadan": 1,
       "KBM": 0,
       "statusKenaikan": "N",
-      "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
-    },
-    {
-      "id": "ab85841a-6b06-4ebb-bd47-64b0d0ae64f8",
-      "NIK": 2,
-      "namaIbu": "asd",
-      "KBM": 900,
-      "tanggal": "15/2/2024",
-      "tinggiBadan": 56,
-      "beratBadan": 3,
-      "umur": 2,
-      "statusKenaikan": "N",
-      "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
-    },
-    {
-      "id": "6b729ada-1afa-4432-bfb3-c6839e73d800",
-      "NIK": 2,
-      "namaIbu": "asd",
-      "KBM": 900,
-      "tanggal": "15/1/2024",
-      "tinggiBadan": 53,
-      "beratBadan": 2,
-      "umur": 1,
-      "statusKenaikan": "T",
       "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
     }
   ],
