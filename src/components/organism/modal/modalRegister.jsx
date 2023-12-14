@@ -1,12 +1,10 @@
 import { useForm, Controller } from 'react-hook-form';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import ErrorFieldText from '../atom/errorFieldText';
+import ErrorFieldText from '../../atom/errorFieldText';
 import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
 import { Password } from 'primereact/password';
-import Swal from 'sweetalert2';
-import { InputMask } from "primereact/inputmask";
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid'
 const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showErrorUsername }) => {
@@ -66,6 +64,7 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                             render={({ field }) => (
                                 <>
                                      <InputText
+                                        style={{borderColor: '#06b6d4'}}
                                         id="namaDepan"
                                         placeholder="Nama Depan"
                                         value={field.value}
@@ -88,6 +87,7 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                                 <>
                                      <InputText
                                         id="namaBelakang"
+                                        style={{borderColor: '#06b6d4'}}
                                         placeholder="Nama Belakang"
                                         value={field.value}
                                         onChange={(e) => field.onChange(e.target.value)}
@@ -113,6 +113,7 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                                      <InputText
                                         id="username"
                                         placeholder="Username"
+                                        style={{borderColor: '#06b6d4'}}
                                         value={field.value}
                                         onChange={(e) => field.onChange(e.target.value)}
                                         />
@@ -143,6 +144,7 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                                      <InputText
                                         id="email"
                                         placeholder="Email"
+                                        style={{borderColor: '#06b6d4'}}
                                         value={field.value}
                                         aria-invalid={errors.email ? "true" : "false"}
                                         onChange={(e) => field.onChange(e.target.value)}
@@ -164,8 +166,9 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                                 <>
                                      <Password
                                         id="password"
-                                        className='w-full'
+                                        className='w-full border'
                                         placeholder="Password"
+                                        inputStyle={{borderColor: '#06b6d4'}}
                                         toggleMask
                                         type='password'
                                         value={field.value}
@@ -189,6 +192,7 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                                      <InputNumber
                                         id="noHp"
                                         placeholder="+62-9999999"
+                                        inputStyle={{borderColor: '#06b6d4'}}
                                         allowEmpty
                                         value={field.value}
                                         useGrouping={false}

@@ -28,10 +28,14 @@ const Create = () => {
     const {  register, handleSubmit, formState: { errors } } = useForm()
     const onSubmit = data => {
         // console.log(data);
+        const day = startDate.getDate();
+        const month = startDate.getMonth() + 1;
+        const year = startDate.getFullYear();
+        const formattedDate = `${day}/${month}/${year}`;
         const dataBayi = {
             id : uuidv4(),
             bayi : {
-                tanggalLahir : startDate.toLocaleDateString(),
+                tanggalLahir : formattedDate,
                 namaBayi : data.namaBayi,
                 jenisKelamin : data.jenisKelamin,
                 beratBayi : beratBayi,
@@ -51,7 +55,7 @@ const Create = () => {
             id : uuidv4(),
             NIK : parseInt(NIK),
             namaIbu : data.namaIbu,
-            tanggal : startDate.toLocaleDateString(),
+            tanggal : formattedDate,
             umur : 0,
             beratBadan : beratBayi,
             tinggiBadan : tinggiBayi,
@@ -91,7 +95,7 @@ const Create = () => {
             }else{
                 MySwal.fire({
             title : 'Apakah data yang anda masukan sudah benar?',
-            html : showDataModalCreate(dataBayi),
+            html : showDataModal(dataBayi),
             icon : 'question',
             confirmButtonText : 'Ya',
             showCancelButton : true,
@@ -288,5 +292,23 @@ const Create = () => {
     )
 }
 
+
+const showDataModal = (data) => {
+    return(
+        <div className="flex justify-center items-center flex-col p-5 border border-black rounded-lg font-semibold">
+            <span>Nama Bayi : {data.bayi.namaBayi}</span>
+            <span>Tanggal Lahir : {data.bayi.tanggalLahir}</span>
+            <span>Jenis Kelamin : {data.bayi.jenisKelamin}</span>
+            <span>Nama Ibu : {data.namaIbu}</span>
+            <span>Pekerjaan Ibu : {data.pekerjaanIbu}</span>
+            <span>NIK : {data.NIK}</span>
+            <span>Nama Ayah : {data.namaAyah}</span>
+            <span>Pekerjaan Ayah : {data.pekerjaanAyah}</span>  
+            <span>Alamat : {data.alamat}</span>
+            <span>Kecamatan : {data.kecamatan}</span>
+            <span>Kota : {data.kota}</span>
+        </div>
+    )
+}
 
 export default Create

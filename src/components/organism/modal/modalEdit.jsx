@@ -5,11 +5,11 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Calendar } from 'primereact/calendar';
 import { Button } from 'primereact/button';
 import { useParams } from "react-router-dom";
-import ErrorFieldText from "../atom/errorFieldText";
+import ErrorFieldText from "../../atom/errorFieldText";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, parentBio}) => {
+const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, parentBio, triggerUpdate}) => {
     const { control, handleSubmit, setValue, getValues, formState: { errors } } = useForm();
     const { id } = useParams();
     const onEditSubmit = (data) => {
@@ -23,7 +23,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
             if(lastData === undefined){
                 lastData = res.data[dataIndex]
                 const selBeratBadan = data.beratBadan - 0;
-                console.log(selBeratBadan);
+                // console.log(selBeratBadan);
                 let status = '';
                 let dataBeratBadan = selBeratBadan*1000;
                 if(dataBeratBadan < data.KBM){
@@ -49,9 +49,9 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                     statusKenaikan: status,
                     parentId: id
                 };
-                console.log(newData);
                 
                 try{
+                    // triggerUpdate();
                     setVisibleEdit(false);
                     Swal.fire({
                         title: "Perhatian!",
@@ -66,8 +66,8 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                         if(result.isConfirmed){
                             axios.put(`http://localhost:3000/TKA/${data.id}`, newData)
                             .then((res) => {
+                                triggerUpdate();
                                 toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Data Updated', life: 3000 });
-                                window.location.reload();
                             })
                         }else{
                             setVisibleEdit(true);
@@ -82,7 +82,6 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
             lastData = res.data[dataIndex-1];
             const selBeratBadan = data.beratBadan - lastData.beratBadan;
             
-            console.log(selBeratBadan);
             let status = '';
             let dataBeratBadan = selBeratBadan*1000;
             if(dataBeratBadan < data.KBM){
@@ -107,8 +106,9 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                 statusKenaikan: status,
                 parentId: id
             };
-            console.log(newData);
+            // console.log(newData);
             try{
+                // triggerUpdate();
                 setVisibleEdit(false);
                 Swal.fire({
                     title: "Perhatian!",
@@ -123,8 +123,8 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                     if(result.isConfirmed){
                         axios.put(`http://localhost:3000/TKA/${data.id}`, newData)
                         .then((res) => {
+                            triggerUpdate();
                             toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Data Updated', life: 3000 });
-                            window.location.reload();
                         })
                     }else{
                         setVisibleEdit(true);
@@ -166,6 +166,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                 onHide={() => {
                     setVisibleEdit(false);
                     setEditData(null);
+                    // console.log(editData);
                 }}
             >
                 <form onSubmit={handleSubmit(onEditSubmit)} style={{ padding: '5%' }}>
