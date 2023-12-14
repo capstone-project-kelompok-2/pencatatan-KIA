@@ -13,7 +13,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
     const { control, handleSubmit, setValue, getValues, formState: { errors } } = useForm();
     const { id } = useParams();
     const onEditSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
         axios.get(`http://localhost:3000/TKA?NIK=${parentBio.NIK}`)
         .then(res => {
             // console.log(res.data.length);
@@ -141,19 +141,30 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
     useEffect(() => {
         if (editData) {
             // console.log('Edit Data:', editData);
+            const dateString = editData.tanggal;
+
+            const [day, month, year] = dateString.split('/');
+
+            const dateObject = new Date(`${year}-${month}-${day}`);
+
+            console.log(dateObject);
+
             setValue('id', editData.id);
             setValue('userId', editData.userId);
             setValue('namaIbu', editData.namaIbu);
             setValue('NIK', editData.NIK);
-            setValue('tanggal', editData.tanggal);
+            setValue('tanggal', dateObject);
             setValue('umur', editData.umur);
             setValue('tinggiBadan', editData.tinggiBadan);
             setValue('beratBadan', editData.beratBadan);
             setValue('KBM', editData.KBM);
             setValue('status', editData.statusKenaikan);
         }
+        
     }, [editData, setValue]);
     // console.log(editData);
+
+    // console.log(new Date(editData? editData.tanggal : null));
 
     return (
         <div>
@@ -180,7 +191,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                                 </td>
                                 <td>:</td>
                                 <td>
-                                <div className="mx-[-10px]">
+                                <div className="mx-[10px]">
                                     <Controller
                                         name="tanggal"
                                         control={control}
@@ -188,6 +199,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                                         render={({ field }) => (
                                             <Calendar
                                                 showIcon
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 id="tanggal"
                                                 value={field.value}
                                                 onChange={(e) => field.onChange(e.value)}
@@ -217,6 +229,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                                             <>
                                             <InputNumber
                                                 id="umur"
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onValueChange={(e) => field.onChange(e.value)}
                                                 />
@@ -246,6 +259,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                                             <>
                                             <InputNumber
                                                 id="tinggiBadan"
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onValueChange={(e) => field.onChange(e.value)}
                                                 />
@@ -276,6 +290,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                                             <InputNumber
                                                 minFractionDigits={1}
                                                 id="beratBadan"
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onValueChange={(e) => field.onChange(e.value)}
                                                 />
@@ -307,6 +322,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                                             <InputNumber
                                                 disabled
                                                 id="KBM"
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onValueChange={(e) => field.onChange(e.value)}
                                                 />
