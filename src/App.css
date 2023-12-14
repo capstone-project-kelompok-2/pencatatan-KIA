@@ -19,3 +19,38 @@ body{
     padding: 10px;
     border-radius: 5px 5px 0 0;
 }
+
+.p-card-subtitle{
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #077da7;
+}
+
+/* Your global styles */
+
+/* Disable dark mode for PrimeReact Card component */
+.p-card {
+    background-color: #fff; /* Set a light background color */
+    color: #000; /* Set a dark text color */
+  }
+  
+  /* Optionally, you can style the card title and subtitle */
+  .p-card .p-card-title,
+  .p-card .p-card-subtitle {
+    color: #333; /* Set a color for the title and subtitle */
+  }
+  
+  /* Optionally, style other elements within the card if needed */
+  .p-card .p-card-content,
+  .p-card .p-card-footer {
+    /* Add additional styles as needed */
+  }
+
+  .awikwok {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    padding: 20px;
+    margin-top: 20px;
+  }

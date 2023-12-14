@@ -4,13 +4,13 @@ import { useParams } from 'react-router-dom';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Calendar } from 'primereact/calendar';
-import ErrorFieldText from '../atom/errorFieldText';
+import ErrorFieldText from '../../atom/errorFieldText';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, show, setEditData, toast }) => {
+const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, show, setEditData, toast, triggerUpdate }) => {
     const { control, handleSubmit, setValue, formState: { errors } } = useForm();
     const { id } = useParams();
 
@@ -47,7 +47,7 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                         axios.put(`http://localhost:3000/medical/${data.id}`, medicalEdit)
                         .then((res) => {
                             toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Data Updated', life: 3000 });
-                            window.location.reload();
+                            triggerUpdate();
                         })
                     }else{
                         setVisible(true);

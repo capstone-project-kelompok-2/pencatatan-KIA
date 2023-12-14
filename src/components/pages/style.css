@@ -1,0 +1,13 @@
+/* Your global styles */
+
+/* Disable dark mode for PrimeReact Card component */
+.p-card {
+    background-color: #fff; /* Set a light background color */
+    color: #000; /* Set a dark text color */
+  }
+  
+  /* Optionally, you can style the card title and subtitle */
+  .p-card .p-card-title,
+  .p-card .p-card-subtitle {
+    color: #333; /* Set a color for the title and subtitle */
+  }

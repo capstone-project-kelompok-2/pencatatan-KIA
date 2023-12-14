@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useReducer } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -7,17 +7,18 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import InfoPasien from "../atom/infoPasien";
 import { Toast } from 'primereact/toast';
-import { exportToExcel } from "../utils/exportExcell";
-import { exportToPDF } from "../utils/exportPDF";
+import { exportToExcel } from "../../utils/exportExcell";
+import { exportToPDF } from "../../utils/exportPDF";
 import { motion } from 'framer-motion';
 import Swal from "sweetalert2";
 import DetailLabel from "../molecules/detailLabel";
-import ModalCreate from "../organism/modalCreate";
-import ModalEdit from "../organism/modalEdit";
+import ModalCreate from "../organism/modal/modalCreate";
+import ModalEdit from "../organism/modal/modalEdit";
 import axios from "axios"
 import useTKAStore from "../store/useTKAStore";
 import useParentStore from "../store/useParentStore";
-const Detail = () => {
+    const Detail = () => {
+          
     const navigate = useNavigate()
     useEffect(() => {
         const user = localStorage.getItem("user")
@@ -26,11 +27,19 @@ const Detail = () => {
         }
     }, [navigate])
 
+    const [updateFlag, setUpdateFlag] = useState(false);
+    const triggerUpdate = () => {
+        setUpdateFlag((prev) => !prev);
+    };
+
+
     const { id } = useParams()
     const toast = useRef(null);
     const [infoVisible, setInfoVisible] = useState(false);
     const setParentStore = useParentStore((state) => state.setParentBio);
     const parentData = useParentStore((state) => state.parentBio);
+    const [visibleEdit, setVisibleEdit] = useState(false);
+    const [editData, setEditData] = useState(null);
     const showInfo = () => {
         setParentStore(parentBio);
         setInfoVisible(true);
@@ -56,20 +65,21 @@ const Detail = () => {
             }
         };
         fetchData();
-    }, [id]);
+    }, [id, setParentBio, updateFlag, visibleEdit]);
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/TKA?NIK=${parentBio.NIK}`);
                 setGuestId(response.data);
+                console.log('Fetched data:', response.data);
                 setTKAData(response.data);
+                console.log('Updated state:', response.data);
             } catch (error) {
                 console.error(error);
             }
         };
         fetchData();
-    },[parentBio.NIK, setTKAData]);
-    // console.log([guestId]);
+    }, [id, parentBio.NIK, setTKAData, updateFlag, visibleEdit]);
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         tanggal: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -106,14 +116,12 @@ const Detail = () => {
                 confirmButtonText: "Yes, delete it!"
             }).then((result => {
                 axios.delete(`http://localhost:3000/TKA/${rowData.id}?NIK=${rowData.NIK}`)
+                triggerUpdate();
                 toast.current.show({ severity: 'success', 
                     summary: 'Data berhasil dihapus', 
                     detail: 'Data berhasil dihapus',
                     life: 3000,
                 });
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
 
             }))
         } catch (error) {
@@ -190,17 +198,17 @@ const Detail = () => {
 
     const [visible, setVisible] = useState(false);
     const ModalCreateWrapper = () => (
-        <ModalCreate visible={visible} setVisible={setVisible} show={show} setStatusKenaikan={setStatusKenaikan} statusKenaikan={statusKenaikan} parentBio={parentBio} />
+        <ModalCreate visible={visible} setVisible={setVisible} show={show} triggerUpdate={triggerUpdate} setStatusKenaikan={setStatusKenaikan} statusKenaikan={statusKenaikan} parentBio={parentBio} />
       );
 
 
 
-    const [visibleEdit, setVisibleEdit] = useState(false);
-    const [editData, setEditData] = useState(null);
+
     
 
     
     const handleEdit = (rowData) => {
+        // console.log(rowData);   
         setEditData(rowData);
         setVisibleEdit(true);
     };    
@@ -218,6 +226,7 @@ const Detail = () => {
                 editData={editData}
                 setEditData={setEditData}
                 toast={toast}
+                triggerUpdate={triggerUpdate}
                 parentBio={parentBio}
             />
             <motion.div 

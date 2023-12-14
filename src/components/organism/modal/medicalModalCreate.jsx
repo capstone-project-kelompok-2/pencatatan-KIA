@@ -6,10 +6,10 @@
     import { InputTextarea } from 'primereact/inputtextarea';
     import axios from 'axios';
     import { v4 as uuidv4 } from 'uuid'
-    import ErrorFieldText from '../atom/errorFieldText';
+    import ErrorFieldText from '../../atom/errorFieldText';
 
 
-    const MedicalModalCreate = ({ setVisible, show, visible, parentId }) => {
+    const MedicalModalCreate = ({ setVisible, show, visible, parentId, triggerUpdate }) => {
         const { control, handleSubmit, getValues, formState: { errors } } = useForm();
         const onSubmit = data => {
             axios.get(`http://localhost:3000/medical?parentId=${parentId.id}`)
@@ -37,10 +37,8 @@
                     console.log(err);
                 })
                 setVisible(false)
+                triggerUpdate();
                 show();
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
             })
         }
         return (
