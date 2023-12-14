@@ -205,15 +205,15 @@ const MedicalDetail = () => {
                         field="tanggal" 
                         header="Tanggal"
                         style={{ width: '25%' }}
-                        headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                        headerStyle={{ border:'none' }}
                         bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
                         className="bg-gray-100 font-semibold"
                     ></Column>
                     <Column 
                         field="penyakit" 
                         header="penyakit/Masalah"
-                        style={{ width: '25%' }}
-                        headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                        style={{ width: '25%', }}
+                        headerStyle={{ border:'none', textAlign: 'center' }}
                         bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
                         className="bg-gray-100 font-semibold"
                     ></Column>
@@ -221,7 +221,7 @@ const MedicalDetail = () => {
                         field="rujukan" 
                         header="Tindakan/Rujukan/Umpan Balik"
                         style={{ width: '25%' }}
-                        headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                        headerStyle={{ border:'none' }}
                         bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
                         className="bg-gray-100 font-semibold"
                     ></Column>
@@ -229,7 +229,7 @@ const MedicalDetail = () => {
                         field="keterangan" 
                         header="Keterangan (Nama Pemeriksa, Tempat, Pelayanan, Paraf)" 
                         style={{ width: '25%' }}
-                        headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                        headerStyle={{ border:'none' }}
                         bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
                         className="bg-gray-100 font-semibold"
                     ></Column>
@@ -238,7 +238,7 @@ const MedicalDetail = () => {
                         header="action" 
                         body={actionTemplate} 
                         style={{ width: '25%' }}
-                        headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                        headerStyle={{ border:'none' }}
                         bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
                         className="bg-gray-100 font-semibold"
                     ></Column>

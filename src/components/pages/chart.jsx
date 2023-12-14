@@ -15,7 +15,6 @@ const ChartPage = () => {
     useEffect(() => {
         const user = localStorage.getItem("user")
 
-
         if (!user) {
             navigate("/login")
         }
@@ -117,8 +116,8 @@ const ChartPage = () => {
                     </motion.button>
 
                     <Dropdown 
-                            value={chartType} // Use chartType as the value
-                            onChange={handleChartTypeChange} // Handle type change
+                            value={chartType}
+                            onChange={handleChartTypeChange}
                             options={types} 
                             optionLabel="name" 
                             placeholder="Pilih Tipe Chart" 
@@ -126,13 +125,13 @@ const ChartPage = () => {
                             style={{backgroundColor: 'white', color: '#06b6d4', borderColor: '#06b6d4', borderWidth: '2px'}}
                             pt = {{
                                 input : () => ({
-                                    className : 'dark:text-primary text-primary bg-white font-semibold'
+                                    className : 'dark:text-[#06b6d4] text-[#06b6d4] bg-white font-semibold'
                                 }),
                                 item : () => ({
-                                    className : 'dark:bg-white dark:text-primary text-primary font-normal hover:bg-primary hover:dark:bg-primary hover:text-white'
+                                    className : 'dark:bg-white dark:text-[#06b6d4] text-[#06b6d4] font-normal hover:bg-primary hover:dark:bg-primary hover:text-white'
                                 }),
                                 list : () => ({
-                                    className : 'dark:bg-white dark:text-primary bg-white text-primary'
+                                    className : 'dark:bg-white dark:text-[#06b6d4] bg-white text-[#06b6d4]'
                                 })
 
                             }}

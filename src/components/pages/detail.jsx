@@ -102,7 +102,7 @@ import useParentStore from "../store/useParentStore";
 
 
     const handleDelete = async (rowData) => {
-        console.log(rowData.id);
+        // console.log(rowData.id);
         
         try {
             
@@ -284,26 +284,25 @@ import useParentStore from "../store/useParentStore";
                             filterDisplay="row"
                             globalFilterFields={['tanggal', 'umur', 'tinggiBadan', 'beratBadan', 'KBM', 'statusstatusKenaikan']}
                             emptyMessage={<span className='text-black font-semibold'>Data Kosong</span>}
-                            className="bg-gray-100 font-semibold shadow-xl"
                            >
                             <Column
                                 field="no"
                                 header="No"
                                 style={{ width: '5%' }}
-                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center'  }}
+                                headerStyle={{  textAlign: 'center', border: 'none' }}
                                 bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
-                                className="bg-gray-100 font-semibold"
+                                className="bg-gray-100 font-semibold "
                                 body={(rowData, { rowIndex }) => renderNoColumn(rowData, rowIndex)}
                             ></Column>
                             <Column field="tanggal" header="Tanggal" 
                                 style={{ width: '25%' }}
-                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center', }}
+                                headerStyle={{  textAlign: 'center', border: 'none' }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 className="bg-gray-100 font-semibold "
                             ></Column>
                             <Column field="umur" header="Umur" 
                                 style={{ width: '25%' }} 
-                                headerStyle={{ backgroundColor: 'gray', color: 'white'  }}
+                                headerStyle={{   border: 'none'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 body={(rowData) => <span>{rowData.umur} bulan</span>} 
                                 className="bg-gray-100 font-semibold"
@@ -311,33 +310,33 @@ import useParentStore from "../store/useParentStore";
                             <Column field="tinggiBadan" header="Tinggi Badan" 
                                 className="bg-gray-100 font-semibold"
                                 style={{ width: '25%' }} 
-                                headerStyle={{ backgroundColor: 'gray', color: 'white'  }}
+                                headerStyle={{   border: 'none'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 body={(rowData) => <span>{rowData.tinggiBadan} cm</span>} />
                                 
                             <Column field="beratBadan" header="Berat Badan" 
                                 style={{ width: '25%' }} 
                                 className="bg-gray-100 font-semibold"
-                                headerStyle={{ backgroundColor: 'gray', color: 'white'  }}
+                                headerStyle={{   border: 'none'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 body={(rowData) => <span>{rowData.beratBadan} kg</span>}>
                             </Column>
                             <Column field="KBM" header="Kenaikan BB minimal" 
                                 className="bg-gray-100 font-semibold"
-                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center'  }}
+                                headerStyle={{  textAlign: 'center',  border: 'none'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 style={{ width: '25%' }}
                                 body={(rowData) => <span>{rowData.KBM} gr</span>}>    
                             </Column>
                             <Column field="statusKenaikan" header="N/T" 
                                 className="bg-gray-100 font-semibold "
-                                headerStyle={{ backgroundColor: 'gray', color: 'white'  }}
+                                headerStyle={{   border: 'none'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 style={{ width: '25%' }}>
                             </Column>
                             <Column field="action" header="Action"
                                 style={{ width: '25%' }}
-                                headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                                headerStyle={{   border: 'none' }}
                                 bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000' }}
                                 body={actionTemplate}
                                 className="bg-gray-100 font-semibold"

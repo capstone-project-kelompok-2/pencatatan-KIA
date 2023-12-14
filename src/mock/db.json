@@ -15,6 +15,24 @@
       "alamat": "blok uzumaki",
       "kecamatan": "desa api",
       "kota": "konoha"
+    },
+    {
+      "id": "26a9a07d-7078-4632-aaae-c606df2a2227",
+      "bayi": {
+        "tanggalLahir": "14/12/2023",
+        "namaBayi": "asda",
+        "jenisKelamin": "Laki-Laki",
+        "beratBayi": 0,
+        "tinggiBayi": 0
+      },
+      "namaIbu": "asd",
+      "pekerjaanIbu": "asd",
+      "NIK": 2,
+      "namaAyah": "sad",
+      "pekerjaanAyah": "asd",
+      "alamat": "asda",
+      "kecamatan": "asd",
+      "kota": "asd"
     }
   ],
   "users": [
@@ -51,7 +69,7 @@
       "id": "59aa4494-8087-4139-a955-0f687209a423",
       "NIK": 1,
       "namaIbu": "dewi",
-      "tanggal": "14/12/2023",
+      "tanggal": "16/12/2023",
       "umur": 0,
       "tinggiBadan": "50",
       "beratBadan": "2",
@@ -63,11 +81,11 @@
       "id": "69769760-972b-4931-9107-9e396b7d1da2",
       "NIK": 1,
       "namaIbu": "dewi",
-      "KBM": 800,
       "tanggal": "14/1/2024",
       "umur": 1,
       "tinggiBadan": 55,
       "beratBadan": 3,
+      "KBM": 800,
       "statusKenaikan": "N",
       "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3"
     },
@@ -94,17 +112,62 @@
       "beratBadan": 5,
       "statusKenaikan": "N",
       "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3"
+    },
+    {
+      "id": "0fd18b61-55ca-4c65-9f5d-f48c38b957fb",
+      "NIK": 2,
+      "namaIbu": "asd",
+      "tanggal": "14/12/2023",
+      "umur": 0,
+      "tinggiBadan": 50,
+      "beratBadan": 1,
+      "KBM": 0,
+      "statusKenaikan": "N",
+      "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
+    },
+    {
+      "id": "ab85841a-6b06-4ebb-bd47-64b0d0ae64f8",
+      "NIK": 2,
+      "namaIbu": "asd",
+      "KBM": 900,
+      "tanggal": "15/2/2024",
+      "tinggiBadan": 56,
+      "beratBadan": 3,
+      "umur": 2,
+      "statusKenaikan": "N",
+      "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
+    },
+    {
+      "id": "6b729ada-1afa-4432-bfb3-c6839e73d800",
+      "NIK": 2,
+      "namaIbu": "asd",
+      "KBM": 900,
+      "tanggal": "15/1/2024",
+      "tinggiBadan": 53,
+      "beratBadan": 2,
+      "umur": 1,
+      "statusKenaikan": "T",
+      "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
     }
   ],
   "medical": [
     {
       "id": "2154b056-7631-48b8-9fad-da25482e1cf9",
-      "tanggal": "14/12/2023",
+      "NIK": 1,
+      "tanggal": "15/12/2023",
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
       "penyakit": "demam",
       "rujukan": "al-islam",
-      "keterangan": "kurang makan",
-      "NIK": 1,
-      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3"
+      "keterangan": "kurang makan"
+    },
+    {
+      "id": "4fe7905e-5835-461f-96b6-b3f3ba003ed3",
+      "tanggal": "15/12/2023",
+      "penyakit": "ads",
+      "rujukan": "asd",
+      "keterangan": "asd",
+      "NIK": 2,
+      "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
     }
   ]
 }

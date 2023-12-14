@@ -55,7 +55,7 @@
                     </td>
                     <td>:</td>
                     <td>
-                        <div className="mx-[-10px]">
+                        <div className="mx-[10px]">
                         <Controller
                             name="tanggal"
                             control={control}
@@ -64,6 +64,7 @@
                                 <Calendar
                                     showIcon
                                     id="tanggal"
+                                    className='border-primary dark:border-primary border-2 rounded-lg'
                                     value={field.value}
                                     onChange={(e) => field.onChange(e.value)}
                                     dateFormat="mm/dd/yy"
@@ -92,6 +93,7 @@
                                 <>
                                 <InputText
                                     id="penyakit"
+                                    className='border-primary dark:border-primary border-2 rounded-lg'
                                     value={field.value}
                                     onChange={(e) => field.onChange(e.target.value)}
                                     
@@ -123,6 +125,7 @@
                                 <>
                                 <InputTextarea
                                     id="rujukan"
+                                    className='border-primary dark:border-primary border-2 rounded-lg'
                                     value={field.value}
                                     onChange={(e) => field.onChange(e.target.value)}
                                     
@@ -153,6 +156,7 @@
                                 <>
                                 <InputTextarea
                                     id="keterangan"
+                                    className='border-primary dark:border-primary border-2 rounded-lg'
                                     value={field.value}
                                     onChange={(e) => field.onChange(e.target.value)}
                                     />
