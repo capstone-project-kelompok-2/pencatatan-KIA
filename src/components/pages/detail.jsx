@@ -201,12 +201,6 @@ import useParentStore from "../store/useParentStore";
         <ModalCreate visible={visible} setVisible={setVisible} show={show} triggerUpdate={triggerUpdate} setStatusKenaikan={setStatusKenaikan} statusKenaikan={statusKenaikan} parentBio={parentBio} />
       );
 
-
-
-
-    
-
-    
     const handleEdit = (rowData) => {
         // console.log(rowData);   
         setEditData(rowData);
