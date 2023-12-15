@@ -51,6 +51,14 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
             visible={visible} 
             style={{ width: '50vw' }} 
             onHide={handleClose}
+            pt={{
+                header : () => ({
+                    id : 'modal-header',
+               }),
+               content : () => ({
+                    id : 'modal-content',
+               }),
+            }}
         >
             <form onSubmit={handleSubmit(onSubmit)} style={{ padding: '5%' }} className='gap-2'>
                 <div className="grid grid-cols-2 gap-3">
@@ -69,6 +77,9 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                                         placeholder="Nama Depan"
                                         value={field.value}
                                         onChange={(e) => field.onChange(e.target.value)}
+                                        pt={{
+                                            root: { id : 'inputText-prime' }
+                                        }}
                                     />
                                     {errors.namaDepan && <ErrorFieldText />}
                                 </>
@@ -91,6 +102,9 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                                         placeholder="Nama Belakang"
                                         value={field.value}
                                         onChange={(e) => field.onChange(e.target.value)}
+                                        pt={{
+                                            root: { id : 'inputText-prime' }
+                                        }}
                                         />
                                     {errors.namaBelakang && <ErrorFieldText />}
                                 </>
@@ -116,6 +130,9 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                                         style={{borderColor: '#06b6d4'}}
                                         value={field.value}
                                         onChange={(e) => field.onChange(e.target.value)}
+                                        pt={{
+                                            root: { id : 'inputText-prime' }
+                                        }}
                                         />
                                     {errors.username && <ErrorFieldText />}
                                 </>
@@ -148,6 +165,9 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                                         value={field.value}
                                         aria-invalid={errors.email ? "true" : "false"}
                                         onChange={(e) => field.onChange(e.target.value)}
+                                        pt={{
+                                            root: { id : 'inputText-prime' }
+                                        }}
                                         />
                                     {errors.email ? <span className='text-red-500 flex justify-center'>{errors.email.message}</span> : errors.email && <ErrorFieldText />}
                                 </>
@@ -173,6 +193,10 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                                         type='password'
                                         value={field.value}
                                         onChange={(e) => field.onChange(e.target.value)}
+                                        pt = {{
+                                            root: { id : 'inputPassword', className: 'w-full bg-white dark:bg-white' },
+                                            input: { id : 'inputPassword', className: 'w-full bg-white dark:bg-white' },
+                                        }}
                                         />
                                     {errors.password && <ErrorFieldText />}
                                 </>
@@ -193,11 +217,16 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                                         id="noHp"
                                         placeholder="+62-9999999"
                                         inputStyle={{borderColor: '#06b6d4'}}
+                                        style={{borderColor: '#06b6d4'}}
                                         allowEmpty
                                         value={field.value}
                                         useGrouping={false}
                                         prefix='+62-'
                                         onValueChange={(e) => field.onChange(e.value)}
+                                        pt = {{
+                                            root: { id : 'input-number', className: 'w-full bg-white dark:bg-white' },
+                                            input: { id : 'input-number', className: 'w-full bg-white dark:bg-white' },
+                                        }}
                                         />
                                     {errors.noHp && <ErrorFieldText />}
                                 </>

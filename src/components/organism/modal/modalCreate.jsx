@@ -1,5 +1,6 @@
 // ModalCreate.js
 import { useForm, Controller } from 'react-hook-form';
+
 import { useState, useEffect } from 'react';
 import { InputNumber } from 'primereact/inputnumber';
 import { Calendar } from 'primereact/calendar';
@@ -8,6 +9,7 @@ import { Dialog } from 'primereact/dialog';
 import ErrorFieldText from '../../atom/errorFieldText';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid'
+
 const ModalCreate = ({ setVisible, show, visible, parentBio, triggerUpdate }) => {
     const { control, handleSubmit, getValues, formState: { errors } } = useForm();
     
@@ -114,6 +116,7 @@ const ModalCreate = ({ setVisible, show, visible, parentBio, triggerUpdate }) =>
                 id: uuidv4(),
                 NIK: parentBio.NIK,
                 namaIbu: parentBio.namaIbu,
+
                 KBM: KBM,
                 ...data,
                 tanggal: formattedDate,
@@ -130,6 +133,7 @@ const ModalCreate = ({ setVisible, show, visible, parentBio, triggerUpdate }) =>
                 console.log(err);
             })
             setVisible(false)
+
             triggerUpdate();
             show();
             }
@@ -150,12 +154,16 @@ const ModalCreate = ({ setVisible, show, visible, parentBio, triggerUpdate }) =>
             <tr>
                 <td>
                     <div className="mx-3">
+
                     <label htmlFor="tanggal">Tanggal </label>
+
                     </div>
                 </td>
                 <td>:</td>
                 <td>
+
                     <div className="mx-[10px]">
+
                     <Controller
                         name="tanggal"
                         control={control}
@@ -164,6 +172,7 @@ const ModalCreate = ({ setVisible, show, visible, parentBio, triggerUpdate }) =>
                             <Calendar
                                 showIcon
                                 id="tanggal"
+
                                 className='border-primary dark:border-primary border-2 rounded-lg'
                                 value={field.value}
                                 onChange={(e) => field.onChange(e.value)}
@@ -174,6 +183,7 @@ const ModalCreate = ({ setVisible, show, visible, parentBio, triggerUpdate }) =>
                     </div>
                 </td>
             </tr>
+
             {!loading && (
             <tr>
                 <td>
@@ -204,6 +214,7 @@ const ModalCreate = ({ setVisible, show, visible, parentBio, triggerUpdate }) =>
                     />
                     </div>
                 </td>
+
                 <td>
                     <Button
                         label={umurInputDisabled ? "Enable Umur" : "Disable Umur"}
@@ -233,6 +244,7 @@ const ModalCreate = ({ setVisible, show, visible, parentBio, triggerUpdate }) =>
                             <InputNumber
                                 id="tinggiBadan"
                                 value={field.value}
+
                                 className='border-primary dark:border-primary border-2 rounded-lg'
                                 onValueChange={(e) => field.onChange(e.value)}
                                 />
@@ -264,6 +276,7 @@ const ModalCreate = ({ setVisible, show, visible, parentBio, triggerUpdate }) =>
                                 minFractionDigits={1}
                                 id="beratBadan"
                                 value={field.value}
+
                                 className='border-primary dark:border-primary border-2 rounded-lg'
                                 onValueChange={(e) => field.onChange(e.value)}
                                 />

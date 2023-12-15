@@ -31,24 +31,6 @@
       "alamat": "east blue",
       "kecamatan": "grand line",
       "kota": "new world"
-    },
-    {
-      "id": "051d3610-0919-4fd4-8303-64dbadb2ec5f",
-      "bayi": {
-        "tanggalLahir": "15/12/2023",
-        "namaBayi": "zie",
-        "jenisKelamin": "Laki-Laki",
-        "beratBayi": "2",
-        "tinggiBayi": "70"
-      },
-      "namaIbu": "Park jia",
-      "pekerjaanIbu": "Product Manager",
-      "NIK": 12345678912345,
-      "namaAyah": "Hong Shi",
-      "pekerjaanAyah": "Pilot",
-      "alamat": "Seoul",
-      "kecamatan": "Dongju",
-      "kota": "Seoul"
     }
   ],
   "users": [
@@ -142,61 +124,24 @@
       "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
     },
     {
-      "id": "23f99429-82c0-4f4b-bfbd-f9a3de9171c9",
-      "NIK": 12345678912345,
-      "namaIbu": "Park jia",
-      "tanggal": "15/12/2023",
-      "umur": 0,
-      "beratBadan": "2",
-      "tinggiBadan": "70",
-      "KBM": 0,
-      "statusKenaikan": "T"
-    },
-    {
-      "id": "2b9c86ad-d56a-4aac-b6c5-9e45e21898ab",
-      "tanggal": "15/12/2023",
-      "tinggiBadan": 80,
-      "beratBadan": 3.5,
-      "umur": 5,
-      "statusKenaikan": "N"
-    },
-    {
-      "id": "f2a9a289-9404-4e5f-a9ad-fa38171e61de",
-      "tanggal": "15/12/2023",
-      "tinggiBadan": 0,
-      "beratBadan": 0,
-      "umur": null,
-      "statusKenaikan": "N"
-    },
-    {
-      "id": "968fe883-4c38-4114-ab4e-abd69cd550a2",
-      "tanggal": "15/12/2023",
-      "tinggiBadan": 0,
-      "beratBadan": 0,
-      "umur": 5,
-      "statusKenaikan": "N"
-    },
-    {
-      "id": "ac028b3c-3a8e-48b9-8e29-a0ab37058367",
-      "tanggal": "15/12/2023",
-      "tinggiBadan": 100,
+      "id": "98448c08-0ce6-4ac8-a498-5a70a5e1f098",
+      "NIK": 1,
+      "namaIbu": "dewi",
+      "tanggal": "14/4/2024",
+      "umur": 4,
+      "tinggiBadan": 70,
       "beratBadan": 6,
-      "umur": 6,
-      "statusKenaikan": "N"
-    },
-    {
-      "id": "2a82f357-c848-4402-b658-b092bb9604c3",
-      "tanggal": "15/12/2023",
-      "tinggiBadan": 50,
-      "beratBadan": 30,
-      "umur": 6,
-      "statusKenaikan": "N"
+      "KBM": 600,
+      "statusKenaikan": "N",
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3"
     }
   ],
   "medical": [
     {
       "id": "2154b056-7631-48b8-9fad-da25482e1cf9",
       "NIK": 1,
+      "namaIbu": "dewi",
+      "namaBayi": "Gojo Satoru",
       "tanggal": "15/12/2023",
       "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
       "penyakit": "demam",
@@ -205,12 +150,58 @@
     },
     {
       "id": "4fe7905e-5835-461f-96b6-b3f3ba003ed3",
+      "NIK": 2,
+      "namaIbu": "rogue",
+      "namaBayi": "ace",
       "tanggal": "15/12/2023",
+      "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227",
       "penyakit": "ads",
       "rujukan": "asd",
+      "keterangan": "asd"
+    },
+    {
+      "id": "3505d807-c5bb-4b54-be14-e4fda79c4075",
+      "NIK": 1,
+      "namaIbu": "dewi",
+      "namaBayi": "Gojo Satoru",
+      "tanggal": "15/12/2023",
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
+      "penyakit": "asd",
+      "rujukan": "asd",
+      "keterangan": "asd"
+    },
+    {
+      "id": "e9c91f64-d1e6-42f5-9ff1-1a1982702777",
+      "tanggal": "16/12/2023",
+      "penyakit": "asdas",
+      "rujukan": "asd",
       "keterangan": "asd",
-      "NIK": 2,
-      "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
+      "NIK": 1,
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
+      "namaIbu": "dewi",
+      "namaBayi": "Gojo Satoru"
+    },
+    {
+      "id": "6da41cef-d176-4485-8d26-02b9b157795a",
+      "tanggal": "17/12/2023",
+      "penyakit": "ad",
+      "rujukan": "asd",
+      "keterangan": "asd",
+      "NIK": 1,
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
+      "namaIbu": "dewi",
+      "namaBayi": "Gojo Satoru"
+    },
+    {
+      "id": "a5fc4865-a419-4f68-94a3-1f3d44b5fe99",
+      "tanggal": "15/12/2023",
+      "penyakit": "sad",
+      "rujukan": "asd",
+      "keterangan": "asd",
+      "NIK": 1,
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
+      "namaIbu": "dewi",
+      "namaBayi": "Gojo Satoru"
     }
   ]
 }

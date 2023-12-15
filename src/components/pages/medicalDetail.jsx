@@ -8,12 +8,7 @@ import { motion } from 'framer-motion';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { FilterMatchMode } from 'primereact/api';
-import { exportToExcel } from '../../utils/exportExcell';
-
-
-
 import { exportToPDF } from "../../utils/exportPDF";
-
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import MedicalModalCreate from '../organism/modal/medicalModalCreate';

@@ -157,54 +157,96 @@ text-align: left;
 }
 
 
-/* animasi */
-@keyframes fadeIn {
-    from {
-    opacity: 0;
-    transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
-}
-.animate-fadeIn {
-    animation: fadeIn 0.5s ease-in-out;
+
+
+
+
+.b-to-dashboard{
+    font-size: 20px;
 }
 
-.p-card-subtitle{
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 10px;
+#inputDropdown {
+    color : #06b6d4;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+}
+#itemDropdown {
+    color : #06b6d4;
+    background-color: white;
+}
+
+#itemDropdown:hover {
+    color : white;
+    background-color: #06b6d4;
+}
+
+#listDropdown {
+    color : #06b6d4;
+    background-color: white;
+}
+
+#rootDropdown {
+    color : #06b6d4;
+    background-color: white;
+}
+
+
+#triggerDropdown {
+    color : white;
+}
+
+
+#modal-header {
+    background-color: white;
     color: #077da7;
 }
 
-/* Your global styles */
+#modal-content {
+    background-color: white;
+    color: #077da7;
+}
 
-/* Disable dark mode for PrimeReact Card component */
-.p-card {
-    background-color: #fff; /* Set a light background color */
-    color: #000; /* Set a dark text color */
-  }
-  
-  /* Optionally, you can style the card title and subtitle */
-  .p-card .p-card-title,
-  .p-card .p-card-subtitle {
-    color: #333; /* Set a color for the title and subtitle */
-  }
-  
-  /* Optionally, style other elements within the card if needed */
-  .p-card .p-card-content,
-  .p-card .p-card-footer {
-    /* Add additional styles as needed */
-  }
+#header-action-accordion {
+    background-color: white;
+    color: #077da7;
+}
 
-  .awikwok {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    padding: 20px;
-    margin-top: 20px;
-  }
+#header-accordion {
+    background-color: white;
+    color: #077da7;
+}
+
+#toggleable-content-accordion {
+    background-color: white;
+    color: #077da7;
+}
+
+#content-accordion {
+    background-color: white;
+    color: #077da7;
+}
+
+#root-calendar {
+    background-color: white;
+    color: #077da7;
+}
+
+#input-calendar {
+    background-color: white;
+    color: #077da7;
+}
+
+#inputText-prime {
+    background-color: white;
+    color: #077da7;
+}
+#inputPassword {
+    background-color: white;
+    color: #077da7;
+}
+
+#input-number {
+    background-color: white;
+    color: #077da7;
+}
 

@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
     import NavbarLogo from "../atom/Navbar/navbarLogo"
     import SearchForm from "../atom/searchForm"
     import InfoKaderModal from "../molecules/infoKaderModal";
-    import SidebarCoomponent from "../organism/modal/sidebar";
+    import SidebarCoomponent from "../organism/sidebar"
     import { motion } from "framer-motion"
     import { handleCardAnimation } from "../../utils/motion"
     const Dashboard = () => {
@@ -66,17 +66,17 @@ import { useEffect, useState } from "react"
                 cancelButtonText: "Batal",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.get('http://localhost:3000/guest/${id}')
+                    axios.get(`http://localhost:3000/guest/${id}`)
                         .then((res) => {
-                            axios.delete('http://localhost:3000/guest/${id}')
+                            axios.delete(`http://localhost:3000/guest/${id}`)
                             .then(() => {
                                 //ambil data tka berdasarkan NIK dari guest
-                                        axios.get('http://localhost:3000/tka?NIK=${res.data.NIK}')
+                                        axios.get(`http://localhost:3000/tka?NIK=${res.data.NIK}`)
                                         .then((res) => {
                                             console.log(res.data);
                                             //hapus semua data tka berdasarkan NIK dari guest
                                             res.data.map((tka) => {
-                                                axios.delete('http://localhost:3000/tka/${tka.id}')
+                                                axios.delete(`http://localhost:3000/tka/${tka.id}`)
 
                                             });
                                             
@@ -84,12 +84,12 @@ import { useEffect, useState } from "react"
                                         .catch((err) => {
                                             console.log(err);
                                         });
-                                        axios.get('http://localhost:3000/medical?parentId=${id}')
+                                        axios.get(`http://localhost:3000/medical?parentId=${id}`)
                                         .then((res) => {
                                             console.log(res.data);
                                             //hapus semua data medical berdasarkan id dari guest
                                             res.data.map((medical) => {
-                                                axios.delete('http://localhost:3000/medical/${medical.id}')
+                                                axios.delete(`http://localhost:3000/medical/${medical.id}`)
                                             })  
                                         })
                                         .catch((err) => {
@@ -117,11 +117,11 @@ import { useEffect, useState } from "react"
             
         const handleEdit = (id) => {
             console.log(id);
-            navigate('/edit/${id}')
+            navigate(`/edit/${id}`)
         }
 
         const handleDetail = (id) => {
-            navigate('/detail/${id}')
+            navigate(`/detail/${id}`)
         }
 
         const handleSearch = (event) => {
@@ -310,7 +310,7 @@ import { useEffect, useState } from "react"
                                         className: 'bg-white focus:hover:border-2 border-primary hover:scale-110'
                                     }),
                                     nextPageButton : () => ({
-                                        className: 'bg-white focus:hover:border-2 border-primary hover:scale-110'
+                                        className: `bg-white focus:hover:border-2 border-primary hover:scale-110`
                                     }),
                                     nextPageIcon : () => ({
                                         className: 'text-primary'
@@ -322,10 +322,10 @@ import { useEffect, useState } from "react"
                                         className: 'bg-white text-primary p-4 rounded-md disabled:opacity-50 focus:hover:border-2 border-primary hover:scale-110'
                                     }),
                                     prevPageIcon : () => ({
-                                        className: 'bg-white'
+                                        className: `bg-white`
                                     }),
                                     pageButton : () => ({
-                                        className: 'bg-white border-2 border-black ${pageButtonClass} focus:bg-primary focus:text-white focus:border-primary selected:bg-primary selected:text-white hover:bg-primary hover:text-white hover:scale-110,'
+                                        className: `bg-white border-2 border-black ${pageButtonClass} focus:bg-primary focus:text-white focus:border-primary selected:bg-primary selected:text-white hover:bg-primary hover:text-white hover:scale-110`,
                                     }),
                                     pages : () => ({
                                         className: 'text-black',

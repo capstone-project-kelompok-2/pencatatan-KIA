@@ -4,12 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import MotionButton from "../motion/motionButton";
 import { Toast } from 'primereact/toast';
 import axios from "axios";
-
-import ModalRegister from "../organism/modal/modalRegister"
-import { Button } from "primereact/button";
-
+import ModalRegister from "../organism/modal/modalRegister";
 import { useNavigate } from "react-router-dom";
-
 
 
 const Login = () => {
@@ -33,7 +29,7 @@ const Login = () => {
         if (user) {
             console.log('berhasil login');
             localStorage.setItem('user', JSON.stringify(user));
-            window.location.href = '/';
+            window.location.href = '/home';
         } else {
             console.log('gagal login');
             LoginFailed();

@@ -10,6 +10,7 @@ import { Dialog } from 'primereact/dialog';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
+
 const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, show, setEditData, toast, triggerUpdate }) => {
     const { control, handleSubmit, setValue, formState: { errors } } = useForm();
     const { id } = useParams();
@@ -24,6 +25,8 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
             const medicalEdit = {
                 id: data.id,
                 NIK: parentId.NIK,
+                namaIbu: parentId.namaIbu,
+                namaBayi: parentId.bayi.namaBayi,
                 tanggal: formattedDate,
                 parentId: id,
                 penyakit: data.penyakit,
@@ -47,6 +50,7 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                         axios.put(`http://localhost:3000/medical/${data.id}`, medicalEdit)
                         .then((res) => {
                             toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Data Updated', life: 3000 });
+
                             triggerUpdate();
                         })
                     }else{
@@ -61,6 +65,7 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
     };
 
     useEffect(() => {
+
         
         if(editData){
             const dateString = editData.tanggal;
@@ -95,6 +100,7 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                             </td>
                             <td>:</td>
                             <td>
+
                                 <div className="mx-[10px]">
                                     <Controller
                                         name="tanggal"
@@ -104,6 +110,7 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                                             <Calendar
                                                 showIcon
                                                 id="tanggal"
+
                                                 className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onChange={(e) => field.onChange(e.value)}
@@ -133,6 +140,7 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                                             <>
                                             <InputText
                                                 id="penyakit"
+
                                                 className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onChange={(e) => field.onChange(e.target.value)}
@@ -163,6 +171,7 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                                             <>
                                             <InputTextarea
                                                 id="rujukan"
+
                                                 className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onChange={(e) => field.onChange(e.target.value)}
@@ -193,6 +202,7 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                                             <>
                                             <InputTextarea
                                                 id="keterangan"
+
                                                 className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onChange={(e) => field.onChange(e.target.value)}

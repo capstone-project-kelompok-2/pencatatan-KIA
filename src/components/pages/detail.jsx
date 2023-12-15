@@ -58,7 +58,7 @@ import useParentStore from "../store/useParentStore";
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const responseParent = await axios.get('http://localhost:3000/guest/${id}');
+                const responseParent = await axios.get(`http://localhost:3000/guest/${id}`);
                 setParentBio(responseParent.data);
             } catch (error) {
                 console.error(error);
@@ -69,7 +69,7 @@ import useParentStore from "../store/useParentStore";
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/TKA?NIK=${parentBio.NIK}');
+                const response = await axios.get(`http://localhost:3000/TKA?NIK=${parentBio.NIK}`);
                 setGuestId(response.data);
                 console.log('Fetched data:', response.data);
                 setTKAData(response.data);
@@ -115,7 +115,7 @@ import useParentStore from "../store/useParentStore";
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Yes, delete it!"
             }).then((result => {
-                axios.delete('http://localhost:3000/TKA/${rowData.id}?NIK=${rowData.NIK}')
+                axios.delete(`http://localhost:3000/TKA/${rowData.id}?NIK=${rowData.NIK}`)
                 triggerUpdate();
                 toast.current.show({ severity: 'success', 
                     summary: 'Data berhasil dihapus', 
@@ -138,7 +138,7 @@ import useParentStore from "../store/useParentStore";
 
     const handleExportToPDF = () => {
         const label = parentBio.namaIbu;
-        const caption = 'Data TKA';
+        const caption = `Data TKA`;
         const filename = 'data_tka.pdf';
         const columns = [
             { field: 'tanggal', header: 'Tanggal' },
@@ -246,24 +246,23 @@ import useParentStore from "../store/useParentStore";
                             <div className="flex gap-2">
                                 <motion.button
                                 whileHover={{ scale: 1.25 }}
-                                onClick={() => navigate('/chart/${id}')} 
+                                onClick={() => navigate(`/chart/${id}`)} 
                                 className="font-semibold border w-[140px] bg-white border-primary rounded-lg p-2 my-4 text-primary hover:border-0 hover:text-white hover:bg-primary">
                                 <i className="pi pi-chart-line mx-2"></i>
                                 Lihat Grafik</motion.button>
                                 <motion.button
                                 whileHover={{ scale: 1.25 }}
-                                onClick={() => navigate('/medicalDetail/${id}')} 
+                                onClick={() => navigate(`/medicalDetail/${id}`)} 
                                 className="font-semibold border w-[140px] bg-white border-primary rounded-lg p-2 my-4 text-primary hover:border-0 hover:text-white hover:bg-green-500">
                                 <i className="fa-solid fa-notes-medical mx-2"></i>
                                 Kesehatan</motion.button>
                             </div>
                             <motion.button
                             whileHover={{ scale: 1.25 }}
-                            onClick={() => navigate('/')} 
+                            onClick={() => navigate(`/`)} 
                             className="w-[140px] font-semibold border bg-white border-primary rounded-lg p-2 text-primary hover:border-0 hover:text-white hover:bg-red-500">
                             <i className="pi pi-backward mx-2"></i>
-                            Kembali
-                        </motion.button>
+                            Kembali</motion.button>
                         </div>
                     </div>
 
