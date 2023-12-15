@@ -125,10 +125,10 @@ const ChartPage = () => {
                             style={{backgroundColor: 'white', color: '#06b6d4', borderColor: '#06b6d4', borderWidth: '2px'}}
                             pt = {{
                                 input : () => ({
-                                    className : 'dark:text-[#06b6d4] text-[#06b6d4] bg-white font-semibold'
+                                    className : 'dark:text-[#06b6d4] dark:text-primary text-[#06b6d4] bg-white font-semibold'
                                 }),
                                 item : () => ({
-                                    className : 'dark:bg-white dark:text-[#06b6d4] text-[#06b6d4] font-normal hover:bg-primary hover:dark:bg-primary hover:text-white'
+                                    className : 'dark:bg-white dark:text-[#06b6d4] dark:text-primary text-[#06b6d4] font-normal hover:bg-primary hover:dark:bg-primary hover:text-white'
                                 }),
                                 list : () => ({
                                     className : 'dark:bg-white dark:text-[#06b6d4] bg-white text-[#06b6d4]'
