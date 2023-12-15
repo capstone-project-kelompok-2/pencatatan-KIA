@@ -128,6 +128,8 @@
     {
       "id": "2154b056-7631-48b8-9fad-da25482e1cf9",
       "NIK": 1,
+      "namaIbu": "dewi",
+      "namaBayi": "Gojo Satoru",
       "tanggal": "15/12/2023",
       "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
       "penyakit": "demam",
@@ -136,12 +138,58 @@
     },
     {
       "id": "4fe7905e-5835-461f-96b6-b3f3ba003ed3",
+      "NIK": 2,
+      "namaIbu": "rogue",
+      "namaBayi": "ace",
       "tanggal": "15/12/2023",
+      "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227",
       "penyakit": "ads",
       "rujukan": "asd",
+      "keterangan": "asd"
+    },
+    {
+      "id": "3505d807-c5bb-4b54-be14-e4fda79c4075",
+      "NIK": 1,
+      "namaIbu": "dewi",
+      "namaBayi": "Gojo Satoru",
+      "tanggal": "15/12/2023",
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
+      "penyakit": "asd",
+      "rujukan": "asd",
+      "keterangan": "asd"
+    },
+    {
+      "id": "e9c91f64-d1e6-42f5-9ff1-1a1982702777",
+      "tanggal": "16/12/2023",
+      "penyakit": "asdas",
+      "rujukan": "asd",
       "keterangan": "asd",
-      "NIK": 2,
-      "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
+      "NIK": 1,
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
+      "namaIbu": "dewi",
+      "namaBayi": "Gojo Satoru"
+    },
+    {
+      "id": "6da41cef-d176-4485-8d26-02b9b157795a",
+      "tanggal": "17/12/2023",
+      "penyakit": "ad",
+      "rujukan": "asd",
+      "keterangan": "asd",
+      "NIK": 1,
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
+      "namaIbu": "dewi",
+      "namaBayi": "Gojo Satoru"
+    },
+    {
+      "id": "a5fc4865-a419-4f68-94a3-1f3d44b5fe99",
+      "tanggal": "15/12/2023",
+      "penyakit": "sad",
+      "rujukan": "asd",
+      "keterangan": "asd",
+      "NIK": 1,
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
+      "namaIbu": "dewi",
+      "namaBayi": "Gojo Satoru"
     }
   ]
 }

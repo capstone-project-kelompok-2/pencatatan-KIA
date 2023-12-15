@@ -29,7 +29,7 @@ const Login = () => {
         if (user) {
             console.log('berhasil login');
             localStorage.setItem('user', JSON.stringify(user));
-            window.location.href = '/';
+            window.location.href = '/home';
         } else {
             console.log('gagal login');
             LoginFailed();

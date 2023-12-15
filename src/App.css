@@ -136,20 +136,39 @@ text-align: left;
 }
 
 
-/* animasi */
-@keyframes fadeIn {
-    from {
-    opacity: 0;
-    transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
+
+
+
+.b-to-dashboard{
+    font-size: 20px;
 }
-.animate-fadeIn {
-    animation: fadeIn 0.5s ease-in-out;
+
+#inputDropdown {
+    color : #06b6d4;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+}
+#itemDropdown {
+    color : #06b6d4;
+    background-color: white;
+}
+
+#itemDropdown:hover {
+    color : white;
+    background-color: #06b6d4;
+}
+
+#listDropdown {
+    color : #06b6d4;
+    background-color: white;
+}
+
+#rootDropdown {
+    color : #06b6d4;
+    background-color: white;
 }
 
 
+#triggerDropdown {
+    color : white;
+}
