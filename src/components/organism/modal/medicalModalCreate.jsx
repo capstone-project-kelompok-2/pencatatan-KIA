@@ -9,6 +9,7 @@
     import ErrorFieldText from '../../atom/errorFieldText';
 
 
+
     const MedicalModalCreate = ({ setVisible, show, visible, parentId, triggerUpdate }) => {
         const { control, handleSubmit, getValues, formState: { errors } } = useForm();
         const onSubmit = data => {
@@ -93,6 +94,7 @@
                                 <>
                                 <InputText
                                     id="penyakit"
+
                                     className='border-primary dark:border-primary border-2 rounded-lg'
                                     value={field.value}
                                     onChange={(e) => field.onChange(e.target.value)}
@@ -125,7 +127,9 @@
                                 <>
                                 <InputTextarea
                                     id="rujukan"
+
                                     className='border-primary dark:border-primary border-2 rounded-lg'
+
                                     value={field.value}
                                     onChange={(e) => field.onChange(e.target.value)}
                                     
@@ -156,6 +160,7 @@
                                 <>
                                 <InputTextarea
                                     id="keterangan"
+
                                     className='border-primary dark:border-primary border-2 rounded-lg'
                                     value={field.value}
                                     onChange={(e) => field.onChange(e.target.value)}

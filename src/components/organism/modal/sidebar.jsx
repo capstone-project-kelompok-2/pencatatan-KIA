@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Sidebar } from "primereact/sidebar";
-import Button from "../atom/button"
+import Button from "../../atom/button"
 const SidebarCoomponent = ({ isSidebarVisible, hideSidebar, userLogin, handleLogout, showInfo }) => {
     return(
         <Sidebar visible={isSidebarVisible} onHide={hideSidebar} style={{backgroundColor : 'white'}}>

@@ -1,4 +1,4 @@
-    import { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
     import { useNavigate } from "react-router-dom"
     import axios from "axios"
     import Swal from 'sweetalert2'
@@ -9,10 +9,9 @@
     import NavbarLogo from "../atom/Navbar/navbarLogo"
     import SearchForm from "../atom/searchForm"
     import InfoKaderModal from "../molecules/infoKaderModal";
-    import SidebarCoomponent from "../organism/sidebar"
+    import SidebarCoomponent from "../organism/modal/sidebar"
     import { motion } from "framer-motion"
     import { handleCardAnimation } from "../../utils/motion"
-import { classNames } from "primereact/utils"
     const Dashboard = () => {
         const navigate = useNavigate();
         const [userLogin, setUserLogin] = useState(JSON.parse(localStorage.getItem("user")));
@@ -67,9 +66,9 @@ import { classNames } from "primereact/utils"
                 cancelButtonText: "Batal",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.get(`http://localhost:3000/guest/${id}`)
+                    axios.get("http://localhost:3000/guest/${id}")
                         .then((res) => {
-                            axios.delete(`http://localhost:3000/guest/${id}`)
+                            axios.delete("http://localhost:3000/guest/${id}")
                             .then(() => {
                                 //ambil data tka berdasarkan NIK dari guest
                                         axios.get(`http://localhost:3000/tka?NIK=${res.data.NIK}`)
@@ -118,11 +117,11 @@ import { classNames } from "primereact/utils"
             
         const handleEdit = (id) => {
             console.log(id);
-            navigate(`/edit/${id}`)
+            navigate("/edit/${id}")
         }
 
         const handleDetail = (id) => {
-            navigate(`/detail/${id}`)
+            navigate("/detail/${id}")
         }
 
         const handleSearch = (event) => {
