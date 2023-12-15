@@ -122,6 +122,18 @@
       "KBM": 0,
       "statusKenaikan": "N",
       "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
+    },
+    {
+      "id": "98448c08-0ce6-4ac8-a498-5a70a5e1f098",
+      "NIK": 1,
+      "namaIbu": "dewi",
+      "tanggal": "14/4/2024",
+      "umur": 4,
+      "tinggiBadan": 70,
+      "beratBadan": 6,
+      "KBM": 600,
+      "statusKenaikan": "N",
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3"
     }
   ],
   "medical": [

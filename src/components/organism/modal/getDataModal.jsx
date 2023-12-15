@@ -231,12 +231,20 @@ const GetDataModal = ({ visible, onHide }) => {
                             inputStyle={{borderColor: '#06b6d4'}}
                             pt={{
                                 input: {
-                                    root: { className: 'border-2 border-primary dark:bg-white dark:text-primary text-primary font-semibold' },
+                                    root: { id : 'input-calendar',className: 'border-2 border-primary dark:bg-white dark:text-primary text-primary font-semibold' },
                                 },
                             }}
                         />
-                        <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportToPDF} className="p-button-primary" style={{margin : '5px'}} />
-                        <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportToExcel} className="p-button-success" style={{ margin: '5px' }} />
+                        <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportToPDF} className="p-button-primary" style={{margin : '5px'}} 
+                        pt={{
+                            root : {className : 'dark:bg-white dark:text-primary text-primary font-semibold border-2 border-primary hover:bg-primary hover:text-white'},
+                        }}
+                        />
+                        <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportToExcel} className="p-button-success" style={{ margin: '5px' }} 
+                        pt={{
+                            root : {className : 'dark:bg-white dark:text-primary text-primary font-semibold border-2 border-primary hover:bg-primary hover:text-white'},
+                        }}
+                        />
                     </div>
                 </div>
                 </AccordionTab>
@@ -267,12 +275,20 @@ const GetDataModal = ({ visible, onHide }) => {
                         inputStyle={{borderColor: '#06b6d4'}}
                         pt={{
                             input: {
-                                root: { className: 'border-2 border-primary dark:bg-white dark:text-primary text-primary font-semibold' },
+                                root: {id : 'input-calendar', className: 'border-2 border-primary dark:bg-white dark:text-primary text-primary font-semibold' },
                             },
                         }}
                     />
-                    <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportToPDFPenyakit} className="p-button-primary" style={{margin : '5px'}} />
-                    <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportToExcelPenyakit} className="p-button-success" style={{ margin: '5px' }} />
+                    <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportToPDFPenyakit} className="p-button-primary" style={{margin : '5px'}} 
+                        pt={{
+                            root : {className : 'dark:bg-white dark:text-primary text-primary font-semibold border-2 border-primary hover:bg-primary hover:text-white'},
+                        }}
+                    />
+                    <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportToExcelPenyakit} className="p-button-success" style={{ margin: '5px' }} 
+                        pt={{
+                            root : {className : 'dark:bg-white dark:text-primary text-primary font-semibold border-2 border-primary hover:bg-primary hover:text-white'},
+                        }}
+                    />
                 </div>
                 </div>
                 </AccordionTab>
@@ -286,8 +302,16 @@ const GetDataModal = ({ visible, onHide }) => {
                         }),
                     }}
                 >
-                    <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportAllDataToPDFTKA} className="p-button-primary" style={{margin : '5px'}} />
-                    <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportAllDataToExcellTKA} className="p-button-success" style={{ margin: '5px' }} />
+                    <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportAllDataToPDFTKA} className="p-button-primary" style={{margin : '5px'}} 
+                        pt={{
+                            root : {className : 'dark:bg-white dark:text-primary text-primary font-semibold border-2 border-primary hover:bg-primary hover:text-white'},
+                        }}
+                    />
+                    <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportAllDataToExcellTKA} className="p-button-success" style={{ margin: '5px' }} 
+                        pt={{
+                            root : {className : 'dark:bg-white dark:text-primary text-primary font-semibold border-2 border-primary hover:bg-primary hover:text-white'},
+                        }}
+                    />
                 </AccordionTab>
                 <AccordionTab header="ambil semua data riwayat penyakit anak"
                     pt={{
@@ -299,13 +323,25 @@ const GetDataModal = ({ visible, onHide }) => {
                         }),
                     }}
                 >
-                    <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportAllDataToPDFPenyakit} className="p-button-primary" style={{margin : '5px'}} />
-                    <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportAllDataToExcellPenyakit} className="p-button-success" style={{ margin: '5px' }} />
+                    <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportAllDataToPDFPenyakit} className="p-button-primary" style={{margin : '5px'}} 
+                        pt={{
+                            root : {className : 'dark:bg-white dark:text-primary text-primary font-semibold border-2 border-primary hover:bg-primary hover:text-white'},
+                        }}
+                    />
+                    <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportAllDataToExcellPenyakit} className="p-button-success" style={{ margin: '5px' }} 
+                        pt={{
+                            root : {className : 'dark:bg-white dark:text-primary text-primary font-semibold border-2 border-primary hover:bg-primary hover:text-white'},
+                        }}
+                    />
                 </AccordionTab>
             </Accordion>
         </div>
             <div className='flex justify-end items-end mt-10'>
-                <Button label="Close" icon="pi pi-times" onClick={onHide} className="p-button-text" />  
+                <Button label="Close" icon="pi pi-times" onClick={onHide} className="p-button-text" 
+                pt={{
+                    root : {className : 'dark:bg-white dark:text-primary text-primary font-semibold border-2 border-primary hover:bg-red-500 dark:hover:bg-red-500 hover:dark:border-0 hover:text-white'},
+                }}
+                />  
             </div>
 
         </Dialog>

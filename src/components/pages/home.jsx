@@ -138,15 +138,19 @@ const HomePage = () => {
                         transition = {{duration : 0.8}}
 
                          className="content text-justify">
+                            <p>
                             Aplikasi berbasis website yang membantu para kader untuk meningkatkan 
                             akurasi pencatatan dan rekapitulasi data timbang dan perkembangan anak.
-                            <br/>
-                            <br/>
-                            Tujuan dari aplikasi Posyandu Sehat adalah mempermudah akses dan penggunaan sistem pencatatan bagi kader Posyandu, 
+                            
+                            </p>
+                            <br />
+                            <p>
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Tujuan dari aplikasi Posyandu Sehat adalah mempermudah akses dan penggunaan sistem pencatatan bagi kader Posyandu, 
                             sehingga kegiatan menimbang saat Posyandu bisa lebih efektif. 
                             Kemudian, data yang tercatat dapat disimpan dalam format file Excel yang dapat diunduh dan dicetak, 
                             terutama saat digunakan sebagai pelaporan 
                             dan mengurangi biaya pendataan manual dengan kertas serta meningkatkan efisiensi dalam memberikan pelayanan kesehatan.
+                            </p>
                         </motion.h1>
                     </div>
                     <motion.img
