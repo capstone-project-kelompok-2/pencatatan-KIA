@@ -122,18 +122,26 @@ const ChartPage = () => {
                             optionLabel="name" 
                             placeholder="Pilih Tipe Chart" 
                             className="w-full md:w-14rem text-primary" 
-                            style={{backgroundColor: 'white', color: '#06b6d4', borderColor: '#06b6d4', borderWidth: '2px'}}
+                            style={{backgroundColor: '#06b6d4', color : 'white', borderColor: '#06b6d4', borderWidth: '2px', fontWeight: 'bold'}}
                             pt = {{
+                                root : () => ({
+                                    id : 'rootDropdown',
+                                }),
                                 input : () => ({
-                                    className : 'dark:text-[#06b6d4] dark:text-primary text-[#06b6d4] bg-white font-semibold'
+                                    id : 'inputDropdown',
+                                    className : ''
                                 }),
                                 item : () => ({
-                                    className : 'dark:bg-white dark:text-[#06b6d4] dark:text-primary text-[#06b6d4] font-normal hover:bg-primary hover:dark:bg-primary hover:text-white'
+                                    id : 'itemDropdown',
+                                    className : ''
                                 }),
                                 list : () => ({
-                                    className : 'dark:bg-white dark:text-[#06b6d4] bg-white text-[#06b6d4]'
-                                })
-
+                                    id : 'listDropdown',
+                                    className : ''
+                                }),
+                                trigger : () => ({
+                                    id : 'triggerDropdown',
+                                }),
                             }}
                         />
 

@@ -25,7 +25,10 @@
                     ...data,
                     tanggal: formattedDate,
                     NIK : parentId.NIK,
-                    parentId: parentId.id
+                    parentId: parentId.id,
+                    namaIbu : parentId.namaIbu,
+                    namaBayi : parentId.bayi.namaBayi
+
                 }
 
                 console.log(medicalData);

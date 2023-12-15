@@ -25,6 +25,8 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
             const medicalEdit = {
                 id: data.id,
                 NIK: parentId.NIK,
+                namaIbu: parentId.namaIbu,
+                namaBayi: parentId.bayi.namaBayi,
                 tanggal: formattedDate,
                 parentId: id,
                 penyakit: data.penyakit,

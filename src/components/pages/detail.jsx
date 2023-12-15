@@ -44,7 +44,7 @@ import useParentStore from "../store/useParentStore";
         setParentStore(parentBio);
         setInfoVisible(true);
     }
-
+    console.log(id);
     const show = () => {
         toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: 'data berhasil dibuat' });
     };

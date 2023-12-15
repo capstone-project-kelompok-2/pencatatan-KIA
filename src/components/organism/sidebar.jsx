@@ -1,10 +1,24 @@
 import { motion } from "framer-motion";
 import { Sidebar } from "primereact/sidebar";
-import Button from "../../atom/button"
+import Button from "../atom/button"
+import { useNavigate } from "react-router-dom";
 const SidebarCoomponent = ({ isSidebarVisible, hideSidebar, userLogin, handleLogout, showInfo }) => {
+    const navigate = useNavigate();
     return(
         <Sidebar visible={isSidebarVisible} onHide={hideSidebar} style={{backgroundColor : 'white'}}>
-            <div className="p-4 flex flex-col">
+            <div className="p-4 flex flex-col justify-center items-center">
+                <motion.button
+                initial={{ x: "-100%" }}
+                animate={{ x: 0 }}
+                transition={{ duration: 0.5 }}
+                whileHover={{ scale: 1.1 }}
+                onClick={() => navigate('/home')}
+
+                className="bg-primary mb-[100px] flex justify-center items-center w-36 h-10 rounded-lg text-white"
+                >
+
+                    <p className="font-semibold">Home <i className="fa-solid fa-house px-1"></i></p>
+                </motion.button>
                 <div className="flex justify-center items-center mb-5 flex-col">
                     <motion.img 
                     src="./src/assets/img/pngwing1.png" alt="" 
@@ -28,4 +42,4 @@ const SidebarCoomponent = ({ isSidebarVisible, hideSidebar, userLogin, handleLog
     )
 }
 
-export default SidebarCoomponent;
+export default SidebarCoomponent
