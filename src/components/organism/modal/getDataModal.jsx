@@ -193,12 +193,30 @@ const GetDataModal = ({ visible, onHide }) => {
 
 
     return (
-        <Dialog header="Get Data Modal" visible={visible} style={{ width: '55vw' }} onHide={onHide}>
+        <Dialog header="Get Data Modal" visible={visible} style={{ width: '55vw' }} onHide={onHide}
+        pt={{
+           header : () => ({
+                id : 'modal-header',
+           }),
+           content : () => ({
+                id : 'modal-content',
+           }),
+        }}
+        >
             
             <div className="card">
             <Accordion 
              style={{borderColor : '#06b6d4', border : '2px'}}>
-                <AccordionTab header="Ambil data Tumbuh Kembang Anak berdasarkan tanggal" className='hover:dark:text-white'>
+                <AccordionTab header="Ambil data Tumbuh Kembang Anak berdasarkan tanggal" className='hover:dark:text-white'
+                    pt={{
+                        headerAction : () => ({
+                            id : 'header-action-accordion',
+                        }),
+                        content : () => ({
+                            id : 'content-accordion',
+                        }),
+                    }}
+                >
                 <div className="p-fluid">
                     <div className="p-field">
                         <label htmlFor="selectedDate">Pilih Tanggal : </label>
@@ -209,14 +227,32 @@ const GetDataModal = ({ visible, onHide }) => {
                             onChange={(e) => setSelectedDate(e.value)}
                             showIcon
                             dateFormat="dd/mm/yy"
-                            style={{margin : '5px 5px 5px 5px'}}
+                            style={{margin : '5px 5px 5px 5px', borderColor: '#06b6d4'}}
+                            inputStyle={{borderColor: '#06b6d4'}}
+                            pt={{
+                                input: {
+                                    root: { className: 'border-2 border-primary dark:bg-white dark:text-primary text-primary font-semibold' },
+                                },
+                            }}
                         />
                         <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportToPDF} className="p-button-primary" style={{margin : '5px'}} />
                         <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportToExcel} className="p-button-success" style={{ margin: '5px' }} />
                     </div>
                 </div>
                 </AccordionTab>
-                <AccordionTab header="Ambil data riwayat penyakit anak berdasarkan tanggal">
+                <AccordionTab header="Ambil data riwayat penyakit anak berdasarkan tanggal"
+                pt={{
+                    headerAction : () => ({
+                        id : 'header-action-accordion',
+                    }),
+                    toggleableContent : () => ({
+                        id : 'toggleable-content-accordion',
+                    }),
+                    content : () => ({
+                        id : 'content-accordion',
+                    }),
+                }}
+                >
                 <div className="p-fluid">
                 <div className="p-field">
                     <label htmlFor="selectedDate">Pilih Tanggal : </label>
@@ -229,17 +265,40 @@ const GetDataModal = ({ visible, onHide }) => {
                         dateFormat="dd/mm/yy"
                         style={{margin : '5px 5px 5px 5px'}}
                         inputStyle={{borderColor: '#06b6d4'}}
+                        pt={{
+                            input: {
+                                root: { className: 'border-2 border-primary dark:bg-white dark:text-primary text-primary font-semibold' },
+                            },
+                        }}
                     />
                     <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportToPDFPenyakit} className="p-button-primary" style={{margin : '5px'}} />
                     <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportToExcelPenyakit} className="p-button-success" style={{ margin: '5px' }} />
                 </div>
                 </div>
                 </AccordionTab>
-                <AccordionTab header="ambil semua data TKA">
+                <AccordionTab header="ambil semua data TKA"
+                    pt={{
+                        headerAction : () => ({
+                            id : 'header-action-accordion',
+                        }),
+                        content : () => ({
+                            id : 'content-accordion',
+                        }),
+                    }}
+                >
                     <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportAllDataToPDFTKA} className="p-button-primary" style={{margin : '5px'}} />
                     <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportAllDataToExcellTKA} className="p-button-success" style={{ margin: '5px' }} />
                 </AccordionTab>
-                <AccordionTab header="ambil semua data riwayat penyakit anak">
+                <AccordionTab header="ambil semua data riwayat penyakit anak"
+                    pt={{
+                        headerAction : () => ({
+                            id : 'header-action-accordion',
+                        }),
+                        content : () => ({
+                            id : 'content-accordion',
+                        }),
+                    }}
+                >
                     <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportAllDataToPDFPenyakit} className="p-button-primary" style={{margin : '5px'}} />
                     <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportAllDataToExcellPenyakit} className="p-button-success" style={{ margin: '5px' }} />
                 </AccordionTab>
