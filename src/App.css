@@ -6,6 +6,119 @@ body{
     background: linear-gradient(0deg, #010608 10%, #077da7 30%)
 }
 
+
+/* HOME */
+
+/* BACKGROUND*/
+.background-home {
+    background: linear-gradient(0deg, #c7e9ee 10%, #60c0d1 20%);
+    width: 100%;
+}
+
+.background {
+    background-color: #c7e9ee;
+    width: 100%;
+}
+
+
+/* CONTAINER */
+.info-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 0;
+}
+
+
+
+
+/* FLEX */
+.flex-container {
+    display: flex;
+    align-items: center;
+}
+.flex-content {
+    margin-left: 10px;
+}
+
+
+/* TEXT */
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+    padding-left: 40px;
+}
+
+.text-justify {
+    text-align: justify;
+    padding: 50px;
+}
+
+
+/* FONT */
+.font-App {
+    font-size: 70px;
+}
+.font-Feature {
+    font-size: 40px;
+}
+.font-right {
+    padding-left: 50px;
+}
+
+
+/* TITLE & CONTENT */
+.title {
+    /* font-size: 70px; */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.content {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+/* FLOW */
+.content-flow {
+text-align: left;
+}
+
+
+
+/* CARD */
+.card-image-about {
+    width: 40%;
+    height: 40%;
+    margin: 0 auto;
+}
+
+.card-image-feature {
+    width: 40%;
+    height: 40%;
+    margin: 20px;
+}
+
+.content-flow {
+    text-align: left;
+}
+.card-image-flow {
+    width: 40px;
+    height: auto;
+    margin-right: 20px;
+}
+
+
+.highlight {
+    color: #077da7;
+}
+
 #p-datatable{
     background-color: #fff;
     border-radius: 5px;
@@ -13,6 +126,8 @@ body{
     padding: 20px;
     margin-top: 20px;
 }
+
+
 .p-datatable-header{
     background-color: #077da7;
     color: #fff;
@@ -20,37 +135,21 @@ body{
     border-radius: 5px 5px 0 0;
 }
 
-.p-card-subtitle{
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-bottom: 10px;
-    color: #077da7;
+
+/* animasi */
+@keyframes fadeIn {
+    from {
+    opacity: 0;
+    transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+}
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Your global styles */
 
-/* Disable dark mode for PrimeReact Card component */
-.p-card {
-    background-color: #fff; /* Set a light background color */
-    color: #000; /* Set a dark text color */
-  }
-  
-  /* Optionally, you can style the card title and subtitle */
-  .p-card .p-card-title,
-  .p-card .p-card-subtitle {
-    color: #333; /* Set a color for the title and subtitle */
-  }
-  
-  /* Optionally, style other elements within the card if needed */
-  .p-card .p-card-content,
-  .p-card .p-card-footer {
-    /* Add additional styles as needed */
-  }
-
-  .awikwok {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    padding: 20px;
-    margin-top: 20px;
-  }
