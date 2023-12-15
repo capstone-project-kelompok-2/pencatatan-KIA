@@ -4,11 +4,16 @@ import { useEffect, useRef, useState } from "react";
 import MotionButton from "../motion/motionButton";
 import { Toast } from 'primereact/toast';
 import axios from "axios";
+
 import ModalRegister from "../organism/modal/modalRegister"
 import { Button } from "primereact/button";
 
+import { useNavigate } from "react-router-dom";
+
+
 
 const Login = () => {
+    const navigate = useNavigate();
     const toast = useRef(null);
     const showSuccess = () => {
       toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: 'data berhasil dibuat' });
@@ -55,8 +60,13 @@ const Login = () => {
   const controls = useAnimation();
 
   useEffect(() => {
+    //jika ada user di localstorage, maka arahkan ke halaman home
+    const user = localStorage.getItem('user');
+    if (user) {
+      navigate('/')
+    }
     controls.start({ x: 0 });
-  }, [controls]);
+  }, [controls, navigate]);
 
   const LoginFailed = () => {
     toast.current.show({ severity: 'error', summary: 'Login Failed', detail: 'Username or Password is wrong', life: 3000 });

@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Chart } from 'primereact/chart';
-import { motion, useAnimation } from 'framer-motion';
+import { Dropdown } from 'primereact/dropdown';
+import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const ChartPage = () => {
     const navigate = useNavigate();
+    const types = [
+        { name: 'line', code: 'line' },
+        { name: 'bar', code: 'bar' },
+    ]
     useEffect(() => {
         const user = localStorage.getItem("user")
+
         if (!user) {
             navigate("/login")
         }
@@ -18,6 +24,12 @@ const ChartPage = () => {
     const [chartOptions, setChartOptions] = useState({});
     const [chartType, setChartType] = useState('line');
 
+    const handleChartTypeChange = (e) => {
+        console.log(e.value.name);
+        const selectedChartType = e.value.name;
+        setChartType(selectedChartType);
+    };
+
     useEffect(() => {
         axios.get(`http://localhost:3000/TKA?parentId=${id}`)
             .then(res => {
@@ -26,6 +38,7 @@ const ChartPage = () => {
                 const tanggal = datas.map(data => data.tanggal);
                 const tinggiBadan = datas.map(data => data.tinggiBadan);
                 const beratBadan = datas.map(data => data.beratBadan);
+
 
                 const data = {
                     labels: tanggal,
@@ -92,10 +105,6 @@ const ChartPage = () => {
             });
     }, [chartType, id]);
 
-    const handleToggleChartType = () => {
-        setChartType((prevType) => (prevType === 'line' ? 'bar' : 'line'));
-    };
-
     return (
         <div className='body h-screen w-full bg-white shadow-lg flex justify-center items-center'>
             <div className="chart-container w-[90%]">
@@ -105,11 +114,29 @@ const ChartPage = () => {
                     className='hover:bg-red-500 hover:text-white hover:border-0 font-semibold p-3 mx-1 rounded-lg border-2 border-primary text-primary' onClick={() => navigate(`/detail/${id}`) }>
                         Kembali
                     </motion.button>
-                    <motion.button 
-                    whileHover={{ scale: 1.1 }}
-                    className='hover:bg-primary hover:text-white hover:border-0 border-2 border-primary text-primary font-semibold p-3 mx-1 rounded-lg ' onClick={handleToggleChartType}>
-                        Switch type
-                    </motion.button>
+
+                    <Dropdown 
+                            value={chartType}
+                            onChange={handleChartTypeChange}
+                            options={types} 
+                            optionLabel="name" 
+                            placeholder="Pilih Tipe Chart" 
+                            className="w-full md:w-14rem text-primary" 
+                            style={{backgroundColor: 'white', color: '#06b6d4', borderColor: '#06b6d4', borderWidth: '2px'}}
+                            pt = {{
+                                input : () => ({
+                                    className : 'dark:text-[#06b6d4] text-[#06b6d4] bg-white font-semibold'
+                                }),
+                                item : () => ({
+                                    className : 'dark:bg-white dark:text-[#06b6d4] text-[#06b6d4] font-normal hover:bg-primary hover:dark:bg-primary hover:text-white'
+                                }),
+                                list : () => ({
+                                    className : 'dark:bg-white dark:text-[#06b6d4] bg-white text-[#06b6d4]'
+                                })
+
+                            }}
+                        />
+
                 </div>
                 {chartData.labels && (
                     <motion.div
@@ -118,6 +145,7 @@ const ChartPage = () => {
                     animate={{ x: 0 }}
                     transition={{ duration: 0.8 }}
                     className="chart"
+
                 >
                     <Chart type={chartType} data={chartData} options={chartOptions} />
                 </motion.div>

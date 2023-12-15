@@ -38,9 +38,9 @@ const features = [
 ];
 
 const workFlow = [
-    {
-        title: "Alur Penggunaan Aplikasi"
-    },
+    // {
+    //     title: "Alur Penggunaan Aplikasi"
+    // },
     {
         image: "src/assets/img/home/login.png",
         content: "Masuk ke halaman website, temui tampilan ini dan silahkan login dengan memasukkan 'USERNAME' dan 'PASSWORD'. Jika belum memiliki akun, silahkan pilih link 'DAFTAR'"
@@ -74,6 +74,9 @@ const workFlow = [
         content: "Pada halaman view juga terdapat bagian yang dapat digunakan untuk mengisi informasi tumbuh kembang anak. Pilih tombol 'KESEHATAN' kemudian Anda bisa mengisi apa saja kondisi yang terjadi pada anak"
     },
 ];
+
+
+
 
 const HomePage = () => {
     const renderAppInfo = () => {
@@ -175,6 +178,15 @@ const HomePage = () => {
         );
     };
 
+    const renderFooter = () => {
+        return (
+            <footer className="footer background-home">
+                <div className="footer-content text-center">
+                    <p>© {new Date().getFullYear()} Posyandu Sehat. All Rights Reserved.</p>
+                </div>
+            </footer>
+        );  
+    };
     
 
     
@@ -187,6 +199,7 @@ const HomePage = () => {
         {renderAboutInfo()}
         {renderFeatures()}
         {renderWorkFlow()}
+        {renderFooter()}
        </div>
 
     

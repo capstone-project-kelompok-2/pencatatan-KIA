@@ -9,7 +9,7 @@
     import ErrorFieldText from '../../atom/errorFieldText';
 
 
-    const MedicalModalCreate = ({ setVisible, show, visible, parentId }) => {
+    const MedicalModalCreate = ({ setVisible, show, visible, parentId, triggerUpdate }) => {
         const { control, handleSubmit, getValues, formState: { errors } } = useForm();
         const onSubmit = data => {
             axios.get(`http://localhost:3000/medical?parentId=${parentId.id}`)
@@ -37,10 +37,8 @@
                     console.log(err);
                 })
                 setVisible(false)
+                triggerUpdate();
                 show();
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
             })
         }
         return (
@@ -57,7 +55,7 @@
                     </td>
                     <td>:</td>
                     <td>
-                        <div className="mx-[-10px]">
+                        <div className="mx-[10px]">
                         <Controller
                             name="tanggal"
                             control={control}
@@ -66,6 +64,7 @@
                                 <Calendar
                                     showIcon
                                     id="tanggal"
+                                    className='border-primary dark:border-primary border-2 rounded-lg'
                                     value={field.value}
                                     onChange={(e) => field.onChange(e.value)}
                                     dateFormat="mm/dd/yy"
@@ -94,6 +93,7 @@
                                 <>
                                 <InputText
                                     id="penyakit"
+                                    className='border-primary dark:border-primary border-2 rounded-lg'
                                     value={field.value}
                                     onChange={(e) => field.onChange(e.target.value)}
                                     
@@ -125,6 +125,7 @@
                                 <>
                                 <InputTextarea
                                     id="rujukan"
+                                    className='border-primary dark:border-primary border-2 rounded-lg'
                                     value={field.value}
                                     onChange={(e) => field.onChange(e.target.value)}
                                     
@@ -155,6 +156,7 @@
                                 <>
                                 <InputTextarea
                                     id="keterangan"
+                                    className='border-primary dark:border-primary border-2 rounded-lg'
                                     value={field.value}
                                     onChange={(e) => field.onChange(e.target.value)}
                                     />

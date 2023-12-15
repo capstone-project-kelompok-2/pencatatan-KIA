@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, useReducer } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -17,7 +17,8 @@ import ModalEdit from "../organism/modal/modalEdit";
 import axios from "axios"
 import useTKAStore from "../store/useTKAStore";
 import useParentStore from "../store/useParentStore";
-const Detail = () => {
+    const Detail = () => {
+          
     const navigate = useNavigate()
     useEffect(() => {
         const user = localStorage.getItem("user")
@@ -26,16 +27,24 @@ const Detail = () => {
         }
     }, [navigate])
 
+    const [updateFlag, setUpdateFlag] = useState(false);
+    const triggerUpdate = () => {
+        setUpdateFlag((prev) => !prev);
+    };
+
+
     const { id } = useParams()
     const toast = useRef(null);
     const [infoVisible, setInfoVisible] = useState(false);
     const setParentStore = useParentStore((state) => state.setParentBio);
     const parentData = useParentStore((state) => state.parentBio);
+    const [visibleEdit, setVisibleEdit] = useState(false);
+    const [editData, setEditData] = useState(null);
     const showInfo = () => {
         setParentStore(parentBio);
         setInfoVisible(true);
     }
-
+    console.log(id);
     const show = () => {
         toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: 'data berhasil dibuat' });
     };
@@ -49,27 +58,28 @@ const Detail = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const responseParent = await axios.get(`http://localhost:3000/guest/${id}`);
+                const responseParent = await axios.get('http://localhost:3000/guest/${id}');
                 setParentBio(responseParent.data);
             } catch (error) {
                 console.error(error);
             }
         };
         fetchData();
-    }, [id]);
+    }, [id, setParentBio, updateFlag, visibleEdit]);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/TKA?NIK=${parentBio.NIK}`);
+                const response = await axios.get('http://localhost:3000/TKA?NIK=${parentBio.NIK}');
                 setGuestId(response.data);
+                console.log('Fetched data:', response.data);
                 setTKAData(response.data);
+                console.log('Updated state:', response.data);
             } catch (error) {
                 console.error(error);
             }
         };
         fetchData();
-    },[parentBio.NIK, setTKAData]);
-    // console.log([guestId]);
+    }, [id, parentBio.NIK, setTKAData, updateFlag, visibleEdit]);
     const [filters, setFilters] = useState({
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         tanggal: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -92,7 +102,7 @@ const Detail = () => {
 
 
     const handleDelete = async (rowData) => {
-        console.log(rowData.id);
+        // console.log(rowData.id);
         
         try {
             
@@ -105,15 +115,13 @@ const Detail = () => {
                 cancelButtonColor: "#d33",
                 confirmButtonText: "Yes, delete it!"
             }).then((result => {
-                axios.delete(`http://localhost:3000/TKA/${rowData.id}?NIK=${rowData.NIK}`)
+                axios.delete('http://localhost:3000/TKA/${rowData.id}?NIK=${rowData.NIK}')
+                triggerUpdate();
                 toast.current.show({ severity: 'success', 
                     summary: 'Data berhasil dihapus', 
                     detail: 'Data berhasil dihapus',
                     life: 3000,
                 });
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
 
             }))
         } catch (error) {
@@ -130,7 +138,7 @@ const Detail = () => {
 
     const handleExportToPDF = () => {
         const label = parentBio.namaIbu;
-        const caption = `Data TKA`;
+        const caption = 'Data TKA';
         const filename = 'data_tka.pdf';
         const columns = [
             { field: 'tanggal', header: 'Tanggal' },
@@ -190,17 +198,11 @@ const Detail = () => {
 
     const [visible, setVisible] = useState(false);
     const ModalCreateWrapper = () => (
-        <ModalCreate visible={visible} setVisible={setVisible} show={show} setStatusKenaikan={setStatusKenaikan} statusKenaikan={statusKenaikan} parentBio={parentBio} />
+        <ModalCreate visible={visible} setVisible={setVisible} show={show} triggerUpdate={triggerUpdate} setStatusKenaikan={setStatusKenaikan} statusKenaikan={statusKenaikan} parentBio={parentBio} />
       );
 
-
-
-    const [visibleEdit, setVisibleEdit] = useState(false);
-    const [editData, setEditData] = useState(null);
-    
-
-    
     const handleEdit = (rowData) => {
+        // console.log(rowData);   
         setEditData(rowData);
         setVisibleEdit(true);
     };    
@@ -218,6 +220,7 @@ const Detail = () => {
                 editData={editData}
                 setEditData={setEditData}
                 toast={toast}
+                triggerUpdate={triggerUpdate}
                 parentBio={parentBio}
             />
             <motion.div 
@@ -243,23 +246,24 @@ const Detail = () => {
                             <div className="flex gap-2">
                                 <motion.button
                                 whileHover={{ scale: 1.25 }}
-                                onClick={() => navigate(`/chart/${id}`)} 
+                                onClick={() => navigate('/chart/${id}')} 
                                 className="font-semibold border w-[140px] bg-white border-primary rounded-lg p-2 my-4 text-primary hover:border-0 hover:text-white hover:bg-primary">
                                 <i className="pi pi-chart-line mx-2"></i>
                                 Lihat Grafik</motion.button>
                                 <motion.button
                                 whileHover={{ scale: 1.25 }}
-                                onClick={() => navigate(`/medicalDetail/${id}`)} 
+                                onClick={() => navigate('/medicalDetail/${id}')} 
                                 className="font-semibold border w-[140px] bg-white border-primary rounded-lg p-2 my-4 text-primary hover:border-0 hover:text-white hover:bg-green-500">
                                 <i className="fa-solid fa-notes-medical mx-2"></i>
                                 Kesehatan</motion.button>
                             </div>
                             <motion.button
                             whileHover={{ scale: 1.25 }}
-                            onClick={() => navigate(`/`)} 
+                            onClick={() => navigate('/')} 
                             className="w-[140px] font-semibold border bg-white border-primary rounded-lg p-2 text-primary hover:border-0 hover:text-white hover:bg-red-500">
                             <i className="pi pi-backward mx-2"></i>
-                            Kembali</motion.button>
+                            Kembali
+                        </motion.button>
                         </div>
                     </div>
 
@@ -275,26 +279,25 @@ const Detail = () => {
                             filterDisplay="row"
                             globalFilterFields={['tanggal', 'umur', 'tinggiBadan', 'beratBadan', 'KBM', 'statusstatusKenaikan']}
                             emptyMessage={<span className='text-black font-semibold'>Data Kosong</span>}
-                            className="bg-gray-100 font-semibold shadow-xl"
                            >
                             <Column
                                 field="no"
                                 header="No"
                                 style={{ width: '5%' }}
-                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center'  }}
+                                headerStyle={{  textAlign: 'center', border: 'none' }}
                                 bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
-                                className="bg-gray-100 font-semibold"
+                                className="bg-gray-100 font-semibold "
                                 body={(rowData, { rowIndex }) => renderNoColumn(rowData, rowIndex)}
                             ></Column>
                             <Column field="tanggal" header="Tanggal" 
                                 style={{ width: '25%' }}
-                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center', }}
+                                headerStyle={{  textAlign: 'center', border: 'none' }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 className="bg-gray-100 font-semibold "
                             ></Column>
                             <Column field="umur" header="Umur" 
                                 style={{ width: '25%' }} 
-                                headerStyle={{ backgroundColor: 'gray', color: 'white'  }}
+                                headerStyle={{   border: 'none'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 body={(rowData) => <span>{rowData.umur} bulan</span>} 
                                 className="bg-gray-100 font-semibold"
@@ -302,33 +305,33 @@ const Detail = () => {
                             <Column field="tinggiBadan" header="Tinggi Badan" 
                                 className="bg-gray-100 font-semibold"
                                 style={{ width: '25%' }} 
-                                headerStyle={{ backgroundColor: 'gray', color: 'white'  }}
+                                headerStyle={{   border: 'none'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 body={(rowData) => <span>{rowData.tinggiBadan} cm</span>} />
                                 
                             <Column field="beratBadan" header="Berat Badan" 
                                 style={{ width: '25%' }} 
                                 className="bg-gray-100 font-semibold"
-                                headerStyle={{ backgroundColor: 'gray', color: 'white'  }}
+                                headerStyle={{   border: 'none'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 body={(rowData) => <span>{rowData.beratBadan} kg</span>}>
                             </Column>
                             <Column field="KBM" header="Kenaikan BB minimal" 
                                 className="bg-gray-100 font-semibold"
-                                headerStyle={{ backgroundColor: 'gray', color: 'white', textAlign: 'center'  }}
+                                headerStyle={{  textAlign: 'center',  border: 'none'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 style={{ width: '25%' }}
                                 body={(rowData) => <span>{rowData.KBM} gr</span>}>    
                             </Column>
                             <Column field="statusKenaikan" header="N/T" 
                                 className="bg-gray-100 font-semibold "
-                                headerStyle={{ backgroundColor: 'gray', color: 'white'  }}
+                                headerStyle={{   border: 'none'  }}
                                 bodyStyle={{ textAlign: 'center', border : 'none', borderColor : '#000', color : 'black' }}
                                 style={{ width: '25%' }}>
                             </Column>
                             <Column field="action" header="Action"
                                 style={{ width: '25%' }}
-                                headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                                headerStyle={{   border: 'none' }}
                                 bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000' }}
                                 body={actionTemplate}
                                 className="bg-gray-100 font-semibold"

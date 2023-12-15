@@ -9,11 +9,11 @@ import ErrorFieldText from "../../atom/errorFieldText";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, parentBio}) => {
+const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, parentBio, triggerUpdate}) => {
     const { control, handleSubmit, setValue, getValues, formState: { errors } } = useForm();
     const { id } = useParams();
     const onEditSubmit = (data) => {
-        console.log(data);
+        // console.log(data);
         axios.get(`http://localhost:3000/TKA?NIK=${parentBio.NIK}`)
         .then(res => {
             // console.log(res.data.length);
@@ -23,7 +23,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
             if(lastData === undefined){
                 lastData = res.data[dataIndex]
                 const selBeratBadan = data.beratBadan - 0;
-                console.log(selBeratBadan);
+                // console.log(selBeratBadan);
                 let status = '';
                 let dataBeratBadan = selBeratBadan*1000;
                 if(dataBeratBadan < data.KBM){
@@ -49,9 +49,9 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                     statusKenaikan: status,
                     parentId: id
                 };
-                console.log(newData);
                 
                 try{
+                    // triggerUpdate();
                     setVisibleEdit(false);
                     Swal.fire({
                         title: "Perhatian!",
@@ -66,8 +66,8 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                         if(result.isConfirmed){
                             axios.put(`http://localhost:3000/TKA/${data.id}`, newData)
                             .then((res) => {
+                                triggerUpdate();
                                 toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Data Updated', life: 3000 });
-                                window.location.reload();
                             })
                         }else{
                             setVisibleEdit(true);
@@ -82,7 +82,6 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
             lastData = res.data[dataIndex-1];
             const selBeratBadan = data.beratBadan - lastData.beratBadan;
             
-            console.log(selBeratBadan);
             let status = '';
             let dataBeratBadan = selBeratBadan*1000;
             if(dataBeratBadan < data.KBM){
@@ -107,8 +106,9 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                 statusKenaikan: status,
                 parentId: id
             };
-            console.log(newData);
+            // console.log(newData);
             try{
+                // triggerUpdate();
                 setVisibleEdit(false);
                 Swal.fire({
                     title: "Perhatian!",
@@ -123,8 +123,8 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                     if(result.isConfirmed){
                         axios.put(`http://localhost:3000/TKA/${data.id}`, newData)
                         .then((res) => {
+                            triggerUpdate();
                             toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Data Updated', life: 3000 });
-                            window.location.reload();
                         })
                     }else{
                         setVisibleEdit(true);
@@ -141,19 +141,30 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
     useEffect(() => {
         if (editData) {
             // console.log('Edit Data:', editData);
+            const dateString = editData.tanggal;
+
+            const [day, month, year] = dateString.split('/');
+
+            const dateObject = new Date(`${year}-${month}-${day}`);
+
+            console.log(dateObject);
+
             setValue('id', editData.id);
             setValue('userId', editData.userId);
             setValue('namaIbu', editData.namaIbu);
             setValue('NIK', editData.NIK);
-            setValue('tanggal', editData.tanggal);
+            setValue('tanggal', dateObject);
             setValue('umur', editData.umur);
             setValue('tinggiBadan', editData.tinggiBadan);
             setValue('beratBadan', editData.beratBadan);
             setValue('KBM', editData.KBM);
             setValue('status', editData.statusKenaikan);
         }
+        
     }, [editData, setValue]);
     // console.log(editData);
+
+    // console.log(new Date(editData? editData.tanggal : null));
 
     return (
         <div>
@@ -166,6 +177,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                 onHide={() => {
                     setVisibleEdit(false);
                     setEditData(null);
+                    // console.log(editData);
                 }}
             >
                 <form onSubmit={handleSubmit(onEditSubmit)} style={{ padding: '5%' }}>
@@ -179,7 +191,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                                 </td>
                                 <td>:</td>
                                 <td>
-                                <div className="mx-[-10px]">
+                                <div className="mx-[10px]">
                                     <Controller
                                         name="tanggal"
                                         control={control}
@@ -187,6 +199,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                                         render={({ field }) => (
                                             <Calendar
                                                 showIcon
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 id="tanggal"
                                                 value={field.value}
                                                 onChange={(e) => field.onChange(e.value)}
@@ -216,6 +229,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                                             <>
                                             <InputNumber
                                                 id="umur"
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onValueChange={(e) => field.onChange(e.value)}
                                                 />
@@ -245,6 +259,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                                             <>
                                             <InputNumber
                                                 id="tinggiBadan"
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onValueChange={(e) => field.onChange(e.value)}
                                                 />
@@ -275,6 +290,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                                             <InputNumber
                                                 minFractionDigits={1}
                                                 id="beratBadan"
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onValueChange={(e) => field.onChange(e.value)}
                                                 />
@@ -306,6 +322,7 @@ const ModalEdit = ({visibleEdit, setVisibleEdit, editData, setEditData, toast, p
                                             <InputNumber
                                                 disabled
                                                 id="KBM"
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onValueChange={(e) => field.onChange(e.value)}
                                                 />
