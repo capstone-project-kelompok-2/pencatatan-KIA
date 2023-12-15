@@ -109,8 +109,8 @@ text-align: left;
     text-align: left;
 }
 .card-image-flow {
-    width: 40px;
-    height: auto;
+    width: 30%;
+    height: 30%;
     margin-right: 20px;
 }
 
@@ -118,6 +118,27 @@ text-align: left;
 .highlight {
     color: #077da7;
 }
+
+
+/* FOOTER */
+.footer {
+    background: linear-gradient(0deg, #c7e9ee 10%, #60c0d1 20%);
+    padding: 20px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer {
+    margin: 5px 0;
+}
+
+
 
 #p-datatable{
     background-color: #fff;
@@ -134,6 +155,7 @@ text-align: left;
     padding: 10px;
     border-radius: 5px 5px 0 0;
 }
+
 
 
 
@@ -227,3 +249,4 @@ text-align: left;
     background-color: white;
     color: #077da7;
 }
+
