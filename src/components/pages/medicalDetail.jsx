@@ -8,12 +8,13 @@ import { motion } from 'framer-motion';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { FilterMatchMode } from 'primereact/api';
-import { exportToExcel } from "../utils/exportExcell";
-import { exportToPDF } from "../utils/exportPDF";
+import { exportToExcel } from '../../utils/exportExcell';
+import { exportToPDF } from '../../utils/exportPDF';
+
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import MedicalModalCreate from '../organism/medicalModalCreate';
-import MedicalModalEdit from '../organism/medicalModalEdit';
+import MedicalModalCreate from '../organism/modal/medicalModalCreate';
+import MedicalModalEdit from '../organism/modal/medicalModalEdit';
 const MedicalDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -196,7 +197,7 @@ const MedicalDetail = () => {
                 tableStyle={{ minWidth: '50rem', borderRadius: '10px 0 0 0', width: '100%' }}
                 paginator
                 rows={4}
-                emptyMessage="Data Kosong"
+                emptyMessage={<span className='text-black font-semibold'>Data Kosong</span>}
                 >
                     <Column 
                         field="tanggal" 

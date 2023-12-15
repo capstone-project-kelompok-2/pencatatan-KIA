@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import MotionButton from "../motion/motionButton";
 import { Toast } from 'primereact/toast';
 import axios from "axios";
-import ModalRegister from "../organism/modalRegister";
+import ModalRegister from "../organism/modal/modalRegister"
 import { Button } from "primereact/button";
 
 

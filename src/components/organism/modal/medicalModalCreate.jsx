@@ -6,7 +6,7 @@
     import { InputTextarea } from 'primereact/inputtextarea';
     import axios from 'axios';
     import { v4 as uuidv4 } from 'uuid'
-    import ErrorFieldText from '../atom/errorFieldText';
+    import ErrorFieldText from '../../atom/errorFieldText';
 
 
     const MedicalModalCreate = ({ setVisible, show, visible, parentId }) => {

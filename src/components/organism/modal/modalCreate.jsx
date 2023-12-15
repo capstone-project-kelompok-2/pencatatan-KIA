@@ -4,7 +4,7 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Calendar } from 'primereact/calendar';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import ErrorFieldText from '../atom/errorFieldText';
+import ErrorFieldText from '../../atom/errorFieldText';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid'
 const ModalCreate = ({ setVisible, show, visible, parentBio }) => {

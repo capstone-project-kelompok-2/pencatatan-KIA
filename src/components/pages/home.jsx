@@ -26,7 +26,7 @@ const features = [
         content: "Fitur yang menampilkan hasil dari data kesehatan anak yang telah dimasukkan"
     },
     {
-        image: "src/assets/img/pencatatan.jpg",
+        image: "src/assets/img/catat.png",
         title: "Pencatatan Data Timbang, Ukur, dan Perkembangan Anak",
         content: "Fitur yang digunakan sebagai pencatatan data penimbangan dan pengukuran serta hasil konsultasi tumbuh kembang anak"
     },
@@ -42,36 +42,36 @@ const workFlow = [
         title: "Alur Penggunaan Aplikasi"
     },
     {
-        image: "src/assets/img/register.jpg",
-        content: "Lakukan registrasi terlebih dahulu dengan memasukkan NIK, Username, dan Password"
+        image: "src/assets/img/home/login.png",
+        content: "Masuk ke halaman website, temui tampilan ini dan silahkan login dengan memasukkan 'USERNAME' dan 'PASSWORD'. Jika belum memiliki akun, silahkan pilih link 'DAFTAR'"
     },
     {
-        image: "src/assets/img/login.svg",
-        content: "Masukkan Username dan Password yang sudah dibuat saat registrasi "
+        image: "src/assets/img/home/daftar.png",
+        content: "Lakukan pendaftaran terlebih dahulu. Setelah selesai mengisi form pendaftaran, pilih tombol daftar"
     },
     {
-        image: "src/assets/img/utama.png",
-        content: "Anda akan diarahkan menuju halaman utama dari website yang akan berisi data informasi Ibu dan Anak. Lihat pada sebelah pojok kanan atas terdapat tombol new data, dan pilih tombol tersebut"
+        image: "src/assets/img/home/view-main.png",
+        content: "Setelah login, Anda akan diarahkan menuju halaman utama dari website yang akan berisi data informasi Ibu dan Anak. Lihat pada sebelah pojok kanan atas terdapat tombol 'NEW DATA', dan pilih tombol tersebut"
     },
     {
-        image: "src/assets/img/create-data.png",
-        content: "Setelah memilih tombol new data, maka akan diarahkan untuk mengisi data yang tertera pada form. Jika sudah yakin dengan data yang dimasukkan dapat memilih submit "
+        image: "src/assets/img/home/create-main.png",
+        content: "Setelah memilih tombol new data, maka akan diarahkan untuk mengisi data yang tertera pada form. Jika sudah yakin dengan data yang dimasukkan dapat memilih 'CREATE DATA' "
     },
     {
-        image: "src/assets/img/view.png",
-        content: "Anda akan diarahkan kembali ke halaman utama untuk melihat data informasi yang sudah dibuat tadi. Selanjutnya pilih tombol view pada data yang ingin anda masukkan informasi penimbangannya"
+        image: "src/assets/img/home/view-1.png",
+        content: "Anda akan diarahkan kembali ke halaman utama untuk melihat data informasi yang sudah dibuat. Selanjutnya pilih tombol 'VIEW' pada data yang ingin anda masukkan informasi penimbangannya"
     },
     {
-        image: "src/assets/img/create.jpeg",
-        content: "Ketika sudah memilih tombol view akan ada beberapa pilihan diatas, dan pilih tombol create data untuk memasukkan data hasil penimbangan"
+        image: "src/assets/img/home/create-view.png",
+        content: "Ketika sudah memilih tombol view akan ada beberapa pilihan diatas, selanjutnya pilih 'CREATE DATA' untuk memasukkan data hasil penimbangan"
     },
     {
-        image: "src/assets/img/edit.jpeg",
-        content: "Jika ingin melakukan perubahan, disamping kanan terdapat pilihan edit untuk melakukan perubahan data"
+        image: "src/assets/img/home/export.png",
+        content: "Pada halaman view, data juga dapat di export ke dalam PDF maupun excel"
     },
     {
-        image: "src/assets/img/edit.jpeg",
-        content: "Selain itu juga terdapat beberapa fitur seperti fitur grafik yang digunakan untuk melihat perkembangan"
+        image: "src/assets/img/home/tumbuh.png",
+        content: "Pada halaman view juga terdapat bagian yang dapat digunakan untuk mengisi informasi tumbuh kembang anak. Pilih tombol 'KESEHATAN' kemudian Anda bisa mengisi apa saja kondisi yang terjadi pada anak"
     },
 ];
 
@@ -92,7 +92,7 @@ const HomePage = () => {
 
     const renderAboutInfo =() => {
         return (
-            <div className="p-col-12 p-md-4 background-white info-container flex-container">
+            <div className="p-col-12 p-md-4 background info-container flex-container animate-fadeIn">
                 <div className="flex-container"> 
                     <div className="flex-content">
                         <h1 className="content text-justify">
@@ -116,7 +116,7 @@ const HomePage = () => {
     const renderFeatures = () => {
         return (
             <div className="p-grid">
-                <div className="p-col-12 p-md-4 background-white info-container">
+                <div className="p-col-12 p-md-4 background info-container">
                     <div className="flex-container">
                     <img src={features[0].image} alt={features[0].title} className="card-image-feature"/>
                     <div className="text-center">
@@ -126,7 +126,7 @@ const HomePage = () => {
                     </div>
                 </div>
 
-                <div className="p-col-12 p-md-4 background-white info-container">
+                <div className="p-col-12 p-md-4 background info-container">
                     <div className="flex-container">
                     <div className="text-center">
                          <hi className="title font-Feature text-left">{features[1].title}</hi>
@@ -136,7 +136,7 @@ const HomePage = () => {
                     </div>
                 </div>
 
-                <div className="p-col-12 p-md-4 background-white info-container">
+                <div className="p-col-12 p-md-4 background info-container">
                     <div className="flex-container">
                     <img src={features[2].image} alt={features[2].title} className="card-image-feature"/>
                     <div className="text-center">
@@ -150,26 +150,32 @@ const HomePage = () => {
         );
     };
 
-    
-
     const renderWorkFlow = () => {
         return (
-            <div className="p-grid">
-                {workFlow.map((steps, index) => (
-                <div key={index} className="p-col-12 p-md-4 background-white info-container">
-                    <div className="flex-container">
-                        {steps.image && (
-                            <img src={steps.image} alt={steps.content} className="card-image-flow"/>
-                        )}
-                        <div className="text-center">
-                            <p className="content">{steps.content}</p>
-                        </div>
-                    </div>
+            <div className="p-grid background">
+                <div className="p-col-12 text-center title font-Feature background">
+                    <h2>Alur Penggunaan</h2>
                 </div>
-                ))}
+                <div className="p-grid p-justify-center">
+                    {workFlow.map((step, index) => (
+                        <div key={index} className="p-col-12 p-md-6 background info-container">
+                            <div className="flex-container">
+                                {step.image && (
+                                    <img src={step.image} alt={step.content} className="card-image-flow"/>
+                                )}
+                                <div className="text-center">
+                                    <p className="content content-flow">{step.content}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
             </div>
         );
     };
+
+    
 
     
 

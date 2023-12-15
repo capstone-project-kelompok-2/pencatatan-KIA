@@ -1,7 +1,7 @@
 import { useForm, Controller } from 'react-hook-form';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import ErrorFieldText from '../atom/errorFieldText';
+import ErrorFieldText from '../../atom/errorFieldText';
 import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
 import { Password } from 'primereact/password';

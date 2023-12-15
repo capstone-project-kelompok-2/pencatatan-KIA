@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Calendar } from 'primereact/calendar';
-import ErrorFieldText from '../atom/errorFieldText';
+import ErrorFieldText from '../../atom/errorFieldText';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import Swal from 'sweetalert2';

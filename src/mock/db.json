@@ -172,6 +172,30 @@
       "beratBadan": 5,
       "statusKenaikan": "N",
       "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
+    },
+    {
+      "id": "d7a5589a-7604-408f-9f28-078641a64fa1",
+      "tanggal": "13/12/2023",
+      "umur": 0,
+      "tinggiBadan": 70,
+      "beratBadan": 2.5,
+      "statusKenaikan": "N"
+    },
+    {
+      "id": "5112befd-e1c1-4886-8ea8-7a91700b8bb8",
+      "tanggal": "13/12/2023",
+      "umur": 0,
+      "tinggiBadan": 0,
+      "beratBadan": 0,
+      "statusKenaikan": "N"
+    },
+    {
+      "id": "255f703f-3610-4781-b014-865dba9d2339",
+      "tanggal": "13/12/2023",
+      "umur": 0,
+      "tinggiBadan": 0,
+      "beratBadan": 0,
+      "statusKenaikan": "N"
     }
   ],
   "medical": [

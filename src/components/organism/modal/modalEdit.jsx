@@ -5,7 +5,7 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Calendar } from 'primereact/calendar';
 import { Button } from 'primereact/button';
 import { useParams } from "react-router-dom";
-import ErrorFieldText from "../atom/errorFieldText";
+import ErrorFieldText from "../../atom/errorFieldText";
 import axios from "axios";
 import Swal from "sweetalert2";
 
