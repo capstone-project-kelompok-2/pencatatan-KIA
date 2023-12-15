@@ -172,3 +172,44 @@ text-align: left;
 #triggerDropdown {
     color : white;
 }
+
+
+#modal-header {
+    background-color: white;
+    color: #077da7;
+}
+
+#modal-content {
+    background-color: white;
+    color: #077da7;
+}
+
+#header-action-accordion {
+    background-color: white;
+    color: #077da7;
+}
+
+#header-accordion {
+    background-color: white;
+    color: #077da7;
+}
+
+#toggleable-content-accordion {
+    background-color: white;
+    color: #077da7;
+}
+
+#content-accordion {
+    background-color: white;
+    color: #077da7;
+}
+
+#root-calendar {
+    background-color: white;
+    color: #077da7;
+}
+
+#input-calendar {
+    background-color: white;
+    color: #077da7;
+}
