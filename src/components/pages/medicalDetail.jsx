@@ -8,9 +8,7 @@ import { motion } from 'framer-motion';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { FilterMatchMode } from 'primereact/api';
-import { exportToExcel } from '../../utils/exportExcell';
-import { exportToPDF } from '../../utils/exportPDF';
-
+import { exportToPDF } from "../../utils/exportPDF";
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import MedicalModalCreate from '../organism/modal/medicalModalCreate';
@@ -24,6 +22,11 @@ const MedicalDetail = () => {
     };
     const [data, setData] = useState([]);
     const [parentId, setParentId] = useState([]);
+    const [updateFlag, setUpdateFlag] = useState(false);
+
+    const triggerUpdate = () => {
+        setUpdateFlag((prev) => !prev);
+    };
     useEffect(() => {
         axios.get(`http://localhost:3000/medical?parentId=${id}`)
             .then(res => {
@@ -32,7 +35,7 @@ const MedicalDetail = () => {
             .catch(err => {
                 console.log(err);
             })
-    }, [])
+    }, [id, updateFlag])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -44,7 +47,7 @@ const MedicalDetail = () => {
             }
         };
         fetchData();
-    }, [id]);
+    }, [id, updateFlag]);
 
     //handle function
     const handleDelete = async (rowData) => {
@@ -67,9 +70,7 @@ const MedicalDetail = () => {
                     detail: 'Data berhasil dihapus',
                     life: 3000,
                 });
-                setTimeout(() => {
-                    window.location.reload();
-                }, 1000);
+                triggerUpdate();
 
             }))
         } catch (error) {
@@ -167,7 +168,7 @@ const MedicalDetail = () => {
 
     const [visible, setVisible] = useState(false);
     const ModalCreateWrapper = () => (
-        <MedicalModalCreate visible={visible} setVisible={setVisible} show={show} parentId={parentId} />
+        <MedicalModalCreate visible={visible} setVisible={setVisible} show={show} triggerUpdate={triggerUpdate} parentId={parentId} />
         );
         
 
@@ -176,7 +177,7 @@ const MedicalDetail = () => {
         <div className="body h-screen bg-[#e5e7eb] flex justify-center items-center">
             <Toast ref={toast} />
             <ModalCreateWrapper />
-            <MedicalModalEdit visible={visibleEdit} setVisible={setVisibleEdit} show={show} editData={editData} setEditData={setEditData} toast={toast} parentId={parentId} />
+            <MedicalModalEdit visible={visibleEdit} triggerUpdate={triggerUpdate} setVisible={setVisibleEdit} show={show} editData={editData} setEditData={setEditData} toast={toast} parentId={parentId} />
             <div className="flex flex-col gap-5 justify-center items-center shadow-2xl backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl px-20">
                 <motion.p 
                 initial={{ x: "-100%" }}
@@ -203,15 +204,15 @@ const MedicalDetail = () => {
                         field="tanggal" 
                         header="Tanggal"
                         style={{ width: '25%' }}
-                        headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                        headerStyle={{ border:'none' }}
                         bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
                         className="bg-gray-100 font-semibold"
                     ></Column>
                     <Column 
                         field="penyakit" 
                         header="penyakit/Masalah"
-                        style={{ width: '25%' }}
-                        headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                        style={{ width: '25%', }}
+                        headerStyle={{ border:'none', textAlign: 'center' }}
                         bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
                         className="bg-gray-100 font-semibold"
                     ></Column>
@@ -219,7 +220,7 @@ const MedicalDetail = () => {
                         field="rujukan" 
                         header="Tindakan/Rujukan/Umpan Balik"
                         style={{ width: '25%' }}
-                        headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                        headerStyle={{ border:'none' }}
                         bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
                         className="bg-gray-100 font-semibold"
                     ></Column>
@@ -227,7 +228,7 @@ const MedicalDetail = () => {
                         field="keterangan" 
                         header="Keterangan (Nama Pemeriksa, Tempat, Pelayanan, Paraf)" 
                         style={{ width: '25%' }}
-                        headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                        headerStyle={{ border:'none' }}
                         bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
                         className="bg-gray-100 font-semibold"
                     ></Column>
@@ -236,7 +237,7 @@ const MedicalDetail = () => {
                         header="action" 
                         body={actionTemplate} 
                         style={{ width: '25%' }}
-                        headerStyle={{ backgroundColor: 'gray', color: 'white' }}
+                        headerStyle={{ border:'none' }}
                         bodyStyle={{ textAlign: 'center', border: 'none', borderColor: '#000', color: 'black' }}
                         className="bg-gray-100 font-semibold"
                     ></Column>

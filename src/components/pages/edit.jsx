@@ -43,14 +43,23 @@ const Edit = () => {
     const { id } = useParams()
     const MySwal = withReactContent(Swal)
     const {  register, handleSubmit, formState: { errors } } = useForm()
+    const [updateFlag, setUpdateFlag] = useState(false);
+
+    const triggerUpdate = () => {
+        setUpdateFlag((prev) => !prev);
+    };
     
 
     const onSubmit = data => {
         // console.log(data);
+        const day = startDate.getDate();
+        const month = startDate.getMonth() + 1;
+        const year = startDate.getFullYear();
+        const formattedDate = `${day}/${month}/${year}`;
         const updateData = {
             id : uuidv4(),
             bayi : {
-                tanggalLahir : startDate.toLocaleDateString(),
+                tanggalLahir : formattedDate,
                 namaBayi : data.namaBayi,
                 jenisKelamin : data.jenisKelamin,
             },

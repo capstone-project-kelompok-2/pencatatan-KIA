@@ -135,6 +135,7 @@ text-align: left;
     border-radius: 5px 5px 0 0;
 }
 
+
 /* animasi */
 @keyframes fadeIn {
     from {
@@ -150,3 +151,5 @@ text-align: left;
 .animate-fadeIn {
     animation: fadeIn 0.5s ease-in-out;
 }
+
+

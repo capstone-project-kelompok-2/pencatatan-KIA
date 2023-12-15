@@ -10,7 +10,8 @@ import { Dialog } from 'primereact/dialog';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, show, setEditData, toast }) => {
+
+const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, show, setEditData, toast, triggerUpdate }) => {
     const { control, handleSubmit, setValue, formState: { errors } } = useForm();
     const { id } = useParams();
 
@@ -47,7 +48,8 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                         axios.put(`http://localhost:3000/medical/${data.id}`, medicalEdit)
                         .then((res) => {
                             toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Data Updated', life: 3000 });
-                            window.location.reload();
+
+                            triggerUpdate();
                         })
                     }else{
                         setVisible(true);
@@ -61,17 +63,19 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
     };
 
     useEffect(() => {
-        const day = editData?.tanggal.split('/')[0];
-        const month = editData?.tanggal.split('/')[1];
-        const year = editData?.tanggal.split('/')[2];
-        const formattedDate = `${day}/${month}/${year}`;
+
+        
         if(editData){
-        setValue('id', editData.id);
-        setValue('NIK', editData.NIK);
-        setValue('tanggal', new Date(formattedDate));
-        setValue('penyakit', editData.penyakit);
-        setValue('rujukan', editData.rujukan);
-        setValue('keterangan', editData.keterangan);
+            const dateString = editData.tanggal;
+            const [day, month, year] = dateString.split('/');
+            const dateObject = new Date(`${year}-${month}-${day}`);
+            // console.log(dateObject);
+            setValue('id', editData.id);
+            setValue('NIK', editData.NIK);
+            setValue('tanggal', dateObject);
+            setValue('penyakit', editData.penyakit);
+            setValue('rujukan', editData.rujukan);
+            setValue('keterangan', editData.keterangan);
         }
     }, [editData, setValue]);
 
@@ -94,7 +98,8 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                             </td>
                             <td>:</td>
                             <td>
-                                <div className="mx-[-10px]">
+
+                                <div className="mx-[10px]">
                                     <Controller
                                         name="tanggal"
                                         control={control}
@@ -103,6 +108,8 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                                             <Calendar
                                                 showIcon
                                                 id="tanggal"
+
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onChange={(e) => field.onChange(e.value)}
                                                 dateFormat="dd/mm/yy"
@@ -131,6 +138,8 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                                             <>
                                             <InputText
                                                 id="penyakit"
+
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onChange={(e) => field.onChange(e.target.value)}
                                                 />
@@ -160,6 +169,8 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                                             <>
                                             <InputTextarea
                                                 id="rujukan"
+
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onChange={(e) => field.onChange(e.target.value)}
                                                 />
@@ -189,6 +200,8 @@ const MedicalModalEdit = ({ editData, onClose, visible, parentId, setVisible, sh
                                             <>
                                             <InputTextarea
                                                 id="keterangan"
+
+                                                className='border-primary dark:border-primary border-2 rounded-lg'
                                                 value={field.value}
                                                 onChange={(e) => field.onChange(e.target.value)}
                                                 />

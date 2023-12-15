@@ -5,15 +5,13 @@ import { useEffect, useState } from "react"
     import GetDataModal from "../organism/modal/getDataModal"
     import { Paginator } from 'primereact/paginator';
     import Button from "../atom/button"
-    import { Carousel } from 'primereact/carousel';
-    import { Tag } from 'primereact/tag';
-    import { Card } from 'primereact/card';
+    import CollectionCard from "../molecules/collectionCard"
     import NavbarLogo from "../atom/Navbar/navbarLogo"
     import SearchForm from "../atom/searchForm"
     import InfoKaderModal from "../molecules/infoKaderModal";
     import SidebarCoomponent from "../organism/modal/sidebar"
     import { motion } from "framer-motion"
-    import { handleCardAnimation } from "../../utils/motion" 
+    import { handleCardAnimation } from "../../utils/motion"
     const Dashboard = () => {
         const navigate = useNavigate();
         const [userLogin, setUserLogin] = useState(JSON.parse(localStorage.getItem("user")));
@@ -27,6 +25,11 @@ import { useEffect, useState } from "react"
         const [rows, setRows] = useState(3);
         const [showGetDataModal, setShowGetDataModal] = useState(false);
         const [isSidebarVisible, setSidebarVisible] = useState(false);
+        const [updateFlag, setUpdateFlag] = useState(false);
+
+        const triggerUpdate = () => {
+            setUpdateFlag((prev) => !prev);
+        };
 
         const showInfo = (position) => {
             setPosition(position);
@@ -67,13 +70,39 @@ import { useEffect, useState } from "react"
                         .then((res) => {
                             axios.delete("http://localhost:3000/guest/${id}")
                             .then(() => {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success",
-                                }).then(() => {
-                                    window.location.reload();
-                                });
+                                //ambil data tka berdasarkan NIK dari guest
+                                        axios.get(`http://localhost:3000/tka?NIK=${res.data.NIK}`)
+                                        .then((res) => {
+                                            console.log(res.data);
+                                            //hapus semua data tka berdasarkan NIK dari guest
+                                            res.data.map((tka) => {
+                                                axios.delete(`http://localhost:3000/tka/${tka.id}`)
+
+                                            });
+                                            
+                                        })
+                                        .catch((err) => {
+                                            console.log(err);
+                                        });
+                                        axios.get(`http://localhost:3000/medical?parentId=${id}`)
+                                        .then((res) => {
+                                            console.log(res.data);
+                                            //hapus semua data medical berdasarkan id dari guest
+                                            res.data.map((medical) => {
+                                                axios.delete(`http://localhost:3000/medical/${medical.id}`)
+                                            })  
+                                        })
+                                        .catch((err) => {
+                                            console.log(err);
+                                        });
+
+                                        triggerUpdate();
+                                        Swal.fire(
+                                            "Terhapus!",
+                                            "Data berhasil dihapus.",
+                                            "success"
+                                        );
+
                             })
                             .catch((err) => {
                                 console.log(err);
@@ -119,6 +148,8 @@ import { useEffect, useState } from "react"
         }
 
 
+        
+
         useEffect(() => {
             const user = localStorage.getItem("user")
             setUserLogin(JSON.parse(user))
@@ -139,7 +170,7 @@ import { useEffect, useState } from "react"
         };
     
         fetchData();
-        }, [navigate]);
+        }, [navigate, updateFlag]);
 
         const filteredGuests = guests.filter((guest) => {
             return (
@@ -151,8 +182,7 @@ import { useEffect, useState } from "react"
         });
 
         const currentItems = filteredGuests.slice(first, first + rows);
-
-        
+        const pageButtonClass = 'custom-page-button';
         
         return(
             <div className='body h-screen bg-[#e5e7eb] shadow-lg overflow-auto'>
@@ -231,6 +261,15 @@ import { useEffect, useState } from "react"
                                             className="fa-regular fa-eye mr-2 "></i>
                                             View
                                         </motion.button>
+                                        <motion.button onClick={() => handleEdit(guest.id)}
+                                        initial={{ y: "-100%" }}
+                                        animate={{ y: 0 }}
+                                        transition={{ duration: 0.5 }}
+                                        whileHover={{ scale: 1.25 }}
+                                        className='hover:border-0 bg-white w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-yellow-500 hover:text-white'><i 
+                                        className="fa-solid fa-user-pen mr-2"></i> 
+                                            Edit
+                                        </motion.button>
                                         <motion.button onClick={() => handleDelete(guest.id)} 
                                             initial={{ y: "-100%" }}
                                             animate={{ y: 0 }}
@@ -240,13 +279,7 @@ import { useEffect, useState } from "react"
                                             <i className="fa-solid fa-trash mr-2"></i> 
                                             Delete
                                         </motion.button>
-                                        <motion.button onClick={() => handleEdit(guest.id)}
-                                        initial={{ y: "-100%" }}
-                                        animate={{ y: 0 }}
-                                        transition={{ duration: 0.5 }}
-                                        whileHover={{ scale: 1.25 }}
-                                        className='hover:border-0 bg-white w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-yellow-500 hover:text-white'><i 
-                                            className="fa-solid fa-user-pen mr-2"></i> Edit</motion.button>
+
                                     </div>
                                 </div>
                             </motion.div>
@@ -262,31 +295,60 @@ import { useEffect, useState } from "react"
                                 totalRecords={filteredGuests.length}
                                 onPageChange={onPageChange}
                                 className="w-[90%] mx-auto shadow-xl"
+                                style={{backgroundColor : '#fff'}}
+                                pt={{
+                                    root : () => ({
+                                        className: 'text-primary'
+                                    }),
+                                    firstPageButton : () => ({
+                                        className: 'bg-white focus:hover:border-2 border-primary hover:scale-110'
+                                    }),
+                                    firstPageIcon : () => ({
+                                        className: 'text-primary'
+                                    }),
+                                    lastPageButton : () => ({
+                                        className: 'bg-white focus:hover:border-2 border-primary hover:scale-110'
+                                    }),
+                                    nextPageButton : () => ({
+                                        className: `bg-white focus:hover:border-2 border-primary hover:scale-110`
+                                    }),
+                                    nextPageIcon : () => ({
+                                        className: 'text-primary'
+                                    }),
+                                    lastPageIcon : () => ({
+                                        className: 'text-primary'
+                                    }),
+                                    prevPageButton : () => ({
+                                        className: 'bg-white text-primary p-4 rounded-md disabled:opacity-50 focus:hover:border-2 border-primary hover:scale-110'
+                                    }),
+                                    prevPageIcon : () => ({
+                                        className: `bg-white`
+                                    }),
+                                    pageButton : () => ({
+                                        className: `bg-white border-2 border-black ${pageButtonClass} focus:bg-primary focus:text-white focus:border-primary selected:bg-primary selected:text-white hover:bg-primary hover:text-white hover:scale-110`,
+                                    }),
+                                    pages : () => ({
+                                        className: 'text-black',
+                                        color: 'black'
+                                    }),
+
+                                }}
                             />
                 </div> 
-                <div className="w-[20%]  flex justify-start py-5">
-                    <div className="card flex justify-content-center flex-col gap-2">
-                    <Card title="Kader" subTitle="Total Kader" className="md:w-25rem shadow-xl backdrop:shadow-lg">
-                        <p className="m-0 flex items-center justify-center font-bold">
-                        <i className="fa-solid fa-user-nurse mr-3"></i>
-                           {kader ? kader.length : ''}
-                        </p>
-                    </Card>
-                    <Card title="Pasien" subTitle="Total Pasien" className="md:w-25rem">
-                        <p className="m-0 flex items-center justify-center font-bold">
-                        <i className="pi pi-users mr-3"></i>
-                           {guests ? guests.length : ''}
-                        </p>
-                    </Card>
-                    <Card title="Riwayat Penyakit" subTitle="Total Riwayat Penyakit Anak" className="md:w-25rem">
-                        <p className="m-0 flex items-center justify-center font-bold">
-                        <i className="fa-solid fa-book-medical mr-3"></i>
-                           {medical ? medical.length : ''}
-                        </p>
-                    </Card>
+                <CollectionCard guest={guests} medical={medical} kader={kader} />
+                <style>
+                    {`
+                        .${pageButtonClass} {
+                        color: #06b6d4;
+                        background-color: #fff;
+                        ::hover {
+                            color: #fff;
+                            background-color: #06b6d4;
+                        }
+                        }
+                    `}
+                </style>
 
-                    </div>
-                </div>
             </div>
             
                 

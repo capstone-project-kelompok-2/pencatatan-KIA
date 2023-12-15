@@ -1,38 +1,36 @@
 {
   "guest": [
     {
-      "id": "d0f8772c-d9ba-4625-8c29-822869e8f714",
+      "id": "d465b7fa-849f-4c6c-865f-37d484f019f3",
       "bayi": {
-        "tanggalLahir": "12/2/2023",
+        "tanggalLahir": "14/12/2023",
         "namaBayi": "Gojo Satoru",
-        "jenisKelamin": "Laki-Laki",
-        "beratBayi": "80",
-        "tinggiBayi": "6"
+        "jenisKelamin": "Laki-Laki"
       },
       "namaIbu": "dewi",
       "pekerjaanIbu": "ibu rumah tangga",
-      "NIK": 4,
+      "NIK": 1,
       "namaAyah": "naruto",
       "pekerjaanAyah": "hokage",
-      "alamat": "hidden leaf village",
-      "kecamatan": "konoha",
-      "kota": "desa api"
+      "alamat": "blok uzumaki",
+      "kecamatan": "desa api",
+      "kota": "konoha"
     },
     {
-      "id": "77ae1727-850b-4df2-a46a-7a7c924f2cf6",
+      "id": "26a9a07d-7078-4632-aaae-c606df2a2227",
       "bayi": {
-        "tanggalLahir": "12/7/2023",
-        "namaBayi": "upin",
+        "tanggalLahir": "15/12/2023",
+        "namaBayi": "ace",
         "jenisKelamin": "Laki-Laki"
       },
-      "namaIbu": "ningrum",
+      "namaIbu": "rogue",
       "pekerjaanIbu": "ibu rumah tangga",
-      "NIK": 1,
-      "namaAyah": "yanto",
-      "pekerjaanAyah": "programmer",
-      "alamat": "kampung durian runtuh",
-      "kecamatan": "boboiboy",
-      "kota": "kuala lumpur"
+      "NIK": 2,
+      "namaAyah": "roger",
+      "pekerjaanAyah": "raja bajak laut",
+      "alamat": "east blue",
+      "kecamatan": "grand line",
+      "kota": "new world"
     }
   ],
   "users": [
@@ -53,168 +51,97 @@
       "email": "salmabenazirachmad@gmail.com",
       "password": "12345",
       "noHp": "+62819732123"
+    },
+    {
+      "id": "f3f9e8f0-2515-471f-a080-333a0eb80473",
+      "namaDepan": "Krisna",
+      "namaBelakang": "Irawan",
+      "username": "Kader3",
+      "email": "krisnalavendrairawan@gmail.com",
+      "password": "12345",
+      "noHp": "+62721413132"
     }
   ],
   "TKA": [
     {
-      "id": "c015e0e7-1e3c-4b0d-8b34-a8834c9069b3",
-      "NIK": 2,
-      "namaIbu": "sad",
-      "tanggal": "12/2/2023",
-      "umur": 0,
-      "beratBadan": 0,
-      "tinggiBadan": 0,
-      "KBM": 0,
-      "statusKenaikan": "T"
-    },
-    {
-      "id": "9fc7dc86-7627-4219-a4f1-155482783416",
-      "NIK": 2,
-      "namaIbu": "dsa",
-      "tanggal": "12/2/2023",
-      "umur": 0,
-      "beratBadan": 0,
-      "tinggiBadan": 0,
-      "KBM": 0,
-      "statusKenaikan": "T"
-    },
-    {
-      "id": "656a5796-0466-4581-8bb6-9a25535c235d",
+      "id": "59aa4494-8087-4139-a955-0f687209a423",
       "NIK": 1,
-      "namaIbu": "dsadsa",
-      "tanggal": "4/12/2023",
-      "umur": 0,
-      "tinggiBadan": 50,
-      "beratBadan": 2,
-      "KBM": 0,
-      "statusKenaikan": "N",
-      "parentId": "77ae1727-850b-4df2-a46a-7a7c924f2cf6"
-    },
-    {
-      "id": "7a116dc8-66f0-40ba-841b-83a1bc9a14b4",
-      "NIK": 1,
-      "namaIbu": "dsadsa",
-      "tanggal": "4/12/2023",
-      "umur": 1,
-      "tinggiBadan": 53,
-      "beratBadan": 2.9,
-      "KBM": 800,
-      "statusKenaikan": "N",
-      "parentId": "77ae1727-850b-4df2-a46a-7a7c924f2cf6"
-    },
-    {
-      "id": "882875a8-7cba-4d65-a4b3-770496e030e8",
-      "NIK": 1,
-      "namaIbu": "dsadsa",
-      "tanggal": "4/12/2023",
-      "umur": 0,
-      "tinggiBadan": 0,
-      "beratBadan": 4,
-      "KBM": 900,
-      "statusKenaikan": "N",
-      "parentId": "77ae1727-850b-4df2-a46a-7a7c924f2cf6"
-    },
-    {
-      "id": "eab4cd32-7830-4f66-9066-9f77b3164600",
-      "NIK": 1,
-      "namaIbu": "dsadsa",
-      "tanggal": "6/12/2023",
-      "umur": 0,
-      "tinggiBadan": 0,
-      "beratBadan": 5,
-      "KBM": 800,
-      "statusKenaikan": "N",
-      "parentId": "77ae1727-850b-4df2-a46a-7a7c924f2cf6"
-    },
-    {
-      "id": "5f8c9e35-87b8-47c4-8436-e322c14dfef2",
-      "NIK": 4,
       "namaIbu": "dewi",
-      "tanggal": "7/12/2023",
+      "tanggal": "16/12/2023",
       "umur": 0,
-      "tinggiBadan": 50,
-      "beratBadan": 2,
+      "tinggiBadan": "50",
+      "beratBadan": "2",
+      "KBM": 0,
       "statusKenaikan": "N",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3"
     },
     {
-      "id": "e929c9a2-041f-49a5-a0da-99b2d1b2ad88",
-      "NIK": 4,
+      "id": "69769760-972b-4931-9107-9e396b7d1da2",
+      "NIK": 1,
       "namaIbu": "dewi",
-      "tanggal": "7/1/2024",
+      "tanggal": "14/1/2024",
       "umur": 1,
-      "tinggiBadan": 53,
+      "tinggiBadan": 55,
       "beratBadan": 3,
       "KBM": 800,
       "statusKenaikan": "N",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3"
     },
     {
-      "id": "bb99e2f6-40f2-4eee-9684-91a2974404fc",
-      "NIK": 4,
+      "id": "76bc405d-07de-410f-81d7-ee79c2ffba89",
+      "NIK": 1,
       "namaIbu": "dewi",
-      "tanggal": "7/2/2024",
-      "umur": 2,
-      "tinggiBadan": 56,
-      "beratBadan": 3.9,
       "KBM": 900,
-      "statusKenaikan": "T",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
+      "tanggal": "14/2/2024",
+      "umur": 2,
+      "tinggiBadan": 58,
+      "beratBadan": 4,
+      "statusKenaikan": "N",
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3"
     },
     {
-      "id": "96a2fe1c-a3dc-4a5f-ad75-2026a5242553",
-      "NIK": 4,
+      "id": "cf0b1172-e00d-4541-aa72-1cbd3366d510",
+      "NIK": 1,
       "namaIbu": "dewi",
       "KBM": 800,
-      "tanggal": "7/3/2024",
+      "tanggal": "14/3/2024",
       "umur": 3,
-      "tinggiBadan": 60,
+      "tinggiBadan": 61,
       "beratBadan": 5,
       "statusKenaikan": "N",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714"
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3"
     },
     {
-      "id": "d7a5589a-7604-408f-9f28-078641a64fa1",
-      "tanggal": "13/12/2023",
+      "id": "0fd18b61-55ca-4c65-9f5d-f48c38b957fb",
+      "NIK": 2,
+      "namaIbu": "asd",
+      "tanggal": "14/12/2023",
       "umur": 0,
-      "tinggiBadan": 70,
-      "beratBadan": 2.5,
-      "statusKenaikan": "N"
-    },
-    {
-      "id": "5112befd-e1c1-4886-8ea8-7a91700b8bb8",
-      "tanggal": "13/12/2023",
-      "umur": 0,
-      "tinggiBadan": 0,
-      "beratBadan": 0,
-      "statusKenaikan": "N"
-    },
-    {
-      "id": "255f703f-3610-4781-b014-865dba9d2339",
-      "tanggal": "13/12/2023",
-      "umur": 0,
-      "tinggiBadan": 0,
-      "beratBadan": 0,
-      "statusKenaikan": "N"
+      "tinggiBadan": 50,
+      "beratBadan": 1,
+      "KBM": 0,
+      "statusKenaikan": "N",
+      "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
     }
   ],
   "medical": [
     {
-      "id": 1,
-      "NIK": 4,
-      "tanggal": "7/12/2023",
-      "parentId": "d0f8772c-d9ba-4625-8c29-822869e8f714",
+      "id": "2154b056-7631-48b8-9fad-da25482e1cf9",
+      "NIK": 1,
+      "tanggal": "15/12/2023",
+      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
       "penyakit": "demam",
-      "rujukan": "rsud",
-      "keterangan": "demam tinggi"
+      "rujukan": "al-islam",
+      "keterangan": "kurang makan"
     },
     {
-      "id": "803144ae-193c-4d32-8c60-1a5c8fc57dd5",
-      "NIK": 4,
-      "tanggal": "2023-12-04",
-      "penyakit": "",
-      "rujukan": "",
-      "keterangan": ""
+      "id": "4fe7905e-5835-461f-96b6-b3f3ba003ed3",
+      "tanggal": "15/12/2023",
+      "penyakit": "ads",
+      "rujukan": "asd",
+      "keterangan": "asd",
+      "NIK": 2,
+      "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
     }
   ]
 }
