@@ -277,3 +277,21 @@ text-align: left;
     max-height: 80vh;
   }
   
+  .back-to-top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #06b6d4;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    z-index: 1000;
+  }
+  
+  .back-to-top-button:hover {
+    background-color: #0056b3;
+  }
+  

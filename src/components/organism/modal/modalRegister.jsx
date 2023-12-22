@@ -217,8 +217,8 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                                      <InputNumber
                                         id="noHp"
                                         placeholder="+62-9999999"
-                                        inputStyle={{borderColor: '#06b6d4'}}
-                                        style={{borderColor: '#06b6d4'}}
+                                        inputStyle={{borderColor: '#06b6d4', backgroundColor: '#fff'}}
+                                        style={{borderColor: '#06b6d4', backgroundColor: '#fff'}}
                                         allowEmpty
                                         value={field.value}
                                         useGrouping={false}
@@ -237,7 +237,7 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                     </div>
                 </div>
                 <div className="flex justify-center mt-5">
-                    <Button label="Daftar" className="p-button-success bg-green-500" />
+                    <Button label="Daftar" className="p-button-success bg-primary text-white dark:bg-primary dark:text-white" />
                 </div>
             </form>
         </Dialog>

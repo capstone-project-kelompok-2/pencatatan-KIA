@@ -135,13 +135,13 @@ const HomePage = () => {
                         transition = {{duration : 0.8}}
 
                          className="content text-justify">
-                            <p>
+                            <p className="text-primary">
                             Aplikasi berbasis website yang membantu para kader untuk meningkatkan 
                             akurasi pencatatan dan rekapitulasi data timbang dan perkembangan anak.
                             
                             </p>
                             <br />
-                            <p>
+                            <p className="text-primary">
                             &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Tujuan dari aplikasi Posyandu Sehat adalah mempermudah akses dan penggunaan sistem pencatatan bagi kader Posyandu, 
                             sehingga kegiatan menimbang saat Posyandu bisa lebih efektif. 
                             Kemudian, data yang tercatat dapat disimpan dalam format file Excel yang dapat diunduh dan dicetak, 
@@ -172,13 +172,13 @@ const HomePage = () => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
 
-                     src={features[0].image} alt={features[0].title} className="card-image-feature"/>
+                     src={features[0].image} alt={features[0].title} className="card-image-feature text-primary"/>
                     <motion.div
                     initial = {{x : "100%"}}
                     animate = {{x : 0}}
                     transition = {{duration : 0.8}}
                     className="text-center">
-                         <h1 className="title font-Feature font-right">{features[0].title}</h1>
+                         <h1 className="title font-Feature font-right text-primary">{features[0].title}</h1>
                          <h2 className="content font-right">{features[0].content}</h2>
                      </motion.div>
                     </div>
@@ -191,7 +191,7 @@ const HomePage = () => {
                             initial = {{x : "-100%"}}
                             animate = {{x : 0}}
                             transition = {{duration : 0.8}}
-                         className="title font-Feature text-left">{features[1].title}</motion.h1>
+                         className="title font-Feature text-left text-primary">{features[1].title}</motion.h1>
                          <motion.h2
                             initial = {{x : "-100%"}}
                             animate = {{x : 0}}
@@ -204,7 +204,7 @@ const HomePage = () => {
                         transition = {{duration : 0.8}}
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                     src={features[1].image} alt={features[1].title} className="card-image-feature"/>
+                     src={features[1].image} alt={features[1].title} className="card-image-feature text-primary"/>
                     </div>
                 </div>
 
@@ -216,14 +216,14 @@ const HomePage = () => {
                     transition = {{duration : 0.8}}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    src={features[2].image} alt={features[2].title} className="card-image-feature"/>
+                    src={features[2].image} alt={features[2].title} className="card-image-feature text-primary"/>
 
                     <motion.div 
                     initial = {{x : "100%"}}
                     animate = {{x : 0}}
                     transition = {{duration : 0.8}}
                     className="text-center">
-                         <hi className="title font-Feature">{features[2].title}</hi>
+                         <hi className="title font-Feature text-primary">{features[2].title}</hi>
                          <h2 className="content">{features[2].content}</h2>
                      </motion.div>
                     </div>
@@ -242,6 +242,13 @@ const HomePage = () => {
         setSelectedImage(image);
         setShowFullScreen(!showFullScreen);
     };
+
+    const handleBackToTop = () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      };
 
     useEffect(() => {
         setFlow(workFlow);
@@ -267,7 +274,7 @@ const HomePage = () => {
                     animate = {{x : 0}}
                     transition = {{duration : 0.8}}
                     className="text-center my-5">
-                         <hi className="title font-Feature">{flow.title}</hi>
+                         {/* <h1 className="title font-Feature">{flow.title}</h1> */}
                          <h2 className="content text-center mx-3">{flow.content}</h2>
                          
                      </motion.div>
@@ -286,7 +293,7 @@ const HomePage = () => {
                         initial = {{x : "-100%"}}
                         animate = {{x : 0}}
                         transition = {{duration : 0.8}}
-                        className="title font-Feature text-left">Alur Penggunaan</motion.h1>
+                        className="title font-Feature text-left text-primary">Alur Penggunaan</motion.h1>
                     </div>
                     <Carousel value={workFlow} itemTemplate={workFlowTemplate} numVisible={3} numScroll={3} className="custom-carousel" />
                 </div>
@@ -324,6 +331,19 @@ const HomePage = () => {
           </motion.div>
         </motion.div>
       )}
+
+        <motion.button
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ duration: 0.5 }}
+        onClick={handleBackToTop}
+        className="back-to-top-button"
+      >
+        <i className="fa-solid fa-arrow-up"></i>
+      </motion.button>
        </div>
 
     

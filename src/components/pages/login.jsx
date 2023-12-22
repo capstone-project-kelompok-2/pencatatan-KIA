@@ -105,7 +105,7 @@ const Login = () => {
                 type="text"
                 placeholder="Username"
                 {...register("username", { required: true })}
-                className="rounded-2xl w-[130%] h-[45px] backdrop-blur-sm shadow-slate-500/50 bg-white/30 shadow-xl p-3 mb-5"
+                className="rounded-2xl w-[130%] h-[45px] backdrop-blur-sm shadow-slate-500/50 bg-white/30 shadow-xl p-3 mb-5 active:border active:border-primary"
                 initial={{ y: "-100%" }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
