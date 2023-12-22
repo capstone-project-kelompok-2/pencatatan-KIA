@@ -158,7 +158,7 @@ const Edit = () => {
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col shadow-2xl gap-5 justify-center items-center backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl py-4">
             <div className="flex flex-col justify-center items-center">
                 <img src="../src/assets/img/pngwing1.png" alt="people icon" className="absolute w-[6%] border border-black rounded-full bg-slate-50 mb-[6.5%] -z-0" />
-                <span className=" flex justify-center w-[100px] bg-primary text-white text-xs shadow-md font-medium me-2 px-2.5 py-2 rounded-full z-30">Daftar</span>
+                <span className=" flex justify-center w-[100px] bg-primary text-white text-xs shadow-md font-medium me-2 px-2.5 py-2 rounded-full z-30">Edit</span>
             </div>
             <motion.button
                     whileHover={{ scale: 1.1 }}

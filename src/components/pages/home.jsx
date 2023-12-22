@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Card } from "primereact/card";
-import { Button } from "primereact/button";
-import { info } from "autoprefixer";
-import { steps } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import {motion} from "framer-motion";
+import { Button } from 'primereact/button';
+import { Carousel } from 'primereact/carousel';
+import { Tag } from 'primereact/tag';
 
 
 const appInfo = [
@@ -41,39 +40,37 @@ const features = [
 ];
 
 const workFlow = [
+
     {
-        title: "Alur Penggunaan Aplikasi"
-    },
-    {
-        image: "src/assets/img/home/login.png",
+        image: "src/assets/img/home/flow1.png",
         content: "Masuk ke halaman website, temui tampilan ini dan silahkan login dengan memasukkan 'USERNAME' dan 'PASSWORD'. Jika belum memiliki akun, silahkan pilih link 'DAFTAR'"
     },
     {
-        image: "src/assets/img/home/daftar.png",
+        image: "src/assets/img/home/flow2.png",
         content: "Lakukan pendaftaran terlebih dahulu. Setelah selesai mengisi form pendaftaran, pilih tombol daftar"
     },
     {
-        image: "src/assets/img/home/view-main.png",
-        content: "Setelah login, Anda akan diarahkan menuju halaman utama dari website yang akan berisi data informasi Ibu dan Anak. Lihat pada sebelah pojok kanan atas terdapat tombol 'NEW DATA', dan pilih tombol tersebut"
+        image: "src/assets/img/home/flow3.png",
+        content: "Setelah login, Anda akan diarahkan menuju halaman dashboard dari website yang akan berisi data informasi Ibu dan Anak. Lihat pada sebelah pojok kanan atas terdapat tombol 'NEW DATA', dan pilih tombol tersebut"
     },
     {
-        image: "src/assets/img/home/create-main.png",
+        image: "src/assets/img/home/flow4.png",
         content: "Setelah memilih tombol new data, maka akan diarahkan untuk mengisi data yang tertera pada form. Jika sudah yakin dengan data yang dimasukkan dapat memilih 'CREATE DATA' "
     },
     {
-        image: "src/assets/img/home/view-1.png",
-        content: "Anda akan diarahkan kembali ke halaman utama untuk melihat data informasi yang sudah dibuat. Selanjutnya pilih tombol 'VIEW' pada data yang ingin anda masukkan informasi penimbangannya"
+        image: "src/assets/img/home/flow5.png",
+        content: "Anda akan diarahkan kembali ke halaman dashboard untuk melihat data informasi yang sudah dibuat. Selanjutnya pilih tombol 'VIEW', maka anda akan diarahkan ke halaman detail untuk melakukan pencatatan data penimbangan dan pengukuran anak"
     },
     {
-        image: "src/assets/img/home/create-view.png",
-        content: "Ketika sudah memilih tombol view akan ada beberapa pilihan diatas, selanjutnya pilih 'CREATE DATA' untuk memasukkan data hasil penimbangan"
+        image: "src/assets/img/home/flow6.png",
+        content: "Setelah masuk kehalaman detail maka akan ada beberapa pilihan diatas, selanjutnya pilih 'CREATE DATA' untuk memasukkan data hasil penimbangan"
     },
     {
-        image: "src/assets/img/home/export.png",
-        content: "Pada halaman view, data juga dapat di export ke dalam PDF maupun excel"
+        image: "src/assets/img/home/flow7.png",
+        content: "Pada halaman detail, data juga dapat di export ke dalam PDF maupun excel"
     },
     {
-        image: "src/assets/img/home/tumbuh.png",
+        image: "src/assets/img/home/flow8.png",
         content: "Pada halaman view juga terdapat bagian yang dapat digunakan untuk mengisi informasi tumbuh kembang anak. Pilih tombol 'KESEHATAN' kemudian Anda bisa mengisi apa saja kondisi yang terjadi pada anak"
     },
 ];
@@ -181,7 +178,7 @@ const HomePage = () => {
                     animate = {{x : 0}}
                     transition = {{duration : 0.8}}
                     className="text-center">
-                         <hi className="title font-Feature font-right">{features[0].title}</hi>
+                         <h1 className="title font-Feature font-right">{features[0].title}</h1>
                          <h2 className="content font-right">{features[0].content}</h2>
                      </motion.div>
                     </div>
@@ -236,34 +233,66 @@ const HomePage = () => {
         );
     };
 
+    
+    const [flow, setFlow] = useState([]);
+    const [showFullScreen, setShowFullScreen] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+
+    const toggleFullScreen = (image) => {
+        setSelectedImage(image);
+        setShowFullScreen(!showFullScreen);
+    };
+
+    useEffect(() => {
+        setFlow(workFlow);
+        console.log(flow);
+    }, [flow]);
+
+    const workFlowTemplate = (flow) => {
+        return (
+            <div className="w-full">
+                <div className="background info-container w-full">
+                    <div className="flex-container flex-col bg-white p-3 w-full h-[450px] rounded-xl shadow-lg border-2 border-[#e5e7eb] backdrop:blur-lg">
+                    <motion.img 
+                    initial = {{x : "-100%"}}
+                    animate = {{x : 0}}
+                    transition = {{duration : 0.8}}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => toggleFullScreen(flow.image)}
+                    src={flow.image} alt={flow.title} style={{width : '100%'}} className="card-image-feature h-[300px]"/>
+
+                    <motion.div 
+                    initial = {{x : "100%"}}
+                    animate = {{x : 0}}
+                    transition = {{duration : 0.8}}
+                    className="text-center my-5">
+                         <hi className="title font-Feature">{flow.title}</hi>
+                         <h2 className="content text-center mx-3">{flow.content}</h2>
+                         
+                     </motion.div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     const renderWorkFlow = () => {
         return (
-            <div className="p-grid background px-10 py-10">
-                <div className="p-col-12 text-center title font-Feature background">
-                    <h2>Alur Penggunaan</h2>
+            <div className="p-col-12 p-md-12 background info-container">
+                <div className="flex-container flex-col">
+                    <div className="text-center">
+                        <motion.h1
+                        initial = {{x : "-100%"}}
+                        animate = {{x : 0}}
+                        transition = {{duration : 0.8}}
+                        className="title font-Feature text-left">Alur Penggunaan</motion.h1>
+                    </div>
+                    <Carousel value={workFlow} itemTemplate={workFlowTemplate} numVisible={3} numScroll={3} className="custom-carousel" />
                 </div>
-                <div className="p-grid p-justify-center">
-                    {workFlow.map((step, index) => (
-                        <div key={index} className="p-col-12 p-md-6 background info-container">
-                            <div className="flex-container">
-                                {step.image && (
-                                    <img src={step.image} alt={step.content} className="card-image-flow"/>
-                                )}
-                                <div className="text-center">
-                                    <p className="content content-flow">{step.content}</p>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
             </div>
         );
     };
-
-    
-
-    
 
     
 
@@ -273,6 +302,28 @@ const HomePage = () => {
         {renderAboutInfo()}
         {renderFeatures()}
         {renderWorkFlow()}
+        {showFullScreen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="fullscreen-overlay"
+          onClick={() => setShowFullScreen(false)}
+        >
+          <motion.div
+            initial={{ opacity: 0, y: "-50%" }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="modal-content"
+          >
+            <img
+              src={selectedImage}
+              alt="Fullscreen"
+              className="fullscreen-image"
+            />
+          </motion.div>
+        </motion.div>
+      )}
        </div>
 
     

@@ -9,6 +9,7 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { FilterMatchMode } from 'primereact/api';
 import { exportToPDF } from "../../utils/exportPDF";
+import { exportToExcel } from '../../utils/exportExcell';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import MedicalModalCreate from '../organism/modal/medicalModalCreate';
@@ -174,11 +175,12 @@ const MedicalDetail = () => {
 
 
     return (
-        <div className="body h-screen bg-[#e5e7eb] flex justify-center items-center">
+        <div className="body h-screen bg-white flex justify-center items-center my-10 ">
+            <div className='h-full'>
             <Toast ref={toast} />
             <ModalCreateWrapper />
             <MedicalModalEdit visible={visibleEdit} triggerUpdate={triggerUpdate} setVisible={setVisibleEdit} show={show} editData={editData} setEditData={setEditData} toast={toast} parentId={parentId} />
-            <div className="flex flex-col gap-5 justify-center items-center shadow-2xl backdrop-blur-sm bg-white/30 w-[95%] h-[90%] rounded-3xl px-20">
+            <div className="flex flex-col gap-5 justify-center items-center">
                 <motion.p 
                 initial={{ x: "-100%" }}
                 animate={{ x: 0 }}
@@ -194,7 +196,7 @@ const MedicalDetail = () => {
                 header={renderHeader()}
                 filters={filters}
                 filterDisplay="row"
-                className="w-full shadow-lg backdrop:shadow-xl"
+                className="w-full shadow-xl backdrop:shadow-xl border-2 border-[#e5e7eb] rounded-md"
                 tableStyle={{ minWidth: '50rem', borderRadius: '10px 0 0 0', width: '100%' }}
                 paginator
                 rows={4}
@@ -254,6 +256,7 @@ const MedicalDetail = () => {
                     Kembali
                     
                 </motion.button>
+            </div>
             </div>
         </div>
     );

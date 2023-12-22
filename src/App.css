@@ -1,6 +1,6 @@
 body{
-    background-color: #077da7;
-
+    background-color: #fff;
+    font-family: 'Roboto', sans-serif;
 }
 .body-dashboard{
     background: linear-gradient(0deg, #010608 10%, #077da7 30%)
@@ -11,12 +11,12 @@ body{
 
 /* BACKGROUND*/
 .background-home {
-    background: linear-gradient(0deg, #c7e9ee 10%, #60c0d1 20%);
+    background: linear-gradient(0deg, #fff 10%, #60c0d1 20%);
     width: 100%;
 }
 
 .background {
-    background-color: #c7e9ee;
+    background-color: #fff;
     width: 100%;
 }
 
@@ -250,3 +250,30 @@ text-align: left;
     color: #077da7;
 }
 
+.fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 80%;
+  }
+  
+  .fullscreen-image {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+  }
+  
