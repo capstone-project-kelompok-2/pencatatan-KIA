@@ -31,6 +31,24 @@
       "alamat": "east blue",
       "kecamatan": "grand line",
       "kota": "new world"
+    },
+    {
+      "id": "3610d8ae-cad5-40e0-9ad9-11ca72d0bee2",
+      "bayi": {
+        "tanggalLahir": "21/12/2023",
+        "namaBayi": "anya",
+        "jenisKelamin": "Perempuan",
+        "beratBayi": 0,
+        "tinggiBayi": 0
+      },
+      "namaIbu": "yor forger",
+      "pekerjaanIbu": "ibu rumah tangga",
+      "NIK": 3,
+      "namaAyah": "loid forger",
+      "pekerjaanAyah": "intelegence pemerintah",
+      "alamat": "tidak tahu",
+      "kecamatan": "tidak tahu",
+      "kota": "shibuya"
     }
   ],
   "users": [
@@ -60,6 +78,15 @@
       "email": "krisnalavendrairawan@gmail.com",
       "password": "12345",
       "noHp": "+62721413132"
+    },
+    {
+      "id": "8cb26d09-e8cf-4029-8903-da94c6bfe1e1",
+      "namaDepan": "salma",
+      "namaBelakang": "benazir achmad",
+      "username": "salma15",
+      "email": "salmabenazirachmad@gmail.com",
+      "password": "12345",
+      "noHp": "+62213123134243"
     }
   ],
   "TKA": [
@@ -124,16 +151,15 @@
       "parentId": "26a9a07d-7078-4632-aaae-c606df2a2227"
     },
     {
-      "id": "98448c08-0ce6-4ac8-a498-5a70a5e1f098",
-      "NIK": 1,
-      "namaIbu": "dewi",
-      "tanggal": "14/4/2024",
-      "umur": 4,
-      "tinggiBadan": 70,
-      "beratBadan": 6,
-      "KBM": 600,
-      "statusKenaikan": "N",
-      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3"
+      "id": "d9f1652f-db05-47d3-bf3b-660841a31fc5",
+      "NIK": 3,
+      "namaIbu": "yor forger",
+      "tanggal": "21/12/2023",
+      "umur": 0,
+      "beratBadan": 0,
+      "tinggiBadan": 0,
+      "KBM": 0,
+      "statusKenaikan": "T"
     }
   ],
   "medical": [
@@ -166,42 +192,20 @@
       "namaBayi": "Gojo Satoru",
       "tanggal": "15/12/2023",
       "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
-      "penyakit": "asd",
-      "rujukan": "asd",
-      "keterangan": "asd"
+      "penyakit": "batuk",
+      "rujukan": "puskesmas",
+      "keterangan": "teralau banyak memakan permen"
     },
     {
       "id": "e9c91f64-d1e6-42f5-9ff1-1a1982702777",
+      "NIK": 1,
+      "namaIbu": "dewi",
+      "namaBayi": "Gojo Satoru",
       "tanggal": "16/12/2023",
-      "penyakit": "asdas",
-      "rujukan": "asd",
-      "keterangan": "asd",
-      "NIK": 1,
       "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
-      "namaIbu": "dewi",
-      "namaBayi": "Gojo Satoru"
-    },
-    {
-      "id": "6da41cef-d176-4485-8d26-02b9b157795a",
-      "tanggal": "17/12/2023",
-      "penyakit": "ad",
-      "rujukan": "asd",
-      "keterangan": "asd",
-      "NIK": 1,
-      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
-      "namaIbu": "dewi",
-      "namaBayi": "Gojo Satoru"
-    },
-    {
-      "id": "a5fc4865-a419-4f68-94a3-1f3d44b5fe99",
-      "tanggal": "15/12/2023",
-      "penyakit": "sad",
-      "rujukan": "asd",
-      "keterangan": "asd",
-      "NIK": 1,
-      "parentId": "d465b7fa-849f-4c6c-865f-37d484f019f3",
-      "namaIbu": "dewi",
-      "namaBayi": "Gojo Satoru"
+      "penyakit": "pilek",
+      "rujukan": "klinik",
+      "keterangan": "kedinginan"
     }
   ]
 }

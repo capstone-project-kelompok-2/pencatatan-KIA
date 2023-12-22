@@ -22,7 +22,6 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
             const kaderData = {
                 id: uuidv4(),
                 ...data,
-                //tambahkan angka 0 sebelum nomor hp
                 noHp: `+62${data.noHp}`,
             }
             console.log(kaderData);
@@ -47,7 +46,7 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
     return (
         <Dialog 
             header="Registrasi Kader" 
-            className='gap-5'
+            className='gap-5 my-10'
             visible={visible} 
             style={{ width: '50vw' }} 
             onHide={handleClose}
@@ -60,7 +59,7 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                }),
             }}
         >
-            <form onSubmit={handleSubmit(onSubmit)} style={{ padding: '5%' }} className='gap-2'>
+            <form onSubmit={handleSubmit(onSubmit)} style={{ padding: '5%' }} className='gap-2 '>
                 <div className="grid grid-cols-2 gap-3">
                     <div className="flex flex-col">
                         <label htmlFor="namaDepan" className='my-1'>Nama Depan :</label>
@@ -115,7 +114,8 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
 
                 </div>
                 <div className='flex flex-col gap-2'>
-                <div className="flex flex-col">
+                    <div className='grid grid-cols-2 gap-3'>
+                    <div className="flex flex-col">
                         <label htmlFor="username" className='my-1'>Username :</label>
                         <Controller
                             name="username"
@@ -174,6 +174,7 @@ const ModalRegister  = ({ setVisible, showSuccess, visible, setShowLogin, showEr
                             )
                         }
                         />
+                    </div>
                     </div>
                     <div className="flex flex-col">
                         <label htmlFor="password" className='my-1'>Password :</label>
