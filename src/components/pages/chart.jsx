@@ -23,6 +23,7 @@ const ChartPage = () => {
     const [chartData, setChartData] = useState({});
     const [chartOptions, setChartOptions] = useState({});
     const [chartType, setChartType] = useState('line');
+    const [selectedChartType, setSelectedChartType] = useState('line');
 
     const handleChartTypeChange = (e) => {
         console.log(e.value.name);
@@ -104,6 +105,7 @@ const ChartPage = () => {
                 console.log(err);
             });
     }, [chartType, id]);
+    console.log(chartType);
 
     return (
         <div className='body h-screen w-full bg-white shadow-lg flex justify-center items-center'>
@@ -115,40 +117,47 @@ const ChartPage = () => {
                         Kembali
                     </motion.button>
 
-                    <Dropdown 
-                            value={chartType}
-                            onChange={handleChartTypeChange}
-                            options={types} 
-                            optionLabel="name" 
-                            placeholder="Pilih Tipe Chart" 
-                            className="w-full md:w-14rem text-primary" 
-                            style={{backgroundColor: '#06b6d4', color : 'white', borderColor: '#06b6d4', borderWidth: '2px', fontWeight: 'bold'}}
-                            pt = {{
-                                root : () => ({
-                                    id : 'rootDropdown',
-                                }),
-                                input : () => ({
-                                    id : 'inputDropdown',
-                                    className : ''
-                                }),
-                                item : () => ({
-                                    id : 'itemDropdown',
-                                    className : ''
-                                }),
-                                list : () => ({
-                                    id : 'listDropdown',
-                                    className : ''
-                                }),
-                                trigger : () => ({
-                                    id : 'triggerDropdown',
-                                }),
-                            }}
+                    <Dropdown
+                        value={chartType}
+                        onChange={handleChartTypeChange}
+                        options={types}
+                        optionLabel="name"
+                        placeholder="Pilih Tipe Chart"
+                        className="w-full md:w-14rem text-primary"
+                        style={{
+                            backgroundColor: '#06b6d4',
+                            color: 'white',
+                            borderColor: '#06b6d4',
+                            borderWidth: '2px',
+                            fontWeight: 'bold',
+                        }}
+                        pt={{
+                            root: () => ({
+                                id: 'rootDropdown',
+                            }),
+                            input: () => ({
+                                id: 'inputDropdown',
+                                className: '',
+                            }),
+                            item: () => ({
+                                id: 'itemDropdown',
+                                className: '',
+                                
+                            }),
+                            list: () => ({
+                                id: 'listDropdown',
+                                className: '',
+                            }),
+                            trigger: () => ({
+                                id: 'triggerDropdown',
+                            }),
+                        }}
+
                         />
 
                 </div>
                 {chartData.labels && (
                     <motion.div
-                    //animasi dari kiri ke kanan
                     initial={{ x: "-100%" }}
                     animate={{ x: 0 }}
                     transition={{ duration: 0.8 }}

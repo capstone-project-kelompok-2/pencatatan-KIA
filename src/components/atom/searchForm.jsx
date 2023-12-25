@@ -10,7 +10,7 @@ const SearchForm = ({ value, handle }) => {
             value={value}
             onChange={handle}
             className="mt-4 ml-0 h-[30px] rounded-r-lg mx-3 p-5 active:border active:border-blue-700"
-            placeholder="Search Data"
+            placeholder="Cari Pasien"
         />
     </form>
 </div>

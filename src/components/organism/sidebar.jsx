@@ -36,7 +36,7 @@ const SidebarCoomponent = ({ isSidebarVisible, hideSidebar, userLogin, handleLog
                         <button onClick={() => showInfo('top')} className="text-center font-semibold text-xl text-white">{userLogin ? userLogin.username : ''}</button>    
                     </motion.div>
                 </div>
-                <Button label="Logout" handle={handleLogout} className="text-primary border-2 border-primary font-semibold bg-white   hover:bg-red-500 hover:text-white hover:border-white hover:scale-125 rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" icon="pi pi-sign-out mr-3" />
+                <Button label="Keluar" handle={handleLogout} className="text-primary border-2 border-primary font-semibold bg-white   hover:bg-red-500 hover:text-white hover:border-white hover:scale-125 rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" icon="pi pi-sign-out mr-3" />
             </div>
         </Sidebar>
     )

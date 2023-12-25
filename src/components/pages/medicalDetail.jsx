@@ -117,7 +117,7 @@ const MedicalDetail = () => {
                 <span className="p-input-icon-left">
                     <Button label="Export to PDF" icon="pi pi-file-pdf" onClick={handleExportToPDF} style={{marginRight:'20px'}} />
                     <Button label="Export to Excel" icon="pi pi-file-excel" onClick={handleExportToExcel}  style={{marginRight:'20px'}} />
-                    <Button label="Create Data" icon="pi pi-plus-circle" onClick={() => setVisible(true)} style={{marginRight:'20px'}} />
+                    <Button label="Tambah Data" icon="pi pi-plus-circle" onClick={() => setVisible(true)} style={{marginRight:'20px'}} />
                     <i className="fa-solid fa-magnifying-glass flex pl-[85%]"></i>
                     <span className="p-input-icon-right">
                         <i className="pi pi-search pl-2 ml-1"/>
@@ -135,12 +135,12 @@ const MedicalDetail = () => {
                 <motion.button
                 whileHover={{ scale: 1.25 }}
                 
-                 className="w-20 border-2 border-primary text-primary  hover:bg-yellow-400 rounded-lg p-2 hover:text-gray-700 hover:border-0"  onClick={() => handleEdit(rowData)}><i className="fa-solid fa-pen-to-square"></i> Edit</motion.button>
+                 className="w-20 border-2 border-primary text-primary  hover:bg-yellow-400 rounded-lg p-2 hover:text-gray-700 hover:border-0"  onClick={() => handleEdit(rowData)}><i className="fa-solid fa-pen-to-square"></i> Ubah</motion.button>
                 <motion.button 
                 whileHover={{ scale: 1.25 }}
                 className="w-24 border-2 text-primary hover:text-white hover:border-0 border-primary hover:bg-red-500 rounded-lg p-2" onClick={() => handleDelete(rowData)}>
                     <i className="fa-solid fa-trash mx-1"></i>
-                    Delete</motion.button>
+                    Hapus</motion.button>
             </div>
         );
     };
@@ -236,7 +236,7 @@ const MedicalDetail = () => {
                     ></Column>
                     <Column 
                         field="action" 
-                        header="action" 
+                        header="Aksi" 
                         body={actionTemplate} 
                         style={{ width: '25%' }}
                         headerStyle={{ border:'none' }}
