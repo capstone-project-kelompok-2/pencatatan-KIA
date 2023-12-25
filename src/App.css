@@ -175,6 +175,11 @@ text-align: left;
     background-color: white;
 }
 
+#itemDropdownActive {
+    color : red;
+    background-color: black ;
+}
+
 #itemDropdown:hover {
     color : white;
     background-color: #06b6d4;

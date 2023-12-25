@@ -199,8 +199,8 @@ import { useEffect, useState } from "react"
                     <NavbarLogo />
                     </div>
                     <div className="navbar__menu flex justify-end">
-                        <Button label="New Data" handle={ () => navigate('/create')} className="text-primary border-2 border-blue-600 font-semibold bg-white   hover:bg-neutral-200  rounded-lg text-sm px-5 py-2.5 hover:scale-125 text-center me-2 mb-2" icon="fa-solid fa-user-plus mr-3" />
-                        <Button label="Get Data" className="text-primary border-2 border-blue-600 font-semibold bg-white hover:scale-125  hover:bg-neutral-200  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" icon="fa-solid fa-download mr-3" handle={toggleGetDataModal} />
+                        <Button label="Tambah Pasien" handle={ () => navigate('/create')} className="text-primary border-2 border-blue-600 font-semibold bg-white   hover:bg-neutral-200  rounded-lg text-sm px-5 py-2.5 hover:scale-125 text-center me-2 mb-2" icon="fa-solid fa-user-plus mr-3" />
+                        <Button label="Pengunduhan Data" className="text-primary border-2 border-blue-600 font-semibold bg-white hover:scale-125  hover:bg-neutral-200  rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" icon="fa-solid fa-download mr-3" handle={toggleGetDataModal} />
                         <SearchForm value={searchTerm} handle={handleSearch} />
                     </div>
                 </div>
@@ -259,7 +259,7 @@ import { useEffect, useState } from "react"
                                             className='bg-white shadow-lg hover:border-0  text-primary border border-primary w-[20%] h-[40px] rounded-lg hover:bg-blue-500 hover:text-white'>
                                             <i 
                                             className="fa-regular fa-eye mr-2 "></i>
-                                            View
+                                            Detail
                                         </motion.button>
                                         <motion.button onClick={() => handleEdit(guest.id)}
                                         initial={{ y: "-100%" }}
@@ -268,7 +268,7 @@ import { useEffect, useState } from "react"
                                         whileHover={{ scale: 1.25 }}
                                         className='hover:border-0 bg-white w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-yellow-500 hover:text-white'><i 
                                         className="fa-solid fa-user-pen mr-2"></i> 
-                                            Edit
+                                            Ubah
                                         </motion.button>
                                         <motion.button onClick={() => handleDelete(guest.id)} 
                                             initial={{ y: "-100%" }}
@@ -277,7 +277,7 @@ import { useEffect, useState } from "react"
                                             transition={{ duration: 0.5 }}
                                             className='bg-white hover:border-0 w-[20%] h-[40px] rounded-lg shadow-lg border border-primary text-primary hover:bg-red-500 hover:text-white'>
                                             <i className="fa-solid fa-trash mr-2"></i> 
-                                            Delete
+                                            Hapus
                                         </motion.button>
 
                                     </div>
